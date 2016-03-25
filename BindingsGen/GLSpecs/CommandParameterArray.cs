@@ -34,7 +34,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="otherParam"></param>
 		/// <param name="ctx"></param>
 		/// <param name="parentCommand"></param>
-		public CommandParameterArrayLength(CommandParameter otherParam, RegistryContext ctx, Command parentCommand)
+		public CommandParameterArrayLength(CommandParameter otherParam, ISpecContext ctx, Command parentCommand)
 			: base(otherParam, ctx, parentCommand)
 		{
 			if (otherParam == null)
@@ -47,17 +47,17 @@ namespace BindingsGen.GLSpecs
 
 		#region Utility
 		
-		internal static new bool IsCompatible(RegistryContext ctx, Command command)
+		internal static new bool IsCompatible(ISpecContext ctx, Command command)
 		{
 			return (IsCompatible(ctx, command, command.Parameters));
 		}
 
-		internal static new bool IsCompatible(RegistryContext ctx, Command command, List<CommandParameter> parameters)
+		internal static new bool IsCompatible(ISpecContext ctx, Command command, List<CommandParameter> parameters)
 		{
 			return (parameters.FindIndex(delegate (CommandParameter item) { return (IsCompatible(ctx, command, item)); }) >= 0);
 		}
 
-		internal static new bool IsCompatible(RegistryContext ctx, Command parentCommand, CommandParameter param)
+		internal static new bool IsCompatible(ISpecContext ctx, Command parentCommand, CommandParameter param)
 		{
 			if (!param.IsManagedArray || param.Length == null)
 				return (false);
@@ -70,14 +70,14 @@ namespace BindingsGen.GLSpecs
 			return (true);
 		}
 
-		internal static bool IsArrayLengthParameter(CommandParameter param, RegistryContext ctx, Command parentCommand)
+		internal static bool IsArrayLengthParameter(CommandParameter param, ISpecContext ctx, Command parentCommand)
 		{
 			CommandParameter arrayParameter = GetArrayLengthParameter(param, ctx, parentCommand);
 
 			return (arrayParameter != null && arrayParameter.IsManagedArray);
 		}
 
-		internal static CommandParameter GetArrayLengthParameter(CommandParameter param, RegistryContext ctx, Command parentCommand)
+		internal static CommandParameter GetArrayLengthParameter(CommandParameter param, ISpecContext ctx, Command parentCommand)
 		{
 			List<CommandParameter> arrayLengthParams = parentCommand.Parameters.FindAll(delegate(CommandParameter item) {
 				return (parentCommand.Parameters.FindIndex(delegate(CommandParameter subitem) { return (item.Length == param.Name); }) >= 0);
@@ -93,7 +93,7 @@ namespace BindingsGen.GLSpecs
 
 		#region CommandParameter Overrides
 
-		public override bool IsImplicit(RegistryContext ctx, Command parentCommand)
+		public override bool IsImplicit(ISpecContext ctx, Command parentCommand)
 		{
 			if (IsArrayLengthParameter(this, ctx, parentCommand))
 				return (true);
@@ -101,12 +101,12 @@ namespace BindingsGen.GLSpecs
 			return (false);
 		}
 
-		public override void WriteDebugAssertion(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteDebugAssertion(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			
 		}
 
-		public override void WriteDelegateParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteDelegateParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (IsArrayLengthParameter(this, ctx, parentCommand)) {
 				int arrayLengthParamIndex = parentCommand.Parameters.FindIndex(delegate(CommandParameter item) {
@@ -121,7 +121,7 @@ namespace BindingsGen.GLSpecs
 				base.WriteDelegateParam(sw, ctx, parentCommand);
 		}
 
-		public override void WriteCallLogArgParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteCallLogArgParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (IsArrayLengthParameter(this, ctx, parentCommand)) {
 				int arrayLengthParamIndex = parentCommand.Parameters.FindIndex(delegate(CommandParameter item) {

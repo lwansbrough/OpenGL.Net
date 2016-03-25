@@ -43,7 +43,7 @@ namespace BindingsGen.GLSpecs
 
 		#region Information LInkage
 
-		public void Link(RegistryContext ctx)
+		public void Link(ISpecContext ctx)
 		{
 			foreach (Command command in Commands)
 				command.Link(ctx);

@@ -81,7 +81,7 @@ namespace BindingsGen.GLSpecs
 		/// It returns a <see cref="String"/> that is the reduced name (suitable for overriding commands) of
 		/// <paramref name="specificationName"/>.
 		/// </returns>
-		public string GetOverridableName(RegistryContext ctx, string specificationName)
+		public string GetOverridableName(ISpecContext ctx, string specificationName)
 		{
 			if (String.IsNullOrEmpty(specificationName))
 				throw new ArgumentNullException("specificationName");

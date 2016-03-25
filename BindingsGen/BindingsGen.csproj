@@ -96,6 +96,7 @@
     <Compile Include="GLSpecs\ICommandParameter.cs" />
     <Compile Include="GLSpecs\IFeature.cs" />
     <Compile Include="GLSpecs\Registry.cs" />
+    <Compile Include="ISpecContext.cs" />
     <Compile Include="SpecificationStyle.cs" />
     <Compile Include="GLSpecs\SpecWordsDictionary.cs" />
     <Compile Include="GLSpecs\Type.cs" />

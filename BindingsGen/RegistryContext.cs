@@ -27,7 +27,7 @@ namespace BindingsGen
 	/// <summary>
 	/// OpenGL specification context.
 	/// </summary>
-	public class RegistryContext
+	public class RegistryContext : ISpecContext
 	{
 		/// <summary>
 		/// Static constructor.
@@ -52,13 +52,13 @@ namespace BindingsGen
 		public RegistryContext(string @class, string registryPath)
 		{
 			// Store the class
-			Class = @class;
+			_Class = @class;
 			// Set supported APIs
 			List<string> apis = new List<string>();
 
-			apis.Add(Class.ToLower());
+			apis.Add(_Class.ToLower());
 
-			if (Class == "Gl") {
+			if (_Class == "Gl") {
 				// No need to add glcore, since gl is still a superset of glcore
 				// apis.Add("glcore");
 				// Support GS ES 1/2
@@ -66,67 +66,42 @@ namespace BindingsGen
 				apis.Add("gles2");
 			}
 
-			SupportedApi = apis.ToArray();
+			_SupportedApi = apis.ToArray();
 			// Loads the extension dictionary
-			ExtensionsDictionary = SpecWordsDictionary.Load("BindingsGen.GLSpecs.ExtWords.xml");
+			_ExtensionsDictionary = SpecWordsDictionary.Load("BindingsGen.GLSpecs.ExtWords.xml");
 			// Loads the words dictionary
-			WordsDictionary = SpecWordsDictionary.Load(String.Format("BindingsGen.GLSpecs.{0}Words.xml", @class));
+			_WordsDictionary = SpecWordsDictionary.Load(String.Format("BindingsGen.GLSpecs.{0}Words.xml", @class));
 			// Load and parse OpenGL specification
 			using (StreamReader sr = new StreamReader(registryPath)) {
-				Registry = ((Registry)SpecSerializer.Deserialize(sr));
-				Registry.Link(this);
+				_Registry = ((Registry)SpecSerializer.Deserialize(sr));
+				_Registry.Link(this);
 			}
-		}
-
-		/// <summary>
-		/// Determine whether an API element is supported by the generated class.
-		/// </summary>
-		/// <param name="api">
-		/// A <see cref="String"/> that specify the regular expression of the API element to be evaluated.
-		/// </param>
-		/// <returns>
-		/// It returns true if <paramref name="api"/> specify a supported API.
-		/// </returns>
-		public bool IsSupportedApi(string api)
-		{
-			if (api == null)
-				throw new ArgumentNullException("api");
-
-			string regexApi = String.Format("^{0}$", api);
-
-			foreach (string supportedApi in SupportedApi) {
-				if (Regex.IsMatch(supportedApi, regexApi))
-					return (true);
-			}
-				
-
-			return (false);
 		}
 
 		/// <summary>
 		/// The name of the class to be generated.
 		/// </summary>
-		public readonly string Class;
+		private readonly string _Class;
 
 		/// <summary>
 		/// The set of API supported by generated class.
 		/// </summary>
-		public readonly string[] SupportedApi;
+		private readonly string[] _SupportedApi;
 
 		/// <summary>
 		/// The OpenGL specification registry.
 		/// </summary>
-		public readonly Registry Registry;
+		private readonly Registry _Registry;
 
 		/// <summary>
 		/// The extension names dictionary.
 		/// </summary>
-		public readonly SpecWordsDictionary ExtensionsDictionary;
+		private readonly SpecWordsDictionary _ExtensionsDictionary;
 
 		/// <summary>
 		/// The words dictionary.
 		/// </summary>
-		public readonly SpecWordsDictionary WordsDictionary;
+		private readonly SpecWordsDictionary _WordsDictionary;
 
 		/// <summary>
 		/// Notify about unknown OpenGL specification elements.
@@ -162,5 +137,59 @@ namespace BindingsGen
 		/// OpenGL specification parser.
 		/// </summary>
 		private static readonly XmlSerializer SpecSerializer = new XmlSerializer(typeof(Registry));
+
+		#region ISpecContext Implementation
+
+		/// <summary>
+		/// The name of the class to be generated.
+		/// </summary>
+		public string Class { get { return (_Class); } }
+
+		/// <summary>
+		/// The set of API supported by generated class.
+		/// </summary>
+		public string[] SupportedApi { get { return (_SupportedApi); } }
+
+		/// <summary>
+		/// Determine whether an API element is supported by the generated class.
+		/// </summary>
+		/// <param name="api">
+		/// A <see cref="String"/> that specify the regular expression of the API element to be evaluated.
+		/// </param>
+		/// <returns>
+		/// It returns true if <paramref name="api"/> specify a supported API.
+		/// </returns>
+		public bool IsSupportedApi(string api)
+		{
+			if (api == null)
+				throw new ArgumentNullException("api");
+
+			string regexApi = String.Format("^{0}$", api);
+
+			foreach (string supportedApi in _SupportedApi) {
+				if (Regex.IsMatch(supportedApi, regexApi))
+					return (true);
+			}
+				
+
+			return (false);
+		}
+
+		/// <summary>
+		/// The OpenGL specification registry.
+		/// </summary>
+		public Registry Registry { get { return (_Registry); } }
+
+		/// <summary>
+		/// The extension names dictionary.
+		/// </summary>
+		public SpecWordsDictionary ExtensionsDictionary { get { return (_ExtensionsDictionary); } }
+
+		/// <summary>
+		/// The words dictionary.
+		/// </summary>
+		public SpecWordsDictionary WordsDictionary { get { return (_WordsDictionary); } }
+
+		#endregion
 	}
 }

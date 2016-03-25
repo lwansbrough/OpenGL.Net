@@ -96,7 +96,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// A <see cref="RegistryContext"/> holding the registry information to link.
 		/// </param>
-		internal void Link(RegistryContext ctx)
+		internal void Link(ISpecContext ctx)
 		{
 			foreach (Enumerant enumerant in Enums) {
 				// Link

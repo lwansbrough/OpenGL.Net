@@ -35,7 +35,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a boolean value indicating whether the parameter can be omitted in the command signature.
 		/// </returns>
-		bool IsImplicit(RegistryContext ctx, Command parentCommand);
+		bool IsImplicit(ISpecContext ctx, Command parentCommand);
 
 		/// <summary>
 		/// Write debug assertions on this command parameter.
@@ -49,7 +49,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WriteDebugAssertion(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WriteDebugAssertion(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		/// <summary>
 		/// Eventually writes the fixed statement required to marshalling this command parameter to the actual
@@ -64,7 +64,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WriteFixedStatement(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WriteFixedStatement(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		/// <summary>
 		/// Writes the corresponding command delegate argument.
@@ -78,7 +78,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WriteDelegateParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WriteDelegateParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		#endregion
 
@@ -99,7 +99,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="paramIndex">
 		/// A <see cref="Int32"/> that specifies the sequential index of the parameter.
 		/// </param>
-		void WriteCallLogFormatParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand, int paramIndex);
+		void WriteCallLogFormatParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand, int paramIndex);
 
 		/// <summary>
 		/// Writes the corresponding command parameter log format argument.
@@ -113,7 +113,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WriteCallLogArgParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WriteCallLogArgParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		#endregion
 
@@ -132,7 +132,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WritePinnedVariable(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WritePinnedVariable(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		/// <summary>
 		/// Eventually writes the closing pinning statement required to marshalling this command parameter to the actual
@@ -147,7 +147,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="parentCommand">
 		/// The <see cref="Command"/> which the parameter belongs to.
 		/// </param>
-		void WriteUnpinCommand(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand);
+		void WriteUnpinCommand(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand);
 
 		#endregion
 	}

@@ -34,7 +34,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="otherParam"></param>
 		/// <param name="ctx"></param>
 		/// <param name="parentCommand"></param>
-		public CommandParameterOut(CommandParameter otherParam, RegistryContext ctx, Command parentCommand, bool strong)
+		public CommandParameterOut(CommandParameter otherParam, ISpecContext ctx, Command parentCommand, bool strong)
 			: base(otherParam)
 		{
 			if (otherParam == null)
@@ -52,17 +52,17 @@ namespace BindingsGen.GLSpecs
 
 		#region Utility
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command)
+		internal static bool IsCompatible(ISpecContext ctx, Command command)
 		{
 			return (IsCompatible(ctx, command, command.Parameters));
 		}
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command, List<CommandParameter> parameters)
+		internal static bool IsCompatible(ISpecContext ctx, Command command, List<CommandParameter> parameters)
 		{
 			return (parameters.FindIndex(delegate (CommandParameter item) { return (IsCompatible(ctx, command, item)); }) >= 0);
 		}
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command, CommandParameter param)
+		internal static bool IsCompatible(ISpecContext ctx, Command command, CommandParameter param)
 		{
 			// Already "out" param?
 			if (param.GetImplementationTypeModifier(ctx, command) == "out")
@@ -83,7 +83,7 @@ namespace BindingsGen.GLSpecs
 
 		#region CommandParameter Overrides
 
-		public override void WriteDelegateParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteDelegateParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (mIsStrong) {
 				// Strongly typed enum must be casted to delegate call type (int or uint)

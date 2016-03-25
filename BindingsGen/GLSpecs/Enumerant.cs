@@ -141,7 +141,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// A <see cref="RegistryContext"/> holding the registry information to link.
 		/// </param>
-		internal void Link(RegistryContext ctx)
+		internal void Link(ISpecContext ctx)
 		{
 			if (ctx == null)
 				throw new ArgumentNullException("ctx");
@@ -162,7 +162,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a <see cref="T:IEnumerable{IFeature}"/> listing all features requiring this enumerant.
 		/// </returns>
-		private IEnumerable<IFeature> GetFeaturesRequiringEnum(RegistryContext ctx)
+		private IEnumerable<IFeature> GetFeaturesRequiringEnum(ISpecContext ctx)
 		{
 			List<IFeature> features = new List<IFeature>();
 
@@ -218,7 +218,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a <see cref="T:IEnumerable{IFeature}"/> listing all features removing this enumerant.
 		/// </returns>
-		private IEnumerable<IFeature> GetFeaturesRemovingEnum(RegistryContext ctx)
+		private IEnumerable<IFeature> GetFeaturesRemovingEnum(ISpecContext ctx)
 		{
 			List<IFeature> features = new List<IFeature>();
 
@@ -272,7 +272,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="sw">
 		/// A <see cref="SourceStreamWriter"/> used for writing the source code.
 		/// </param>
-		internal void GenerateSource(SourceStreamWriter sw, RegistryContext ctx)
+		internal void GenerateSource(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			if (sw == null)
 				throw new ArgumentNullException("sw");

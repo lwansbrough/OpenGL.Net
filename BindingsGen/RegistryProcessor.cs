@@ -45,15 +45,15 @@ namespace BindingsGen
 		/// </summary>
 		/// <param name="path"></param>
 		/// <param name="filter"></param>
-		public void GenerateEnums(RegistryContext ctx, string path, EnumerantFilterDelegate filter)
+		public void GenerateEnums(ISpecContext ctx, string path, EnumerantFilterDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
 
-            List<Enumerant> enumerants = mRegistry.Enumerants;
+			List<Enumerant> enumerants = mRegistry.Enumerants;
 
-            if ((filter != null) && (enumerants.FindIndex(delegate(Enumerant item) { return (filter(item)); }) < 0))
-                return;
+			if ((filter != null) && (enumerants.FindIndex(delegate(Enumerant item) { return (filter(item)); }) < 0))
+				return;
 
 			Console.WriteLine("Generate registry enums to {0}.", path);
 
@@ -88,7 +88,7 @@ namespace BindingsGen
 			}
 		}
 
-		public void GenerateStronglyTypedEnums(RegistryContext ctx, string path, EnumerantGroupFilterDelegate filter)
+		public void GenerateStronglyTypedEnums(ISpecContext ctx, string path, EnumerantGroupFilterDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
@@ -124,7 +124,7 @@ namespace BindingsGen
 			}
 		}
 
-		public void GenerateCommands(RegistryContext ctx, string path, CommandFilterDelegate filter)
+		public void GenerateCommands(ISpecContext ctx, string path, CommandFilterDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
@@ -132,7 +132,7 @@ namespace BindingsGen
 			if ((filter != null) && (mRegistry.Commands.FindIndex(delegate(Command item) { return (filter(item)); }) < 0))
 				return;
 
-			GenerateCommands(ctx, path, (CommandSerializerDelegate)delegate(RegistryContext cctx, SourceStreamWriter sw)
+			GenerateCommands(ctx, path, (CommandSerializerDelegate)delegate(ISpecContext cctx, SourceStreamWriter sw)
 			{
 				foreach (Command command in mRegistry.Commands)
 				{
@@ -146,7 +146,7 @@ namespace BindingsGen
 			
 		}
 
-		public void GenerateCommands(RegistryContext ctx, string path, CommandSerializerDelegate filter)
+		public void GenerateCommands(ISpecContext ctx, string path, CommandSerializerDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
@@ -186,7 +186,7 @@ namespace BindingsGen
 			}
 		}
 
-		public void GenerateCommandsImports(RegistryContext ctx, string path, CommandFilterDelegate filter)
+		public void GenerateCommandsImports(ISpecContext ctx, string path, CommandFilterDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
@@ -249,7 +249,7 @@ namespace BindingsGen
 			}
 		}
 
-		public void GenerateCommandsDelegates(RegistryContext ctx, string path, CommandFilterDelegate filter)
+		public void GenerateCommandsDelegates(ISpecContext ctx, string path, CommandFilterDelegate filter)
 		{
 			if (path == null)
 				throw new ArgumentNullException("path");
@@ -321,7 +321,7 @@ namespace BindingsGen
 
 		public delegate bool EnumerantGroupFilterDelegate(EnumerantGroup item);
 
-		public delegate void CommandSerializerDelegate(RegistryContext ctx, SourceStreamWriter sw);
+		public delegate void CommandSerializerDelegate(ISpecContext ctx, SourceStreamWriter sw);
 
 		public delegate bool CommandFilterDelegate(Command item);
 

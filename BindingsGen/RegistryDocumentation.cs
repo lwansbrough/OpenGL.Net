@@ -115,7 +115,7 @@ namespace BindingsGen
 		/// The <see cref="Command"/> to be documented.
 		/// </param>
 		/// <param name="fail"></param>
-		public static void GenerateDocumentation(SourceStreamWriter sw, RegistryContext ctx, Enumerant enumerant)
+		public static void GenerateDocumentation(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
 		{
 			StringBuilder sb = new StringBuilder();
 
@@ -138,7 +138,7 @@ namespace BindingsGen
 			GenerateDocumentation_Remarks(sw, ctx, enumerant);
 		}
 
-		private static bool GenerateDocumentation_GL4(SourceStreamWriter sw, RegistryContext ctx, Enumerant enumerant)
+		private static bool GenerateDocumentation_GL4(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
@@ -166,7 +166,7 @@ namespace BindingsGen
 			return (true);
 		}
 
-		private static bool GenerateDocumentation_GL2(SourceStreamWriter sw, RegistryContext ctx, Enumerant enumerant)
+		private static bool GenerateDocumentation_GL2(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
@@ -194,7 +194,7 @@ namespace BindingsGen
 			return (true);
 		}
 
-		private static bool GenerateDocumentation_EGL(SourceStreamWriter sw, RegistryContext ctx, Enumerant enumerant)
+		private static bool GenerateDocumentation_EGL(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
@@ -222,7 +222,7 @@ namespace BindingsGen
 			return (true);
 		}
 
-		public static void GenerateDocumentation_Remarks(SourceStreamWriter sw, RegistryContext ctx, Enumerant enumerant)
+		public static void GenerateDocumentation_Remarks(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
 		{
 #if false
 			bool requireRemarks = (enumerant.AliasOf.Count > 0);
@@ -259,7 +259,7 @@ namespace BindingsGen
 		/// <param name="command">
 		/// The <see cref="Command"/> to be documented.
 		/// </param>
-		public static void GenerateDocumentation(SourceStreamWriter sw, RegistryContext ctx, Command command, List<CommandParameter> commandParams)
+		public static void GenerateDocumentation(SourceStreamWriter sw, ISpecContext ctx, Command command, List<CommandParameter> commandParams)
 		{
 			StringBuilder sb = new StringBuilder();
 
@@ -304,7 +304,7 @@ namespace BindingsGen
 		/// The <see cref="Command"/> to be documented.
 		/// </param>
 		/// <param name="fail"></param>
-		public static bool GenerateDocumentation_GL2(SourceStreamWriter sw, RegistryContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
+		public static bool GenerateDocumentation_GL2(SourceStreamWriter sw, ISpecContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
 		{
 			XmlDocument xml = null;
 			XmlElement root = null;
@@ -475,7 +475,7 @@ namespace BindingsGen
 		/// The <see cref="Command"/> to be documented.
 		/// </param>
 		/// <param name="fail"></param>
-		public static bool GenerateDocumentation_GL4(SourceStreamWriter sw, RegistryContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
+		public static bool GenerateDocumentation_GL4(SourceStreamWriter sw, ISpecContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
 		{
 			XmlDocument xml = null;
 			XmlElement root = null;
@@ -688,7 +688,7 @@ namespace BindingsGen
 		/// The <see cref="Command"/> to be documented.
 		/// </param>
 		/// <param name="fail"></param>
-		public static bool GenerateDocumentation_EGL(SourceStreamWriter sw, RegistryContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
+		public static bool GenerateDocumentation_EGL(SourceStreamWriter sw, ISpecContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
 		{
 			XmlDocument xml = null;
 			XmlElement root = null;
@@ -766,7 +766,7 @@ namespace BindingsGen
 		/// <returns>
 		/// It returns <paramref name="documentation"/> processed with <paramref name="transform"/>.
 		/// </returns>
-		private static string ProcessXmlDocumentation(string documentation, XslCompiledTransform transform, RegistryContext ctx)
+		private static string ProcessXmlDocumentation(string documentation, XslCompiledTransform transform, ISpecContext ctx)
 		{
 			string transformedXml;
 
@@ -860,7 +860,7 @@ namespace BindingsGen
 		/// <returns>
 		/// It returns a <see cref="T:List{String}"/> that specifies <paramref name="documentation"/> string.
 		/// </returns>
-		private static string GetDocumentationLine(string documentation, XslCompiledTransform transform, RegistryContext ctx)
+		private static string GetDocumentationLine(string documentation, XslCompiledTransform transform, ISpecContext ctx)
 		{
 			documentation = ProcessXmlDocumentation(documentation, transform, ctx);
 			documentation = TrimXmlDocumentation(documentation);
@@ -885,7 +885,7 @@ namespace BindingsGen
 		/// <remarks>
 		/// The maximum line size is 120 columns.
 		/// </remarks>
-		private static List<string> GetDocumentationLines(string documentation, XslCompiledTransform transform, RegistryContext ctx)
+		private static List<string> GetDocumentationLines(string documentation, XslCompiledTransform transform, ISpecContext ctx)
 		{
 			documentation = ProcessXmlDocumentation(documentation, transform, ctx);
 			documentation = TrimXmlDocumentation(documentation);
@@ -1230,7 +1230,7 @@ namespace BindingsGen
 				EnumNode = docNode;
 			}
 
-			public abstract string GetDocumentation(RegistryContext ctx, XslCompiledTransform transform);
+			public abstract string GetDocumentation(ISpecContext ctx, XslCompiledTransform transform);
 
 			protected readonly XmlDocument Document;
 
@@ -1247,7 +1247,7 @@ namespace BindingsGen
 				
 			}
 
-			public override string GetDocumentation(RegistryContext ctx, XslCompiledTransform transform)
+			public override string GetDocumentation(ISpecContext ctx, XslCompiledTransform transform)
 			{
 				Command commandRef = ctx.Registry.GetCommand(CommandRef);
 				StringBuilder doc = new StringBuilder();
@@ -1270,7 +1270,7 @@ namespace BindingsGen
 				EnumDescriptionNode = docNode.ParentNode;
 			}
 
-			public override string GetDocumentation(RegistryContext ctx, XslCompiledTransform transform)
+			public override string GetDocumentation(ISpecContext ctx, XslCompiledTransform transform)
 			{
 				Command commandRef = ctx.Registry.GetCommand(CommandRef);
 				StringBuilder doc = new StringBuilder();

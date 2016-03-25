@@ -34,7 +34,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="otherParam"></param>
 		/// <param name="ctx"></param>
 		/// <param name="parentCommand"></param>
-		public CommandParameterPinned(CommandParameter otherParam, RegistryContext ctx, Command parentCommand, bool strong)
+		public CommandParameterPinned(CommandParameter otherParam, ISpecContext ctx, Command parentCommand, bool strong)
 			: base(otherParam)
 		{
 			if (otherParam == null)
@@ -53,17 +53,17 @@ namespace BindingsGen.GLSpecs
 
 		#region Utility
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command)
+		internal static bool IsCompatible(ISpecContext ctx, Command command)
 		{
 			return (IsCompatible(ctx, command, command.Parameters));
 		}
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command, List<CommandParameter> parameters)
+		internal static bool IsCompatible(ISpecContext ctx, Command command, List<CommandParameter> parameters)
 		{
 			return (parameters.FindIndex(delegate (CommandParameter item) { return (IsCompatible(ctx, command, item)); }) >= 0);
 		}
 
-		internal static bool IsCompatible(RegistryContext ctx, Command command, CommandParameter param)
+		internal static bool IsCompatible(ISpecContext ctx, Command command, CommandParameter param)
 		{
 			switch (ctx.Class.ToLower()) {
 				case "gl":
@@ -96,7 +96,7 @@ namespace BindingsGen.GLSpecs
 			}
 		}
 
-		public override void WriteDelegateParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteDelegateParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			string paramModifier = GetImplementationTypeModifier(ctx, parentCommand);
 
@@ -114,13 +114,13 @@ namespace BindingsGen.GLSpecs
 				base.WriteDelegateParam(sw, ctx, parentCommand);
 		}
 
-		public override void WritePinnedVariable(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WritePinnedVariable(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (GetImplementationType(ctx, parentCommand) == "Object")
 				sw.WriteLine("GCHandle {0} = GCHandle.Alloc({1}, GCHandleType.Pinned);", PinnedLocalVarName, ImplementationName);
 		}
 
-		public override void WriteUnpinCommand(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public override void WriteUnpinCommand(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (GetImplementationType(ctx, parentCommand) == "Object")
 				sw.WriteLine("{0}.Free();", PinnedLocalVarName);

@@ -158,7 +158,7 @@ namespace BindingsGen.GLSpecs
 		[XmlArrayItem("extension")]
 		public readonly List<Extension> Extensions = new List<Extension>();
 
-		public IEnumerable<IFeature> AllFeatures(RegistryContext ctx)
+		public IEnumerable<IFeature> AllFeatures(ISpecContext ctx)
 		{
 			foreach (Feature feature in Features) {
 				if (ctx.IsSupportedApi(feature.Api))
@@ -192,7 +192,7 @@ namespace BindingsGen.GLSpecs
 		/// <summary>
 		/// Link registry information elements.
 		/// </summary>
-		internal void Link(RegistryContext ctx)
+		internal void Link(ISpecContext ctx)
 		{
 			// Index enumeration groups
 			foreach (EnumerantGroup enumerantGroup in Groups)

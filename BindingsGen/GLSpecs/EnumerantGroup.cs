@@ -54,7 +54,7 @@ namespace BindingsGen.GLSpecs
 
 		#region Code Generation
 
-		internal void GenerateSource(SourceStreamWriter sw, RegistryContext ctx)
+		internal void GenerateSource(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			if (sw == null)
 				throw new ArgumentNullException("sw");

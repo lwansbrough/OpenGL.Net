@@ -95,7 +95,7 @@ namespace BindingsGen
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> that actually parses the OpenGL specification.
 		/// </param>
-		private static void GenerateCommandsAndEnums(RegistryProcessor glRegistryProcessor, RegistryContext ctx)
+		private static void GenerateCommandsAndEnums(RegistryProcessor glRegistryProcessor, ISpecContext ctx)
 		{
 			Dictionary<string, bool> serializedCommands = new Dictionary<string, bool>();
 			Dictionary<string, bool> serializedEnums = new Dictionary<string, bool>();
@@ -173,7 +173,7 @@ namespace BindingsGen
 					continue;
 				}
 
-				glRegistryProcessor.GenerateCommands(ctx, GetFeatureFilePath(feature, ctx), delegate(RegistryContext cctx, SourceStreamWriter sw)
+				glRegistryProcessor.GenerateCommands(ctx, GetFeatureFilePath(feature, ctx), delegate(ISpecContext cctx, SourceStreamWriter sw)
 				{
 					Console.WriteLine("\tGenerate {0} enumerants...", featureEnums.Count);
 					foreach (Enumerant enumerant in featureEnums) {
@@ -220,7 +220,7 @@ namespace BindingsGen
 			string orphanFile = Path.Combine(BasePath, String.Format("OpenGL.NET/{0}.Orphans.cs", ctx.Class));
 
 			if ((orphanCommands.Count != 0) || (orphanEnums.Count != 0)) {
-				glRegistryProcessor.GenerateCommands(ctx, orphanFile, delegate(RegistryContext cctx, SourceStreamWriter sw) {
+				glRegistryProcessor.GenerateCommands(ctx, orphanFile, delegate(ISpecContext cctx, SourceStreamWriter sw) {
 					Console.WriteLine("\tGenerate {0} enumerants...", orphanEnums.Count);
 					foreach (Enumerant enumerant in orphanEnums) {
 						enumerant.GenerateSource(sw, ctx);
@@ -241,7 +241,7 @@ namespace BindingsGen
 			#endregion
 		}
 
-		private static void GenerateExtensionsSupportClass(RegistryProcessor glRegistryProcessor, RegistryContext ctx)
+		private static void GenerateExtensionsSupportClass(RegistryProcessor glRegistryProcessor, ISpecContext ctx)
 		{
 			string path = String.Format("OpenGL.NET/{0}.Extensions.cs", ctx.Class);
 
@@ -343,7 +343,7 @@ namespace BindingsGen
 			}
 		}
 
-		private static void GenerateVersionsSupportClass(RegistryProcessor glRegistryProcessor, RegistryContext ctx)
+		private static void GenerateVersionsSupportClass(RegistryProcessor glRegistryProcessor, ISpecContext ctx)
 		{
 			string path = String.Format("OpenGL.NET/{0}.Versions.cs", ctx.Class);
 
@@ -429,7 +429,7 @@ namespace BindingsGen
 		/// <returns>
 		/// It returns the relative path of the file defining <paramref name="feature"/> requirements.
 		/// </returns>
-		private static string GetFeatureFilePath(IFeature feature, RegistryContext ctx)
+		private static string GetFeatureFilePath(IFeature feature, ISpecContext ctx)
 		{
 			string path = String.Format("OpenGL.NET/{0}.{1}.cs", ctx.Class, feature.Name.Substring(ctx.Class.Length + 1));
 			string featureName = feature.Name.Substring(ctx.Class.Length + 1);

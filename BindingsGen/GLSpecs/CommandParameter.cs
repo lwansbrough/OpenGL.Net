@@ -143,7 +143,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx"></param>
 		/// <param name="parentCommand"></param>
 		/// <returns></returns>
-		internal virtual bool IsFixed(RegistryContext ctx, Command parentCommand)
+		internal virtual bool IsFixed(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ManagedImplementationType;
 			string importType = ImportType;
@@ -162,7 +162,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx"></param>
 		/// <param name="parentCommand"></param>
 		/// <returns></returns>
-		internal bool IsPinned(RegistryContext ctx, Command parentCommand)
+		internal bool IsPinned(ISpecContext ctx, Command parentCommand)
 		{
 			return (Type == "Object");
 		}
@@ -183,7 +183,7 @@ namespace BindingsGen.GLSpecs
 		/// to a basic type, with an "out" modifier.
 		/// </para>
 		/// </remarks>
-		public virtual string GetImplementationType(RegistryContext ctx, Command parentCommand)
+		public virtual string GetImplementationType(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ManagedImplementationType;
 
@@ -197,7 +197,7 @@ namespace BindingsGen.GLSpecs
 			return (implementationType);
 		}
 
-		public string GetImplementationTypeModifier(RegistryContext ctx, Command parentCommand)
+		public string GetImplementationTypeModifier(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ManagedImplementationType;
 
@@ -211,7 +211,7 @@ namespace BindingsGen.GLSpecs
 			return (null);
 		}
 
-		public string GetImplementationTypeAttributes(RegistryContext ctx, Command parentCommand)
+		public string GetImplementationTypeAttributes(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ManagedImplementationType;
 			string implementationMod = GetImplementationTypeModifier(ctx, parentCommand);
@@ -308,7 +308,7 @@ namespace BindingsGen.GLSpecs
 
 		#region Code Generation - Delegate
 
-		public string GetDelegateType(RegistryContext ctx, Command parentCommand)
+		public string GetDelegateType(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ImportType;
 
@@ -319,12 +319,12 @@ namespace BindingsGen.GLSpecs
 			return (implementationType.Trim());
 		}
 
-		public string GetDelegateTypeModifier(RegistryContext ctx, Command parentCommand)
+		public string GetDelegateTypeModifier(ISpecContext ctx, Command parentCommand)
 		{
 			return (null);
 		}
 
-		public string GetDelegateTypeAttributes(RegistryContext ctx, Command parentCommand)
+		public string GetDelegateTypeAttributes(ISpecContext ctx, Command parentCommand)
 		{
 			string implementationType = ManagedImplementationType;
 			string attribute = null;
@@ -414,9 +414,9 @@ namespace BindingsGen.GLSpecs
 
 		#region ICommandParameter Implementation
 
-		public virtual bool IsImplicit(RegistryContext ctx, Command parentCommand) { return (false); }
+		public virtual bool IsImplicit(ISpecContext ctx, Command parentCommand) { return (false); }
 
-		public virtual void WriteDebugAssertion(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WriteDebugAssertion(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (Length == null)
 				return;
@@ -429,7 +429,7 @@ namespace BindingsGen.GLSpecs
 #endif
 		}
 
-		public virtual void WriteFixedStatement(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WriteFixedStatement(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (IsFixed(ctx, parentCommand) == false)
 				return;
@@ -446,7 +446,7 @@ namespace BindingsGen.GLSpecs
 			sw.WriteLine("fixed ({0} {1} = {2}{3})", ImportType, FixedLocalVarName, dereference, ImplementationName);
 		}
 
-		public virtual void WriteDelegateParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WriteDelegateParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			if (IsFixed(ctx, parentCommand) == false) {
 				sw.Write(DelegateCallVarName);
@@ -454,7 +454,7 @@ namespace BindingsGen.GLSpecs
 				sw.Write(FixedLocalVarName);
 		}
 
-		public virtual void WriteCallLogFormatParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand, int paramIndex)
+		public virtual void WriteCallLogFormatParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand, int paramIndex)
 		{
 			string implementationType = GetImplementationType(ctx, parentCommand);
 			bool safeImplementationType = !implementationType.EndsWith("*") && implementationType != "IntPtr";
@@ -465,7 +465,7 @@ namespace BindingsGen.GLSpecs
 				sw.Write("{{{0}}}", paramIndex);
 		}
 
-		public virtual void WriteCallLogArgParam(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WriteCallLogArgParam(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			CommandFlagsDatabase.CommandItem.ParameterItemFlags parameterFlags = CommandFlagsDatabase.GetCommandParameterFlags(parentCommand, this);
 
@@ -487,12 +487,12 @@ namespace BindingsGen.GLSpecs
 				sw.Write("{0}", implementationName);
 		}
 
-		public virtual void WritePinnedVariable(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WritePinnedVariable(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			// No code for common parameter
 		}
 
-		public virtual void WriteUnpinCommand(SourceStreamWriter sw, RegistryContext ctx, Command parentCommand)
+		public virtual void WriteUnpinCommand(SourceStreamWriter sw, ISpecContext ctx, Command parentCommand)
 		{
 			// No code for common parameter
 		}

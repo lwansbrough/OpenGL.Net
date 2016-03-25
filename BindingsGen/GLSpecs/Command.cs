@@ -110,7 +110,7 @@ namespace BindingsGen.GLSpecs
 		[XmlElement("param")]
 		public readonly List<CommandParameter> Parameters = new List<CommandParameter>();
 
-		private List<CommandParameter> GetDefaultParameters(RegistryContext ctx)
+		private List<CommandParameter> GetDefaultParameters(ISpecContext ctx)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -120,7 +120,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetStrongParameters(RegistryContext ctx)
+		private List<CommandParameter> GetStrongParameters(ISpecContext ctx)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -130,7 +130,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetPinnedParameters(RegistryContext ctx, bool strong)
+		private List<CommandParameter> GetPinnedParameters(ISpecContext ctx, bool strong)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -140,7 +140,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetOutParameters(RegistryContext ctx, bool strong)
+		private List<CommandParameter> GetOutParameters(ISpecContext ctx, bool strong)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -150,7 +150,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetOutLastParameters(RegistryContext ctx)
+		private List<CommandParameter> GetOutLastParameters(ISpecContext ctx)
 		{
 			List<CommandParameter> parameters = GetDefaultParameters(ctx);
 
@@ -160,7 +160,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetArrayLengthParameters(RegistryContext ctx)
+		private List<CommandParameter> GetArrayLengthParameters(ISpecContext ctx)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -170,7 +170,7 @@ namespace BindingsGen.GLSpecs
 			return (parameters);
 		}
 
-		private List<CommandParameter> GetUnsafeParameters(RegistryContext ctx)
+		private List<CommandParameter> GetUnsafeParameters(ISpecContext ctx)
 		{
 			List<CommandParameter> parameters = new List<CommandParameter>();
 
@@ -229,7 +229,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
-		internal void GenerateImport(SourceStreamWriter sw, RegistryContext ctx)
+		internal void GenerateImport(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			// The SuppressUnmanagedCodeSecurity attribute is used to increase P/Invoke performance
 			sw.WriteLine("[SuppressUnmanagedCodeSecurity()]");
@@ -301,7 +301,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
-		internal void GenerateDelegate(SourceStreamWriter sw, RegistryContext ctx)
+		internal void GenerateDelegate(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			// No sure if it is really necessary
 			sw.WriteLine("[SuppressUnmanagedCodeSecurity()]");
@@ -359,7 +359,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
-		private string GetImplementationNameBase(RegistryContext ctx)
+		private string GetImplementationNameBase(ISpecContext ctx)
 		{
 			string implementationName = ImportName;
 			string prefix = ctx.Class.ToLower();
@@ -379,7 +379,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// A <see cref="RegistryContext"/> used for manipulating the command import name.
 		/// </param>
-		internal string GetImplementationName(RegistryContext ctx)
+		internal string GetImplementationName(ISpecContext ctx)
 		{
 			string overridenName = CommandFlagsDatabase.GetCommandImplementationName(this);
 
@@ -402,7 +402,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
-		private string GetImplementationReturnType(RegistryContext ctx)
+		private string GetImplementationReturnType(ISpecContext ctx)
 		{
 			if ((Prototype.Group != null) && (ctx.Registry.Groups.FindIndex(delegate(EnumerantGroup item) { return (item.Name == Prototype.Group); }) >= 0)) {
 				if (Prototype.Group != "Boolean")
@@ -425,7 +425,7 @@ namespace BindingsGen.GLSpecs
 		/// It returns a boolean value indicating whether the method implementation parameters requires
 		/// a fixed statement.
 		/// </returns>
-		private bool IsUnsafeImplementationSignature(RegistryContext ctx, List<CommandParameter> commandParams)
+		private bool IsUnsafeImplementationSignature(ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			// Return type is a pointer
 			if (GetImplementationReturnType(ctx).EndsWith("*"))
@@ -451,7 +451,7 @@ namespace BindingsGen.GLSpecs
 		/// It returns a boolean value indicating whether the method implementation parameters requires
 		/// a fixed statement.
 		/// </returns>
-		private bool IsFixedImplementation(RegistryContext ctx, List<CommandParameter> commandParams)
+		private bool IsFixedImplementation(ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			foreach (CommandParameter param in commandParams)
 				if (param.IsFixed(ctx, this))
@@ -473,7 +473,7 @@ namespace BindingsGen.GLSpecs
 		/// It returns a boolean value indicating whether the method implementation parameters requires
 		/// a pinned statement.
 		/// </returns>
-		private bool IsPinnedImplementation(RegistryContext ctx, List<CommandParameter> commandParams)
+		private bool IsPinnedImplementation(ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			foreach (CommandParameter param in commandParams)
 				if (param.IsPinned(ctx, this))
@@ -489,7 +489,7 @@ namespace BindingsGen.GLSpecs
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
 		/// <returns></returns>
-		private List<CommandParameter>[] GetOverridenImplementations(RegistryContext ctx)
+		private List<CommandParameter>[] GetOverridenImplementations(ISpecContext ctx)
 		{
 			List<List<CommandParameter>> overridenParameters = new List<List<CommandParameter>>();
 
@@ -553,7 +553,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// The <see cref="RegistryContext"/> defining the OpenGL registry information.
 		/// </param>
-		internal void GenerateImplementations(SourceStreamWriter sw, RegistryContext ctx)
+		internal void GenerateImplementations(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			List<CommandParameter>[] overridenParams = GetOverridenImplementations(ctx);
 
@@ -583,7 +583,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation(SourceStreamWriter sw, RegistryContext ctx, List<CommandParameter> commandParams)
+		private void GenerateImplementation(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			bool isPinnedImplementation = commandParams.FindIndex(delegate(CommandParameter item) { return (item is CommandParameterPinned); }) >= 0;
 
@@ -605,7 +605,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation_Signature(SourceStreamWriter sw, RegistryContext ctx, List<CommandParameter> commandParams)
+		private void GenerateImplementation_Signature(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			GenerateImplementation_Signature(sw, ctx, commandParams, GetImplementationName(ctx), GetImplementationReturnType(ctx));
 		}
@@ -622,7 +622,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation_Signature(SourceStreamWriter sw, RegistryContext ctx, List<CommandParameter> commandParams, string implementationName, string returnType)
+		private void GenerateImplementation_Signature(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams, string implementationName, string returnType)
 		{
 #if !DEBUG
 			// Documentation
@@ -701,7 +701,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation_Default(SourceStreamWriter sw, RegistryContext ctx, List<CommandParameter> commandParams)
+		private void GenerateImplementation_Default(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			List<Command> aliases = new List<Command>();
 			Command aliasCommand = this;
@@ -880,7 +880,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation_Pinned(SourceStreamWriter sw, RegistryContext ctx, List<CommandParameter> commandParams)
+		private void GenerateImplementation_Pinned(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams)
 		{
 			// Signature
 			GenerateImplementation_Signature(sw, ctx, commandParams);
@@ -959,7 +959,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="commandParams">
 		/// A <see cref="T:List{CommandParameter}"/> determining the method overload.
 		/// </param>
-		private void GenerateImplementation_GenOneObject(SourceStreamWriter sw, RegistryContext ctx)
+		private void GenerateImplementation_GenOneObject(SourceStreamWriter sw, ISpecContext ctx)
 		{
 			List<CommandParameter> commandParams = new List<CommandParameter>();
 			string implementationName = GetImplementationName(ctx);
@@ -1054,7 +1054,7 @@ namespace BindingsGen.GLSpecs
 			get { return (Prototype.ImplementationReturnType != "void"); }
 		}
 
-		private string GetReturnValueExpression(RegistryContext ctx)
+		private string GetReturnValueExpression(ISpecContext ctx)
 		{
 			// The implementation returned type
 			string returnType = GetImplementationReturnType(ctx);
@@ -1099,7 +1099,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a boolean value indicating whether this Command is a Get command.
 		/// </returns>
-		internal bool IsGetImplementation(RegistryContext ctx)
+		internal bool IsGetImplementation(ISpecContext ctx)
 		{
 			string implementationName = GetImplementationNameBase(ctx);
 
@@ -1115,7 +1115,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a boolean value indicating whether this Command is a Gen command.
 		/// </returns>
-		internal bool IsGenImplementation(RegistryContext ctx)
+		internal bool IsGenImplementation(ISpecContext ctx)
 		{
 			if (GetImplementationReturnType(ctx) != "void")
 				return (false);
@@ -1137,7 +1137,7 @@ namespace BindingsGen.GLSpecs
 		/// It returns the string that identifies the extension suffix of this method, if found; otherwise,
 		/// it returns an empty string.
 		/// </returns>
-		internal string GetExtensionPostfix(RegistryContext ctx)
+		internal string GetExtensionPostfix(ISpecContext ctx)
 		{
 			string name = Prototype.Name;
 
@@ -1158,7 +1158,7 @@ namespace BindingsGen.GLSpecs
 		/// <param name="ctx">
 		/// A <see cref="RegistryContext"/> holding the registry information to link.
 		/// </param>
-		internal void Link(RegistryContext ctx)
+		internal void Link(ISpecContext ctx)
 		{
 			if (ctx == null)
 				throw new ArgumentNullException("ctx");
@@ -1182,7 +1182,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a <see cref="T:IEnumerable{IFeature}"/> listing all features requiring this enumerant.
 		/// </returns>
-		private IEnumerable<IFeature> GetFeaturesRequiringCommand(RegistryContext ctx)
+		private IEnumerable<IFeature> GetFeaturesRequiringCommand(ISpecContext ctx)
 		{
 			List<IFeature> features = new List<IFeature>();
 
@@ -1242,7 +1242,7 @@ namespace BindingsGen.GLSpecs
 		/// <returns>
 		/// It returns a <see cref="T:IEnumerable{IFeature}"/> listing all features removing this enumerant.
 		/// </returns>
-		private IEnumerable<IFeature> GetFeaturesRemovingCommand(RegistryContext ctx)
+		private IEnumerable<IFeature> GetFeaturesRemovingCommand(ISpecContext ctx)
 		{
 			List<IFeature> features = new List<IFeature>();
 
