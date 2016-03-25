@@ -1,0 +1,3 @@
+[submodule "GLSpecs/OpenCL"]
+	path = GLSpecs/OpenCL
+	url = https://github.com/KhronosGroup/OpenCL-Headers.git
