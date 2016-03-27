@@ -17,10 +17,44 @@
 // USA
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenGL
+{
+	/// <summary>
+	/// Attribute asserting the features requiring the underlying member.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Method, AllowMultiple = true)]
+	public sealed class RequiredByFeatureAttribute : Attribute
+	{
+		/// <summary>
+		/// Construct a RequiredByFeatureAttribute, specifying the feature name.
+		/// </summary>
+		/// <param name="featureName">
+		/// A <see cref="String"/> that specifies the name of the feature that requires the element.
+		/// </param>
+		/// <exception cref="ArgumentException">
+		/// Exception thrown if <paramref name="featureName"/> is null or empty.
+		/// </exception>
+		public RequiredByFeatureAttribute(string featureName)
+		{
+			if (String.IsNullOrEmpty(featureName))
+				throw new ArgumentException("null or empty feature not allowed", "featureName");
+			FeatureName = featureName;
+		}
+
+		/// <summary>
+		/// The name of the feature.
+		/// </summary>
+		public readonly string FeatureName;
+
+		/// <summary>
+		/// The name of the featuring API. Defaults to "gl".
+		/// </summary>
+		public string Api = "gl";
+	}
+}
+
+namespace OpenCL
 {
 	/// <summary>
 	/// Attribute asserting the features requiring the underlying member.

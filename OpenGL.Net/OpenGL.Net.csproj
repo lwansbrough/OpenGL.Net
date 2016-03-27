@@ -212,6 +212,17 @@
     <Compile Include="ATI\Gl.ATI_vertex_array_object.cs" />
     <Compile Include="ATI\Gl.ATI_vertex_attrib_array_object.cs" />
     <Compile Include="ATI\Gl.ATI_vertex_streams.cs" />
+    <Compile Include="Cl.cs" />
+    <Compile Include="Cl.Delegates.cs" />
+    <Compile Include="Cl.Enums.cs" />
+    <Compile Include="Cl.Extensions.cs" />
+    <Compile Include="Cl.Imports.cs" />
+    <Compile Include="Cl.Versions.cs" />
+    <Compile Include="Cl.VERSION_1_0.cs" />
+    <Compile Include="Cl.VERSION_1_1.cs" />
+    <Compile Include="Cl.VERSION_1_2.cs" />
+    <Compile Include="Cl.VERSION_2_0.cs" />
+    <Compile Include="Cl.VERSION_2_1.cs" />
     <Compile Include="DMP\Gl.DMP_program_binary.cs" />
     <Compile Include="DMP\Gl.DMP_shader_binary.cs" />
     <Compile Include="EXT\Gl.EXT_blend_func_extended.cs" />
@@ -684,10 +695,10 @@
     <Compile Include="SUN\Glx.SUN_get_transparent_index.cs" />
     <Compile Include="TIZEN\Egl.TIZEN_image_native_buffer.cs" />
     <Compile Include="TIZEN\Egl.TIZEN_image_native_surface.cs" />
-    <Compile Include="VectorStructs.cs">
+    <Compile Include="Vector.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VectorStructs.tt</DependentUpon>
+      <DependentUpon>Vector.tt</DependentUpon>
     </Compile>
     <Compile Include="VIV\Gl.VIV_shader_binary.cs" />
     <Compile Include="Wgl.cs">
@@ -727,9 +738,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="VectorStructs.tt">
+    <Content Include="Vector.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VectorStructs.cs</LastGenOutput>
+      <LastGenOutput>Vector.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
