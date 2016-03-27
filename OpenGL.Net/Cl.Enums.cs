@@ -25,9 +25,313 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration ErrorCode.
 	/// </summary>
-	[Flags()]
-	public enum ErrorCode : uint
+	public enum ErrorCode
 	{
+		/// <summary>
+		/// Strongly typed for value CL_SUCCESS.
+		/// </summary>
+		Success = Cl.SUCCESS,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_NOT_FOUND.
+		/// </summary>
+		DeviceNotFound = Cl.DEVICE_NOT_FOUND,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_NOT_AVAILABLE.
+		/// </summary>
+		DeviceNotAvailable = Cl.DEVICE_NOT_AVAILABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMPILER_NOT_AVAILABLE.
+		/// </summary>
+		CompilerNotAvailable = Cl.COMPILER_NOT_AVAILABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_MEM_OBJECT_ALLOCATION_FAILURE.
+		/// </summary>
+		MemObjectAllocationFailure = Cl.MEM_OBJECT_ALLOCATION_FAILURE,
+
+		/// <summary>
+		/// Strongly typed for value CL_OUT_OF_RESOURCES.
+		/// </summary>
+		OutOfResources = Cl.OUT_OF_RESOURCES,
+
+		/// <summary>
+		/// Strongly typed for value CL_OUT_OF_HOST_MEMORY.
+		/// </summary>
+		OutOfHostMemory = Cl.OUT_OF_HOST_MEMORY,
+
+		/// <summary>
+		/// Strongly typed for value CL_PROFILING_INFO_NOT_AVAILABLE.
+		/// </summary>
+		ProfilingInfoNotAvailable = Cl.PROFILING_INFO_NOT_AVAILABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_MEM_COPY_OVERLAP.
+		/// </summary>
+		MemCopyOverlap = Cl.MEM_COPY_OVERLAP,
+
+		/// <summary>
+		/// Strongly typed for value CL_IMAGE_FORMAT_MISMATCH.
+		/// </summary>
+		ImageFormatMismatch = Cl.IMAGE_FORMAT_MISMATCH,
+
+		/// <summary>
+		/// Strongly typed for value CL_IMAGE_FORMAT_NOT_SUPPORTED.
+		/// </summary>
+		ImageFormatNotSupported = Cl.IMAGE_FORMAT_NOT_SUPPORTED,
+
+		/// <summary>
+		/// Strongly typed for value CL_BUILD_PROGRAM_FAILURE.
+		/// </summary>
+		BuildProgramFailure = Cl.BUILD_PROGRAM_FAILURE,
+
+		/// <summary>
+		/// Strongly typed for value CL_MAP_FAILURE.
+		/// </summary>
+		MapFailure = Cl.MAP_FAILURE,
+
+		/// <summary>
+		/// Strongly typed for value CL_MISALIGNED_SUB_BUFFER_OFFSET.
+		/// </summary>
+		MisalignedSubBufferOffset = Cl.MISALIGNED_SUB_BUFFER_OFFSET,
+
+		/// <summary>
+		/// Strongly typed for value CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST.
+		/// </summary>
+		ExecStatusErrorForEventsInWaitList = Cl.EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMPILE_PROGRAM_FAILURE.
+		/// </summary>
+		CompileProgramFailure = Cl.COMPILE_PROGRAM_FAILURE,
+
+		/// <summary>
+		/// Strongly typed for value CL_LINKER_NOT_AVAILABLE.
+		/// </summary>
+		LinkerNotAvailable = Cl.LINKER_NOT_AVAILABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_LINK_PROGRAM_FAILURE.
+		/// </summary>
+		LinkProgramFailure = Cl.LINK_PROGRAM_FAILURE,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_PARTITION_FAILED.
+		/// </summary>
+		DevicePartitionFailed = Cl.DEVICE_PARTITION_FAILED,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_INFO_NOT_AVAILABLE.
+		/// </summary>
+		KernelArgInfoNotAvailable = Cl.KERNEL_ARG_INFO_NOT_AVAILABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_VALUE.
+		/// </summary>
+		InvalidValue = Cl.INVALID_VALUE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_DEVICE_TYPE.
+		/// </summary>
+		InvalidDeviceType = Cl.INVALID_DEVICE_TYPE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_PLATFORM.
+		/// </summary>
+		InvalidPlatform = Cl.INVALID_PLATFORM,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_DEVICE.
+		/// </summary>
+		InvalidDevice = Cl.INVALID_DEVICE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_CONTEXT.
+		/// </summary>
+		InvalidContext = Cl.INVALID_CONTEXT,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_QUEUE_PROPERTIES.
+		/// </summary>
+		InvalidQueueProperties = Cl.INVALID_QUEUE_PROPERTIES,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_COMMAND_QUEUE.
+		/// </summary>
+		InvalidCommandQueue = Cl.INVALID_COMMAND_QUEUE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_HOST_PTR.
+		/// </summary>
+		InvalidHostPtr = Cl.INVALID_HOST_PTR,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_MEM_OBJECT.
+		/// </summary>
+		InvalidMemObject = Cl.INVALID_MEM_OBJECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_IMAGE_FORMAT_DESCRIPTOR.
+		/// </summary>
+		InvalidImageFormatDescriptor = Cl.INVALID_IMAGE_FORMAT_DESCRIPTOR,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_IMAGE_SIZE.
+		/// </summary>
+		InvalidImageSize = Cl.INVALID_IMAGE_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_SAMPLER.
+		/// </summary>
+		InvalidSampler = Cl.INVALID_SAMPLER,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_BINARY.
+		/// </summary>
+		InvalidBinary = Cl.INVALID_BINARY,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_BUILD_OPTIONS.
+		/// </summary>
+		InvalidBuildOptions = Cl.INVALID_BUILD_OPTIONS,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_PROGRAM.
+		/// </summary>
+		InvalidProgram = Cl.INVALID_PROGRAM,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_PROGRAM_EXECUTABLE.
+		/// </summary>
+		InvalidProgramExecutable = Cl.INVALID_PROGRAM_EXECUTABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_KERNEL_NAME.
+		/// </summary>
+		InvalidKernelName = Cl.INVALID_KERNEL_NAME,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_KERNEL_DEFINITION.
+		/// </summary>
+		InvalidKernelDefinition = Cl.INVALID_KERNEL_DEFINITION,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_KERNEL.
+		/// </summary>
+		InvalidKernel = Cl.INVALID_KERNEL,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_ARG_INDEX.
+		/// </summary>
+		InvalidArgIndex = Cl.INVALID_ARG_INDEX,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_ARG_VALUE.
+		/// </summary>
+		InvalidArgValue = Cl.INVALID_ARG_VALUE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_ARG_SIZE.
+		/// </summary>
+		InvalidArgSize = Cl.INVALID_ARG_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_KERNEL_ARGS.
+		/// </summary>
+		InvalidKernelArgs = Cl.INVALID_KERNEL_ARGS,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_WORK_DIMENSION.
+		/// </summary>
+		InvalidWorkDimension = Cl.INVALID_WORK_DIMENSION,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_WORK_GROUP_SIZE.
+		/// </summary>
+		InvalidWorkGroupSize = Cl.INVALID_WORK_GROUP_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_WORK_ITEM_SIZE.
+		/// </summary>
+		InvalidWorkItemSize = Cl.INVALID_WORK_ITEM_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_GLOBAL_OFFSET.
+		/// </summary>
+		InvalidGlobalOffset = Cl.INVALID_GLOBAL_OFFSET,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_EVENT_WAIT_LIST.
+		/// </summary>
+		InvalidEventWaitList = Cl.INVALID_EVENT_WAIT_LIST,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_EVENT.
+		/// </summary>
+		InvalidEvent = Cl.INVALID_EVENT,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_OPERATION.
+		/// </summary>
+		InvalidOperation = Cl.INVALID_OPERATION,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_GL_OBJECT.
+		/// </summary>
+		InvalidGlObject = Cl.INVALID_GL_OBJECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_BUFFER_SIZE.
+		/// </summary>
+		InvalidBufferSize = Cl.INVALID_BUFFER_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_MIP_LEVEL.
+		/// </summary>
+		InvalidMipLevel = Cl.INVALID_MIP_LEVEL,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_GLOBAL_WORK_SIZE.
+		/// </summary>
+		InvalidGlobalWorkSize = Cl.INVALID_GLOBAL_WORK_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_PROPERTY.
+		/// </summary>
+		InvalidProperty = Cl.INVALID_PROPERTY,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_IMAGE_DESCRIPTOR.
+		/// </summary>
+		InvalidImageDescriptor = Cl.INVALID_IMAGE_DESCRIPTOR,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_COMPILER_OPTIONS.
+		/// </summary>
+		InvalidCompilerOptions = Cl.INVALID_COMPILER_OPTIONS,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_LINKER_OPTIONS.
+		/// </summary>
+		InvalidLinkerOptions = Cl.INVALID_LINKER_OPTIONS,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_DEVICE_PARTITION_COUNT.
+		/// </summary>
+		InvalidDevicePartitionCount = Cl.INVALID_DEVICE_PARTITION_COUNT,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_PIPE_SIZE.
+		/// </summary>
+		InvalidPipeSize = Cl.INVALID_PIPE_SIZE,
+
+		/// <summary>
+		/// Strongly typed for value CL_INVALID_DEVICE_QUEUE.
+		/// </summary>
+		InvalidDeviceQueue = Cl.INVALID_DEVICE_QUEUE,
+
 	}
 
 	/// <summary>

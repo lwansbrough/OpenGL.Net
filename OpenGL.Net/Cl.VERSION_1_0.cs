@@ -1209,6 +1209,372 @@ namespace OpenCL
 		[RequiredByFeature("CL_VERSION_2_0")]
 		public const int NON_BLOCKING = Cl.FALSE;
 
+		/// <summary>
+		/// Value of CL_SUCCESS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SUCCESS = 0;
+
+		/// <summary>
+		/// Value of CL_DEVICE_NOT_FOUND symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_NOT_FOUND = -1;
+
+		/// <summary>
+		/// Value of CL_DEVICE_NOT_AVAILABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_NOT_AVAILABLE = -2;
+
+		/// <summary>
+		/// Value of CL_COMPILER_NOT_AVAILABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMPILER_NOT_AVAILABLE = -3;
+
+		/// <summary>
+		/// Value of CL_MEM_OBJECT_ALLOCATION_FAILURE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int MEM_OBJECT_ALLOCATION_FAILURE = -4;
+
+		/// <summary>
+		/// Value of CL_OUT_OF_RESOURCES symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int OUT_OF_RESOURCES = -5;
+
+		/// <summary>
+		/// Value of CL_OUT_OF_HOST_MEMORY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int OUT_OF_HOST_MEMORY = -6;
+
+		/// <summary>
+		/// Value of CL_PROFILING_INFO_NOT_AVAILABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int PROFILING_INFO_NOT_AVAILABLE = -7;
+
+		/// <summary>
+		/// Value of CL_MEM_COPY_OVERLAP symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int MEM_COPY_OVERLAP = -8;
+
+		/// <summary>
+		/// Value of CL_IMAGE_FORMAT_MISMATCH symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int IMAGE_FORMAT_MISMATCH = -9;
+
+		/// <summary>
+		/// Value of CL_IMAGE_FORMAT_NOT_SUPPORTED symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int IMAGE_FORMAT_NOT_SUPPORTED = -10;
+
+		/// <summary>
+		/// Value of CL_BUILD_PROGRAM_FAILURE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BUILD_PROGRAM_FAILURE = -11;
+
+		/// <summary>
+		/// Value of CL_MAP_FAILURE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int MAP_FAILURE = -12;
+
+		/// <summary>
+		/// Value of CL_MISALIGNED_SUB_BUFFER_OFFSET symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int MISALIGNED_SUB_BUFFER_OFFSET = -13;
+
+		/// <summary>
+		/// Value of CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST = -14;
+
+		/// <summary>
+		/// Value of CL_COMPILE_PROGRAM_FAILURE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMPILE_PROGRAM_FAILURE = -15;
+
+		/// <summary>
+		/// Value of CL_LINKER_NOT_AVAILABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int LINKER_NOT_AVAILABLE = -16;
+
+		/// <summary>
+		/// Value of CL_LINK_PROGRAM_FAILURE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int LINK_PROGRAM_FAILURE = -17;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_FAILED symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_FAILED = -18;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_INFO_NOT_AVAILABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_INFO_NOT_AVAILABLE = -19;
+
+		/// <summary>
+		/// Value of CL_INVALID_VALUE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_VALUE = -30;
+
+		/// <summary>
+		/// Value of CL_INVALID_DEVICE_TYPE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_DEVICE_TYPE = -31;
+
+		/// <summary>
+		/// Value of CL_INVALID_PLATFORM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_PLATFORM = -32;
+
+		/// <summary>
+		/// Value of CL_INVALID_DEVICE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_DEVICE = -33;
+
+		/// <summary>
+		/// Value of CL_INVALID_CONTEXT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_CONTEXT = -34;
+
+		/// <summary>
+		/// Value of CL_INVALID_QUEUE_PROPERTIES symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_QUEUE_PROPERTIES = -35;
+
+		/// <summary>
+		/// Value of CL_INVALID_COMMAND_QUEUE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_COMMAND_QUEUE = -36;
+
+		/// <summary>
+		/// Value of CL_INVALID_HOST_PTR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_HOST_PTR = -37;
+
+		/// <summary>
+		/// Value of CL_INVALID_MEM_OBJECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_MEM_OBJECT = -38;
+
+		/// <summary>
+		/// Value of CL_INVALID_IMAGE_FORMAT_DESCRIPTOR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_IMAGE_FORMAT_DESCRIPTOR = -39;
+
+		/// <summary>
+		/// Value of CL_INVALID_IMAGE_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_IMAGE_SIZE = -40;
+
+		/// <summary>
+		/// Value of CL_INVALID_SAMPLER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_SAMPLER = -41;
+
+		/// <summary>
+		/// Value of CL_INVALID_BINARY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_BINARY = -42;
+
+		/// <summary>
+		/// Value of CL_INVALID_BUILD_OPTIONS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_BUILD_OPTIONS = -43;
+
+		/// <summary>
+		/// Value of CL_INVALID_PROGRAM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_PROGRAM = -44;
+
+		/// <summary>
+		/// Value of CL_INVALID_PROGRAM_EXECUTABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_PROGRAM_EXECUTABLE = -45;
+
+		/// <summary>
+		/// Value of CL_INVALID_KERNEL_NAME symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_KERNEL_NAME = -46;
+
+		/// <summary>
+		/// Value of CL_INVALID_KERNEL_DEFINITION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_KERNEL_DEFINITION = -47;
+
+		/// <summary>
+		/// Value of CL_INVALID_KERNEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_KERNEL = -48;
+
+		/// <summary>
+		/// Value of CL_INVALID_ARG_INDEX symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_ARG_INDEX = -49;
+
+		/// <summary>
+		/// Value of CL_INVALID_ARG_VALUE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_ARG_VALUE = -50;
+
+		/// <summary>
+		/// Value of CL_INVALID_ARG_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_ARG_SIZE = -51;
+
+		/// <summary>
+		/// Value of CL_INVALID_KERNEL_ARGS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_KERNEL_ARGS = -52;
+
+		/// <summary>
+		/// Value of CL_INVALID_WORK_DIMENSION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_WORK_DIMENSION = -53;
+
+		/// <summary>
+		/// Value of CL_INVALID_WORK_GROUP_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_WORK_GROUP_SIZE = -54;
+
+		/// <summary>
+		/// Value of CL_INVALID_WORK_ITEM_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_WORK_ITEM_SIZE = -55;
+
+		/// <summary>
+		/// Value of CL_INVALID_GLOBAL_OFFSET symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_GLOBAL_OFFSET = -56;
+
+		/// <summary>
+		/// Value of CL_INVALID_EVENT_WAIT_LIST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_EVENT_WAIT_LIST = -57;
+
+		/// <summary>
+		/// Value of CL_INVALID_EVENT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_EVENT = -58;
+
+		/// <summary>
+		/// Value of CL_INVALID_OPERATION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_OPERATION = -59;
+
+		/// <summary>
+		/// Value of CL_INVALID_GL_OBJECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_GL_OBJECT = -60;
+
+		/// <summary>
+		/// Value of CL_INVALID_BUFFER_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_BUFFER_SIZE = -61;
+
+		/// <summary>
+		/// Value of CL_INVALID_MIP_LEVEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_MIP_LEVEL = -62;
+
+		/// <summary>
+		/// Value of CL_INVALID_GLOBAL_WORK_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_GLOBAL_WORK_SIZE = -63;
+
+		/// <summary>
+		/// Value of CL_INVALID_PROPERTY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_PROPERTY = -64;
+
+		/// <summary>
+		/// Value of CL_INVALID_IMAGE_DESCRIPTOR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_IMAGE_DESCRIPTOR = -65;
+
+		/// <summary>
+		/// Value of CL_INVALID_COMPILER_OPTIONS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_COMPILER_OPTIONS = -66;
+
+		/// <summary>
+		/// Value of CL_INVALID_LINKER_OPTIONS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_LINKER_OPTIONS = -67;
+
+		/// <summary>
+		/// Value of CL_INVALID_DEVICE_PARTITION_COUNT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_DEVICE_PARTITION_COUNT = -68;
+
+		/// <summary>
+		/// Value of CL_INVALID_PIPE_SIZE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_PIPE_SIZE = -69;
+
+		/// <summary>
+		/// Value of CL_INVALID_DEVICE_QUEUE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INVALID_DEVICE_QUEUE = -70;
+
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformIDs(uint num_entries, [Out] IntPtr[] platforms, [Out] uint[] num_platforms)
 		{
