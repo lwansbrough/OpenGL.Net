@@ -271,6 +271,106 @@
 	<type name="EGLClientPixmapHI" value="ClientPixmap" />
 	<type name="EGLClientPixmapHI*" value="ClientPixmap*" />
 	<type name="EGLDEBUGPROCKHR" value="DebugProcKHR" />
+	
+	<!-- OpenCL types -->
+	<type name="void**" value="IntPtr*" />
+	<type name="size_t" value="uint" />
+	<type name="size_t *" value="uint*" />
+	<type name="size_t*" value="uint*" />
+	
+	<type name="cl_platform_id" value="IntPtr" />
+	<type name="cl_platform_id *" value="IntPtr*" />
+	<type name="cl_device_id" value="IntPtr" />
+	<type name="cl_device_id *" value="IntPtr*" />
+	<type name="cl_context" value="IntPtr" />
+	<type name="cl_command_queue" value="IntPtr" />
+	<type name="cl_mem" value="IntPtr" />
+	<type name="cl_mem *" value="IntPtr*" />
+	<type name="cl_program" value="IntPtr" />
+	<type name="cl_program *" value="IntPtr*" />
+	<type name="cl_kernel" value="IntPtr" />
+	<type name="cl_kernel *" value="IntPtr*" />
+	<type name="cl_event" value="IntPtr" />
+	<type name="cl_event *" value="IntPtr*" />
+	<type name="cl_sampler" value="IntPtr" />
+	
+	<type name="cl_bool" value="bool" />
+	<type name="cl_int" value="int" />
+	<type name="cl_int *" value="int*" />
+	<type name="cl_int*" value="int*" />
+	<type name="cl_uint" value="uint" />
+	<type name="cl_uint *" value="uint*" />
+	<type name="cl_ulong" value="ulong" />
+	<type name="cl_ulong *" value="ulong*" />
+	<type name="cl_ulong*" value="ulong*" />
+	<type name="cl_bitfield" value="ulong" />
+	<type name="cl_device_type" value="ulong" />
+	<type name="cl_platform_info" value="uint" />
+	<type name="cl_device_info" value="uint" />
+	<type name="cl_device_fp_config" value="ulong" />
+	<type name="cl_device_mem_cache_type" value="uint" />
+	<type name="cl_device_local_mem_type" value="uint" />
+	<type name="cl_device_exec_capabilities" value="ulong" />
+	<type name="cl_device_svm_capabilities" value="ulong" />
+	<type name="cl_command_queue_properties" value="ulong" />
+	<type name="cl_device_partition_property" value="IntPtr" />
+	<type name="cl_device_partition_property *" value="IntPtr*" />
+	<type name="cl_device_affinity_domain" value="ulong" />
+	
+	<type name="cl_context_properties" value="IntPtr" />
+	<type name="cl_context_info" value="uint" />
+	<type name="cl_queue_properties" value="ulong" />
+	<type name="cl_queue_properties *" value="ulong*" />
+	<type name="cl_command_queue_info" value="uint" />
+	<type name="cl_channel_order" value="uint" />
+	<type name="cl_channel_type" value="uint" />
+	<type name="cl_mem_flags" value="ulong" />
+	<type name="cl_svm_mem_flags" value="ulong" />
+	<type name="cl_mem_object_type" value="uint" />
+	<type name="cl_mem_info" value="uint" />
+	<type name="cl_mem_migration_flags" value="ulong" />
+	<type name="cl_image_info" value="uint" />
+	<type name="cl_buffer_create_type" value="uint" />
+	<type name="cl_addressing_mode" value="uint" />
+	<type name="cl_filter_mode" value="uint" />
+	<type name="cl_sampler_info" value="uint" />
+	<type name="cl_map_flags" value="ulong" />
+	<type name="cl_pipe_properties" value="IntPtr" />
+	<type name="cl_pipe_properties *" value="IntPtr*" />
+	<type name="cl_pipe_info" value="uint" />
+	<type name="cl_program_info" value="uint" />
+	<type name="cl_program_build_info" value="uint" />
+	<type name="cl_program_binary_type" value="uint" />
+	<type name="cl_build_status" value="int" />
+	<type name="cl_kernel_info" value="uint" />
+	<type name="cl_kernel_arg_info" value="uint" />
+	<type name="cl_kernel_arg_address_qualifier" value="uint" />
+	<type name="cl_kernel_arg_access_qualifier" value="uint" />
+	<type name="cl_kernel_arg_type_qualifier" value="ulong" />
+	<type name="cl_kernel_work_group_info" value="uint" />
+	<type name="cl_kernel_sub_group_info" value="uint" />
+	<type name="cl_event_info" value="uint" />
+	<type name="cl_command_type" value="uint" />
+	<type name="cl_profiling_info" value="uint" />
+	<type name="cl_sampler_properties" value="ulong" />
+	<type name="cl_sampler_properties *" value="ulong*" />
+	<type name="cl_kernel_exec_info" value="uint" />
+	
+	<type name="cl_image_format" value="Cl.ImageFormat" />
+	<type name="cl_image_format *" value="Cl.ImageFormat*" />
+	<type name="cl_image_desc" value="Cl.ImageDescr" />
+	<type name="cl_image_desc *" value="Cl.ImageDescr*" />
+	<type name="cl_buffer_region" value="Cl.BufferRegion" />
+
+	<type name="char **" value="String[]" />
+	<type name="unsigned char **" value="IntPtr*" />
+
+	<type name="CL_CALLBACK_NOTIFY" value="IntPtr" />
+	<type name="CL_CALLBACK_PROGRAM" value="IntPtr" />
+	<type name="CL_CALLBACK_EVENT" value="IntPtr" />
+	<type name="CL_USER_FUNC" value="IntPtr" />
+	<type name="CL_CALLBACK_MEM_OBJECT" value="IntPtr" />
+	<type name="CL_SVM_FREE_FUNCT" value="IntPtr" />
 
 	<!-- Bad decorators -->
 	<type name="GLfloatconst" value="float" />

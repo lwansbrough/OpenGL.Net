@@ -37,7 +37,7 @@ namespace BindingsGen
 		/// </param>
 		static void Main(string[] args)
 		{
-			RegistryContext ctx;
+			ISpecContext ctx;
 			RegistryProcessor glRegistryProcessor;
 
 			RegistryDocumentation.CreateLog();
@@ -73,6 +73,16 @@ namespace BindingsGen
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--egl"); }) >= 0)) {
 				ctx = new RegistryContext("Egl", Path.Combine(BasePath, "GLSpecs/egl.xml"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
+				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
+				GenerateExtensionsSupportClass(glRegistryProcessor, ctx);
+				GenerateVersionsSupportClass(glRegistryProcessor, ctx);
+			}
+
+			// OpenCL
+			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--cl"); }) >= 0)) {
+				ctx = new OpenClContext("Cl", Path.Combine(BasePath, "GLSpecs/OpenCL/cl.h"));
+				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
+				glRegistryProcessor.Namespace = "OpenCL";		// Custom namespace for resolving OpenGL namespace conflicts
 				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
 				GenerateExtensionsSupportClass(glRegistryProcessor, ctx);
 				GenerateVersionsSupportClass(glRegistryProcessor, ctx);
@@ -275,7 +285,7 @@ namespace BindingsGen
 				sw.WriteLine("using System;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", glRegistryProcessor.Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 
@@ -352,7 +362,7 @@ namespace BindingsGen
 			using (SourceStreamWriter sw = new SourceStreamWriter(Path.Combine(BasePath, path), false)) {
 				RegistryProcessor.GenerateLicensePreamble(sw);
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", glRegistryProcessor.Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 

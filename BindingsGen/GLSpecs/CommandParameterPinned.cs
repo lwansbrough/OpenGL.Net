@@ -67,6 +67,7 @@ namespace BindingsGen.GLSpecs
 		{
 			switch (ctx.Class.ToLower()) {
 				case "gl":
+				case "cl":
 					break;
 				default:
 					return (false);

@@ -320,7 +320,7 @@ namespace BindingsGen.GLSpecs
 				sw.Write("#endif" + Environment.NewLine);
 			}
 
-			sw.WriteLine(Declaration);
+			sw.WriteLine(GetDeclaration(ctx));
 		}
 
 		/// <summary>
@@ -339,45 +339,45 @@ namespace BindingsGen.GLSpecs
 		/// <summary>
 		/// Get the actual enumerant declaration.
 		/// </summary>
-		private string Declaration
+		private string GetDeclaration(ISpecContext ctx)
 		{
-			get
-			{
-				if (Value == null)
-					throw new InvalidOperationException("missing specification");
+			if (Value == null)
+				throw new InvalidOperationException("missing specification");
 
-				string type, value;
+			string type, value;
 
-				if (Value.StartsWith("0x")) {
-					if ((Value.Length > 10) || (Value.EndsWith("ull"))) {		// 0xXXXXXXXXXXull
-						// Remove ull suffix
-						value = Value.Substring(0, Value.Length - 3);
-						type = "ulong";
-					} else if (Value.Length == 10) {							// 0xXXXXXXXX
-						value = Value;
-						type = "uint";
-					} else {													// 0xXXXX
-						value = Value;
-						type = "int";
-					}
-
-				} else if (Value.StartsWith("\"")) {
+			if (Value.StartsWith("0x")) {
+				if ((Value.Length > 10) || (Value.EndsWith("ull"))) {		// 0xXXXXXXXXXXull
+					// Remove ull suffix
+					value = Value.Substring(0, Value.Length - 3);
+					type = "ulong";
+				} else if (Value.Length == 10) {							// 0xXXXXXXXX
 					value = Value;
-					type = "string";	
-				} else {
+					type = "uint";
+				} else {													// 0xXXXX
 					value = Value;
 					type = "int";
 				}
 
-				Match castMatch;
-
-				if ((castMatch = Regex.Match(value, @"\(\(\w+\)\(?(?<value>(\+|\-)?\d+)\)?\)")).Success) {
-					value = castMatch.Groups["value"].Value;
-				}
-
-
-				return (String.Format("public const {0} {1} = {2};", type, ImplementationName, value));
+			} else if (Value.StartsWith("\"")) {
+				value = Value;
+				type = "string";	
+			} else {
+				value = Value;
+				type = "int";
 			}
+
+			if (value.StartsWith(String.Format("{0}_", ctx.Class.ToUpper())))
+				value = String.Format("{0}.{1}", ctx.Class, value.Substring(ctx.Class.Length + 1));
+
+			Match castMatch;
+
+			if ((castMatch = Regex.Match(value, @"\(\(\w+\)\(?(?<value>(\+|\-)?\d+)\)?\)")).Success) {
+				value = castMatch.Groups["value"].Value;
+			}
+
+
+			return (String.Format("public const {0} {1} = {2};", type, ImplementationName, value));
 		}
 
 		#endregion

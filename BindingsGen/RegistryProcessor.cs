@@ -40,6 +40,26 @@ namespace BindingsGen
 
 		#endregion
 
+		#region Namespace
+
+		/// <summary>
+		/// Get or set the namespace of the generated code.
+		/// </summary>
+		public string Namespace
+		{
+			get { return (_Namespace); }
+			set { _Namespace = value ?? _DefaultNamespace; }
+		}
+
+		/// <summary>
+		/// The namespace of the generated code.
+		/// </summary>
+		private string _Namespace = _DefaultNamespace;
+
+		private const string _DefaultNamespace = "OpenGL";
+
+		#endregion
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -63,7 +83,7 @@ namespace BindingsGen
 				sw.WriteLine("using System;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 
@@ -107,7 +127,7 @@ namespace BindingsGen
 				sw.WriteLine("using System;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 
@@ -166,7 +186,7 @@ namespace BindingsGen
 				sw.WriteLine("using System.Text;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 
@@ -199,7 +219,7 @@ namespace BindingsGen
 				sw.WriteLine("using System.Runtime.InteropServices;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 
@@ -266,7 +286,7 @@ namespace BindingsGen
 				sw.WriteLine("using System.Text;");
 				sw.WriteLine();
 
-				sw.WriteLine("namespace OpenGL");
+				sw.WriteLine("namespace {0}", Namespace);
 				sw.WriteLine("{");
 				sw.Indent();
 

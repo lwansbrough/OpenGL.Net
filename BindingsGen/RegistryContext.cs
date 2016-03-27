@@ -25,10 +25,12 @@ using BindingsGen.GLSpecs;
 namespace BindingsGen
 {
 	/// <summary>
-	/// OpenGL specification context.
+	/// OpenGL, OpenGL ES, WGL, XGL and EGL specification context.
 	/// </summary>
-	public class RegistryContext : ISpecContext
+	class RegistryContext : ISpecContext
 	{
+		#region Constructors
+
 		/// <summary>
 		/// Static constructor.
 		/// </summary>
@@ -103,6 +105,10 @@ namespace BindingsGen
 		/// </summary>
 		private readonly SpecWordsDictionary _WordsDictionary;
 
+		#endregion
+
+		#region Specification Parser
+
 		/// <summary>
 		/// Notify about unknown OpenGL specification elements.
 		/// </summary>
@@ -137,6 +143,8 @@ namespace BindingsGen
 		/// OpenGL specification parser.
 		/// </summary>
 		private static readonly XmlSerializer SpecSerializer = new XmlSerializer(typeof(Registry));
+
+		#endregion
 
 		#region ISpecContext Implementation
 

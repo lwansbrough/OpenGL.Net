@@ -97,6 +97,7 @@
     <Compile Include="GLSpecs\IFeature.cs" />
     <Compile Include="GLSpecs\Registry.cs" />
     <Compile Include="ISpecContext.cs" />
+    <Compile Include="OpenClContext.cs" />
     <Compile Include="SpecificationStyle.cs" />
     <Compile Include="GLSpecs\SpecWordsDictionary.cs" />
     <Compile Include="GLSpecs\Type.cs" />
@@ -109,7 +110,9 @@
     <Compile Include="SourceStreamWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GLSpecs\CsTypeMap.xml" />
+    <EmbeddedResource Include="GLSpecs\CsTypeMap.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GLSpecs\GlWords.xml" />
@@ -177,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GLSpecs\EnumerantDoc_Man2.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GLSpecs\ClWords.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

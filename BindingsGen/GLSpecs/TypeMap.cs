@@ -74,6 +74,11 @@ namespace BindingsGen.GLSpecs
 		[XmlElement("type")]
 		public readonly List<Pair> Map = new List<Pair>();
 
+		public bool IsMappedType(string type)
+		{
+			return (Map.Find(delegate (Pair item) { return (item.Name == type); }) != null);
+		}
+
 		/// <summary>
 		/// Get the value associated to a registered name.
 		/// </summary>
