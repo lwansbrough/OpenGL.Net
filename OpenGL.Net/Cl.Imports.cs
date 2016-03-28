@@ -32,235 +32,235 @@ namespace OpenCL
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetPlatformInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetPlatformInfo(Int32 platform, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetPlatformInfo(IntPtr platform, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetDeviceIDs", ExactSpelling = true)]
-			internal extern static unsafe int clGetDeviceIDs(Int32 platform, ulong device_type, uint num_entries, IntPtr* devices, uint* num_devices);
+			internal extern static unsafe int clGetDeviceIDs(IntPtr platform, ulong device_type, uint num_entries, IntPtr* devices, uint* num_devices);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetDeviceInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetDeviceInfo(Int32 device, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetDeviceInfo(IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateSubDevices", ExactSpelling = true)]
-			internal extern static unsafe int clCreateSubDevices(Int32 in_device, IntPtr* properties, uint num_devices, IntPtr* out_devices, uint* num_devices_ret);
+			internal extern static unsafe int clCreateSubDevices(IntPtr in_device, IntPtr* properties, uint num_devices, IntPtr* out_devices, uint* num_devices_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainDevice", ExactSpelling = true)]
-			internal extern static int clRetainDevice(Int32 device);
+			internal extern static unsafe int clRetainDevice(IntPtr device);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseDevice", ExactSpelling = true)]
-			internal extern static int clReleaseDevice(Int32 device);
+			internal extern static unsafe int clReleaseDevice(IntPtr device);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetDefaultDeviceCommandQueue", ExactSpelling = true)]
-			internal extern static int clSetDefaultDeviceCommandQueue(Int32 context, Int32 device, Int32 command_queue);
+			internal extern static unsafe int clSetDefaultDeviceCommandQueue(IntPtr context, IntPtr device, IntPtr command_queue);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetDeviceAndHostTimer", ExactSpelling = true)]
-			internal extern static unsafe int clGetDeviceAndHostTimer(Int32 device, ulong* device_timestamp, ulong* host_timestamp);
+			internal extern static unsafe int clGetDeviceAndHostTimer(IntPtr device, ulong* device_timestamp, ulong* host_timestamp);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetHostTimer", ExactSpelling = true)]
-			internal extern static unsafe int clGetHostTimer(Int32 device, ulong* host_timestamp);
+			internal extern static unsafe int clGetHostTimer(IntPtr device, ulong* host_timestamp);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateContext", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateContext(cl_context_properties * properties, uint num_devices, IntPtr* devices, Int32 pfn_notify, Int32 user_data, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateContext(cl_context_properties * properties, uint num_devices, IntPtr* devices, IntPtr pfn_notify, IntPtr user_data, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateContextFromType", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateContextFromType(cl_context_properties * properties, ulong device_type, Int32 user_data, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateContextFromType(cl_context_properties * properties, ulong device_type, IntPtr user_data, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainContext", ExactSpelling = true)]
-			internal extern static int clRetainContext(Int32 context);
+			internal extern static unsafe int clRetainContext(IntPtr context);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseContext", ExactSpelling = true)]
-			internal extern static int clReleaseContext(Int32 context);
+			internal extern static unsafe int clReleaseContext(IntPtr context);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetContextInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetContextInfo(Int32 context, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetContextInfo(IntPtr context, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateCommandQueueWithProperties", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateCommandQueueWithProperties(Int32 context, Int32 device, ulong* properties, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateCommandQueueWithProperties(IntPtr context, IntPtr device, ulong* properties, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainCommandQueue", ExactSpelling = true)]
-			internal extern static int clRetainCommandQueue(Int32 command_queue);
+			internal extern static unsafe int clRetainCommandQueue(IntPtr command_queue);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseCommandQueue", ExactSpelling = true)]
-			internal extern static int clReleaseCommandQueue(Int32 command_queue);
+			internal extern static unsafe int clReleaseCommandQueue(IntPtr command_queue);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetCommandQueueInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetCommandQueueInfo(Int32 command_queue, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetCommandQueueInfo(IntPtr command_queue, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateBuffer", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateBuffer(Int32 context, ulong flags, uint size, Int32 host_ptr, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateBuffer(IntPtr context, ulong flags, uint size, IntPtr host_ptr, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateSubBuffer", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateSubBuffer(Int32 buffer, ulong flags, uint buffer_create_type, Int32 buffer_create_info, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateSubBuffer(IntPtr buffer, ulong flags, uint buffer_create_type, IntPtr buffer_create_info, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateImage", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateImage(Int32 context, ulong flags, Cl.ImageFormat* image_format, Cl.ImageDescr* image_desc, Int32 host_ptr, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateImage(IntPtr context, ulong flags, Cl.ImageFormat* image_format, Cl.ImageDescr* image_desc, IntPtr host_ptr, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreatePipe", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreatePipe(Int32 context, ulong flags, uint pipe_packet_size, uint pipe_max_packets, IntPtr* properties, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreatePipe(IntPtr context, ulong flags, uint pipe_packet_size, uint pipe_max_packets, IntPtr* properties, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainMemObject", ExactSpelling = true)]
-			internal extern static int clRetainMemObject(Int32 memobj);
+			internal extern static unsafe int clRetainMemObject(IntPtr memobj);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseMemObject", ExactSpelling = true)]
-			internal extern static int clReleaseMemObject(Int32 memobj);
+			internal extern static unsafe int clReleaseMemObject(IntPtr memobj);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetSupportedImageFormats", ExactSpelling = true)]
-			internal extern static unsafe int clGetSupportedImageFormats(Int32 context, ulong flags, uint image_type, uint num_entries, Cl.ImageFormat* image_formats, uint* num_image_formats);
+			internal extern static unsafe int clGetSupportedImageFormats(IntPtr context, ulong flags, uint image_type, uint num_entries, Cl.ImageFormat* image_formats, uint* num_image_formats);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetMemObjectInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetMemObjectInfo(Int32 memobj, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetMemObjectInfo(IntPtr memobj, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetImageInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetImageInfo(Int32 image, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetImageInfo(IntPtr image, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetPipeInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetPipeInfo(Int32 pipe, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetPipeInfo(IntPtr pipe, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetMemObjectDestructorCallback", ExactSpelling = true)]
-			internal extern static int clSetMemObjectDestructorCallback(Int32 memobj1, Int32 memobj2);
+			internal extern static unsafe int clSetMemObjectDestructorCallback(IntPtr memobj1, IntPtr memobj2);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSVMFree", ExactSpelling = true)]
-			internal extern static void clSVMFree(Int32 context, Int32 svm_pointer);
+			internal extern static unsafe void clSVMFree(IntPtr context, IntPtr svm_pointer);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateSamplerWithProperties", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateSamplerWithProperties(Int32 context, ulong* normalized_coords, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateSamplerWithProperties(IntPtr context, ulong* normalized_coords, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainSampler", ExactSpelling = true)]
-			internal extern static int clRetainSampler(Int32 sampler);
+			internal extern static unsafe int clRetainSampler(IntPtr sampler);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseSampler", ExactSpelling = true)]
-			internal extern static int clReleaseSampler(Int32 sampler);
+			internal extern static unsafe int clReleaseSampler(IntPtr sampler);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetSamplerInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetSamplerInfo(Int32 sampler, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetSamplerInfo(IntPtr sampler, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateProgramWithSource", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateProgramWithSource(Int32 context, uint count, String[] strings, uint* lengths, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateProgramWithSource(IntPtr context, uint count, String[] strings, uint* lengths, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateProgramWithBinary", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateProgramWithBinary(Int32 context, uint num_devices, IntPtr* device_list, uint* lengths, IntPtr* binaries, int* binary_status, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateProgramWithBinary(IntPtr context, uint num_devices, IntPtr* device_list, uint* lengths, IntPtr* binaries, int* binary_status, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateProgramWithBuiltInKernels", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateProgramWithBuiltInKernels(Int32 context, uint num_devices, IntPtr* device_list, char * kernel_names, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateProgramWithBuiltInKernels(IntPtr context, uint num_devices, IntPtr* device_list, char * kernel_names, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateProgramWithIL", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateProgramWithIL(Int32 context, void* il, uint length, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateProgramWithIL(IntPtr context, void* il, uint length, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainProgram", ExactSpelling = true)]
-			internal extern static int clRetainProgram(Int32 program);
+			internal extern static unsafe int clRetainProgram(IntPtr program);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseProgram", ExactSpelling = true)]
-			internal extern static int clReleaseProgram(Int32 program);
+			internal extern static unsafe int clReleaseProgram(IntPtr program);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clBuildProgram", ExactSpelling = true)]
-			internal extern static unsafe int clBuildProgram(Int32 program, uint num_devices, IntPtr* device_list, char * options, Int32 pfn_notify, Int32 user_data);
+			internal extern static unsafe int clBuildProgram(IntPtr program, uint num_devices, IntPtr* device_list, char * options, IntPtr pfn_notify, IntPtr user_data);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCompileProgram", ExactSpelling = true)]
-			internal extern static unsafe int clCompileProgram(Int32 program, uint num_devices, IntPtr* device_list, char * options, uint num_input_headers, IntPtr* input_headers, String[] header_include_names, Int32 pfn_notify, Int32 user_data);
+			internal extern static unsafe int clCompileProgram(IntPtr program, uint num_devices, IntPtr* device_list, char * options, uint num_input_headers, IntPtr* input_headers, String[] header_include_names, IntPtr pfn_notify, IntPtr user_data);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clLinkProgram", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clLinkProgram(Int32 context, uint num_devices, IntPtr* device_list, char * options, uint num_input_programs, IntPtr* input_programs, Int32 pfn_notify, Int32 user_data, int* errcode_ret);
+			internal extern static unsafe IntPtr clLinkProgram(IntPtr context, uint num_devices, IntPtr* device_list, char * options, uint num_input_programs, IntPtr* input_programs, IntPtr pfn_notify, IntPtr user_data, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clUnloadPlatformCompiler", ExactSpelling = true)]
-			internal extern static int clUnloadPlatformCompiler(Int32 platform);
+			internal extern static unsafe int clUnloadPlatformCompiler(IntPtr platform);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetProgramInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetProgramInfo(Int32 program, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetProgramInfo(IntPtr program, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetProgramBuildInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetProgramBuildInfo(Int32 program, Int32 device, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetProgramBuildInfo(IntPtr program, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateKernel", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCreateKernel(Int32 program, char * kernel_name, int* errcode_ret);
+			internal extern static unsafe IntPtr clCreateKernel(IntPtr program, char * kernel_name, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateKernelsInProgram", ExactSpelling = true)]
-			internal extern static unsafe int clCreateKernelsInProgram(Int32 program, uint num_kernels, IntPtr* kernels, uint* num_kernels_ret);
+			internal extern static unsafe int clCreateKernelsInProgram(IntPtr program, uint num_kernels, IntPtr* kernels, uint* num_kernels_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCloneKernel", ExactSpelling = true)]
-			internal extern static unsafe IntPtr clCloneKernel(Int32 source_kernel, int* errcode_ret);
+			internal extern static unsafe IntPtr clCloneKernel(IntPtr source_kernel, int* errcode_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clRetainKernel", ExactSpelling = true)]
-			internal extern static int clRetainKernel(Int32 kernel);
+			internal extern static unsafe int clRetainKernel(IntPtr kernel);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseKernel", ExactSpelling = true)]
-			internal extern static int clReleaseKernel(Int32 kernel);
+			internal extern static unsafe int clReleaseKernel(IntPtr kernel);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetKernelArg", ExactSpelling = true)]
-			internal extern static int clSetKernelArg(Int32 kernel, uint arg_index, uint arg_size, Int32 arg_value);
+			internal extern static unsafe int clSetKernelArg(IntPtr kernel, uint arg_index, uint arg_size, IntPtr arg_value);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetKernelArgSVMPointer", ExactSpelling = true)]
-			internal extern static int clSetKernelArgSVMPointer(Int32 kernel, uint arg_index, Int32 arg_value);
+			internal extern static unsafe int clSetKernelArgSVMPointer(IntPtr kernel, uint arg_index, IntPtr arg_value);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetKernelExecInfo", ExactSpelling = true)]
-			internal extern static int clSetKernelExecInfo(Int32 kernel, uint param_name, uint param_value_size, Int32 param_value);
+			internal extern static unsafe int clSetKernelExecInfo(IntPtr kernel, uint param_name, uint param_value_size, IntPtr param_value);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetKernelInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetKernelInfo(Int32 kernel, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetKernelInfo(IntPtr kernel, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetKernelArgInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetKernelArgInfo(Int32 kernel, uint arg_indx, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetKernelArgInfo(IntPtr kernel, uint arg_indx, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetKernelWorkGroupInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetKernelWorkGroupInfo(Int32 kernel, Int32 device, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetKernelSubGroupInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetKernelSubGroupInfo(Int32 kernel, Int32 device, uint param_name, uint input_value_size, uint param_value_size, void* param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetKernelSubGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint input_value_size, uint param_value_size, void* param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clWaitForEvents", ExactSpelling = true)]
@@ -268,135 +268,135 @@ namespace OpenCL
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetEventInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetEventInfo(Int32 @event, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetEventInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clCreateUserEvent", ExactSpelling = true)]
-			internal extern static IntPtr clCreateUserEvent(Int32 context);
+			internal extern static unsafe IntPtr clCreateUserEvent(IntPtr context);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clReleaseEvent", ExactSpelling = true)]
-			internal extern static int clReleaseEvent(Int32 @event);
+			internal extern static unsafe int clReleaseEvent(IntPtr @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetUserEventStatus", ExactSpelling = true)]
-			internal extern static int clSetUserEventStatus(Int32 @event, int execution_status);
+			internal extern static unsafe int clSetUserEventStatus(IntPtr @event, int execution_status);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clSetEventCallback", ExactSpelling = true)]
-			internal extern static int clSetEventCallback(Int32 @event, int command_exec_callback_type, Int32 pfn_notify, Int32 user_data);
+			internal extern static unsafe int clSetEventCallback(IntPtr @event, int command_exec_callback_type, IntPtr pfn_notify, IntPtr user_data);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clGetEventProfilingInfo", ExactSpelling = true)]
-			internal extern static unsafe int clGetEventProfilingInfo(Int32 @event, uint param_name, uint param_value_size, Int32 param_value, uint* param_value_size_ret);
+			internal extern static unsafe int clGetEventProfilingInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clFlush", ExactSpelling = true)]
-			internal extern static int clFlush(Int32 command_queue);
+			internal extern static unsafe int clFlush(IntPtr command_queue);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clFinish", ExactSpelling = true)]
-			internal extern static int clFinish(Int32 command_queue);
+			internal extern static unsafe int clFinish(IntPtr command_queue);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueReadBuffer", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueReadBuffer(Int32 command_queue, Int32 buffer, bool blocking_read, uint offset, uint size, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueReadBuffer(IntPtr command_queue, IntPtr buffer, bool blocking_read, uint offset, uint size, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueReadBufferRect", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueReadBufferRect(Int32 command_queue, Int32 buffer, bool blocking_read, uint* buffer_offset, uint* host_offset, uint* region, uint buffer_row_pitch, uint buffer_slice_pitch, uint host_row_pitch, uint host_slice_pitch, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueReadBufferRect(IntPtr command_queue, IntPtr buffer, bool blocking_read, uint* buffer_offset, uint* host_offset, uint* region, uint buffer_row_pitch, uint buffer_slice_pitch, uint host_row_pitch, uint host_slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueWriteBuffer", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueWriteBuffer(Int32 command_queue, Int32 buffer, bool blocking_write, uint offset, uint size, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueWriteBuffer(IntPtr command_queue, IntPtr buffer, bool blocking_write, uint offset, uint size, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueWriteBufferRect", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueWriteBufferRect(Int32 command_queue, Int32 buffer, bool blocking_write, uint* buffer_offset, uint* host_offset, uint* region, uint buffer_row_pitch, uint buffer_slice_pitch, uint host_row_pitch, uint host_slice_pitch, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueWriteBufferRect(IntPtr command_queue, IntPtr buffer, bool blocking_write, uint* buffer_offset, uint* host_offset, uint* region, uint buffer_row_pitch, uint buffer_slice_pitch, uint host_row_pitch, uint host_slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueFillBuffer", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueFillBuffer(Int32 command_queue, Int32 buffer, Int32 pattern, uint pattern_size, uint offset, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueFillBuffer(IntPtr command_queue, IntPtr buffer, IntPtr pattern, uint pattern_size, uint offset, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueCopyBuffer", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueCopyBuffer(Int32 command_queue, Int32 src_buffer, Int32 dst_buffer, uint src_offset, uint dst_offset, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueCopyBuffer(IntPtr command_queue, IntPtr src_buffer, IntPtr dst_buffer, uint src_offset, uint dst_offset, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueCopyBufferRect", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueCopyBufferRect(Int32 command_queue, Int32 src_buffer, Int32 dst_buffer, uint* src_origin, uint* dst_origin, uint* region, uint src_row_pitch, uint src_slice_pitch, uint dst_row_pitch, uint dst_slice_pitch, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueCopyBufferRect(IntPtr command_queue, IntPtr src_buffer, IntPtr dst_buffer, uint* src_origin, uint* dst_origin, uint* region, uint src_row_pitch, uint src_slice_pitch, uint dst_row_pitch, uint dst_slice_pitch, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueReadImage", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueReadImage(Int32 command_queue, Int32 image, bool blocking_read, uint row_pitch, uint slice_pitch, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueReadImage(IntPtr command_queue, IntPtr image, bool blocking_read, uint row_pitch, uint slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueWriteImage", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueWriteImage(Int32 command_queue, Int32 image, bool blocking_write, uint input_row_pitch, uint input_slice_pitch, Int32 ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueWriteImage(IntPtr command_queue, IntPtr image, bool blocking_write, uint input_row_pitch, uint input_slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueFillImage", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueFillImage(Int32 command_queue, Int32 image, Int32 fill_color, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueFillImage(IntPtr command_queue, IntPtr image, IntPtr fill_color, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueCopyImage", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueCopyImage(Int32 command_queue, Int32 src_image, Int32 dst_image, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueCopyImage(IntPtr command_queue, IntPtr src_image, IntPtr dst_image, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueCopyImageToBuffer", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueCopyImageToBuffer(Int32 command_queue, Int32 src_image, Int32 dst_buffer, uint dst_offset, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueCopyImageToBuffer(IntPtr command_queue, IntPtr src_image, IntPtr dst_buffer, uint dst_offset, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueCopyBufferToImage", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueCopyBufferToImage(Int32 command_queue, Int32 src_buffer, Int32 dst_image, uint src_offset, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueCopyBufferToImage(IntPtr command_queue, IntPtr src_buffer, IntPtr dst_image, uint src_offset, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueUnmapMemObject", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueUnmapMemObject(Int32 command_queue, Int32 memobj, Int32 mapped_ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueUnmapMemObject(IntPtr command_queue, IntPtr memobj, IntPtr mapped_ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueMigrateMemObjects", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueMigrateMemObjects(Int32 command_queue, uint num_mem_objects, IntPtr* mem_objects, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueMigrateMemObjects(IntPtr command_queue, uint num_mem_objects, IntPtr* mem_objects, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueNDRangeKernel", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueNDRangeKernel(Int32 command_queue, Int32 kernel, uint work_dim, uint* global_work_offset, uint* global_work_size, uint* local_work_size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueNDRangeKernel(IntPtr command_queue, IntPtr kernel, uint work_dim, uint* global_work_offset, uint* global_work_size, uint* local_work_size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueNativeKernel", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueNativeKernel(Int32 command_queue, Int32 args, uint cb_args, uint num_mem_objects, IntPtr* mem_list, IntPtr* args_mem_loc, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueNativeKernel(IntPtr command_queue, IntPtr args, uint cb_args, uint num_mem_objects, IntPtr* mem_list, IntPtr* args_mem_loc, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueMarkerWithWaitList", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueMarkerWithWaitList(Int32 command_queue, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueMarkerWithWaitList(IntPtr command_queue, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueBarrierWithWaitList", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueBarrierWithWaitList(Int32 command_queue, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueBarrierWithWaitList(IntPtr command_queue, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMFree", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMFree(Int32 command_queue, uint num_svm_pointers, Int32 queue, Int32 user_data, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMFree(IntPtr command_queue, uint num_svm_pointers, IntPtr queue, IntPtr user_data, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMMemcpy", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMMemcpy(Int32 command_queue, bool blocking_copy, Int32 dst_ptr, Int32 src_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMMemcpy(IntPtr command_queue, bool blocking_copy, IntPtr dst_ptr, IntPtr src_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMMemFill", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMMemFill(Int32 command_queue, Int32 svm_ptr, Int32 pattern, uint pattern_size, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMMemFill(IntPtr command_queue, IntPtr svm_ptr, IntPtr pattern, uint pattern_size, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMMap", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMMap(Int32 command_queue, bool blocking_map, ulong flags, Int32 svm_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMMap(IntPtr command_queue, bool blocking_map, ulong flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMUnmap", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMUnmap(Int32 command_queue, Int32 svm_ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMUnmap(IntPtr command_queue, IntPtr svm_ptr, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			[SuppressUnmanagedCodeSecurity()]
 			[DllImport(Library, EntryPoint = "clEnqueueSVMMigrateMem", ExactSpelling = true)]
-			internal extern static unsafe int clEnqueueSVMMigrateMem(Int32 command_queue, uint num_svm_pointers, IntPtr* svm_pointers, uint* sizes, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal extern static unsafe int clEnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr* svm_pointers, uint* sizes, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 		}
 	}

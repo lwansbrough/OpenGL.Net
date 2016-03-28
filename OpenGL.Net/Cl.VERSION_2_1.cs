@@ -56,20 +56,20 @@ namespace OpenCL
 		public const int KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM = 0x11B7;
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int SetDefaultDeviceCommandQueue(Int32 context, Int32 device, Int32 command_queue)
+		public static int SetDefaultDeviceCommandQueue(IntPtr context, IntPtr device, IntPtr command_queue)
 		{
 			int retValue;
 
 			Debug.Assert(Delegates.pclSetDefaultDeviceCommandQueue != null, "pclSetDefaultDeviceCommandQueue not implemented");
 			retValue = Delegates.pclSetDefaultDeviceCommandQueue(context, device, command_queue);
-			LogFunction("clSetDefaultDeviceCommandQueue({0}, {1}, {2}) = {3}", context, device, command_queue, retValue);
+			LogFunction("clSetDefaultDeviceCommandQueue(0x{0}, 0x{1}, 0x{2}) = {3}", context.ToString("X8"), device.ToString("X8"), command_queue.ToString("X8"), retValue);
 			DebugCheckErrors(retValue);
 
 			return (retValue);
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetDevice(Int32 device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
+		public static int GetDevice(IntPtr device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
 		{
 			int retValue;
 
@@ -79,7 +79,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclGetDeviceAndHostTimer != null, "pclGetDeviceAndHostTimer not implemented");
 					retValue = Delegates.pclGetDeviceAndHostTimer(device, p_device_timestamp, p_host_timestamp);
-					LogFunction("clGetDeviceAndHostTimer({0}, {1}, {2}) = {3}", device, LogValue(device_timestamp), LogValue(host_timestamp), retValue);
+					LogFunction("clGetDeviceAndHostTimer(0x{0}, {1}, {2}) = {3}", device.ToString("X8"), LogValue(device_timestamp), LogValue(host_timestamp), retValue);
 				}
 			}
 			DebugCheckErrors(retValue);
@@ -88,7 +88,18 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int Get(Int32 device, [Out] ulong[] host_timestamp)
+		public static int GetDevice(Object device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
+		{
+			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
+			try {
+				return (GetDevice(pin_device.AddrOfPinnedObject(), device_timestamp, host_timestamp));
+			} finally {
+				pin_device.Free();
+			}
+		}
+
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public static int Get(IntPtr device, [Out] ulong[] host_timestamp)
 		{
 			int retValue;
 
@@ -97,7 +108,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclGetHostTimer != null, "pclGetHostTimer not implemented");
 					retValue = Delegates.pclGetHostTimer(device, p_host_timestamp);
-					LogFunction("clGetHostTimer({0}, {1}) = {2}", device, LogValue(host_timestamp), retValue);
+					LogFunction("clGetHostTimer(0x{0}, {1}) = {2}", device.ToString("X8"), LogValue(host_timestamp), retValue);
 				}
 			}
 			DebugCheckErrors(retValue);
@@ -106,7 +117,18 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static IntPtr CreateProgramWith(Int32 context, IntPtr il, uint length, int[] errcode_ret)
+		public static int Get(Object device, [Out] ulong[] host_timestamp)
+		{
+			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
+			try {
+				return (Get(pin_device.AddrOfPinnedObject(), host_timestamp));
+			} finally {
+				pin_device.Free();
+			}
+		}
+
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public static IntPtr CreateProgramWith(IntPtr context, IntPtr il, uint length, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
@@ -115,7 +137,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclCreateProgramWithIL != null, "pclCreateProgramWithIL not implemented");
 					retValue = Delegates.pclCreateProgramWithIL(context, il.ToPointer(), length, p_errcode_ret);
-					LogFunction("clCreateProgramWithIL({0}, 0x{1}, {2}, {3}) = {4}", context, il.ToString("X8"), length, LogValue(errcode_ret), retValue.ToString("X8"));
+					LogFunction("clCreateProgramWithIL(0x{0}, 0x{1}, {2}, {3}) = {4}", context.ToString("X8"), il.ToString("X8"), length, LogValue(errcode_ret), retValue.ToString("X8"));
 				}
 			}
 			DebugCheckErrors(retValue);
@@ -124,7 +146,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static IntPtr CloneKernel(Int32 source_kernel, int[] errcode_ret)
+		public static IntPtr CloneKernel(IntPtr source_kernel, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
@@ -133,7 +155,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclCloneKernel != null, "pclCloneKernel not implemented");
 					retValue = Delegates.pclCloneKernel(source_kernel, p_errcode_ret);
-					LogFunction("clCloneKernel({0}, {1}) = {2}", source_kernel, LogValue(errcode_ret), retValue.ToString("X8"));
+					LogFunction("clCloneKernel(0x{0}, {1}) = {2}", source_kernel.ToString("X8"), LogValue(errcode_ret), retValue.ToString("X8"));
 				}
 			}
 			DebugCheckErrors(retValue);
@@ -142,7 +164,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetKernelSubGroupInfo(Int32 kernel, Int32 device, uint param_name, uint input_value_size, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelSubGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint input_value_size, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -151,7 +173,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclGetKernelSubGroupInfo != null, "pclGetKernelSubGroupInfo not implemented");
 					retValue = Delegates.pclGetKernelSubGroupInfo(kernel, device, (uint)param_name, input_value_size, param_value_size, param_value.ToPointer(), p_param_value_size_ret);
-					LogFunction("clGetKernelSubGroupInfo({0}, {1}, {2}, {3}, {4}, 0x{5}, {6}) = {7}", kernel, device, param_name, input_value_size, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
+					LogFunction("clGetKernelSubGroupInfo(0x{0}, 0x{1}, {2}, {3}, {4}, 0x{5}, {6}) = {7}", kernel.ToString("X8"), device.ToString("X8"), param_name, input_value_size, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
 			DebugCheckErrors(retValue);
@@ -160,18 +182,22 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetKernelSubGroupInfo(Int32 kernel, Int32 device, uint param_name, uint input_value_size, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelSubGroupInfo(Object kernel, Object device, uint param_name, uint input_value_size, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
+			GCHandle pin_kernel = GCHandle.Alloc(kernel, GCHandleType.Pinned);
+			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
 			try {
-				return (GetKernelSubGroupInfo(kernel, device, param_name, input_value_size, param_value_size, pin_param_value.AddrOfPinnedObject(), param_value_size_ret));
+				return (GetKernelSubGroupInfo(pin_kernel.AddrOfPinnedObject(), pin_device.AddrOfPinnedObject(), param_name, input_value_size, param_value_size, pin_param_value.AddrOfPinnedObject(), param_value_size_ret));
 			} finally {
+				pin_kernel.Free();
+				pin_device.Free();
 				pin_param_value.Free();
 			}
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int EnqueueSVMMigrateMem(Int32 command_queue, uint num_svm_pointers, IntPtr[] svm_pointers, uint[] sizes, ulong flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr[] svm_pointers, uint[] sizes, ulong flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -183,7 +209,7 @@ namespace OpenCL
 				{
 					Debug.Assert(Delegates.pclEnqueueSVMMigrateMem != null, "pclEnqueueSVMMigrateMem not implemented");
 					retValue = Delegates.pclEnqueueSVMMigrateMem(command_queue, num_svm_pointers, p_svm_pointers, p_sizes, flags, num_events_in_wait_list, p_event_wait_list, p_event);
-					LogFunction("clEnqueueSVMMigrateMem({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}) = {8}", command_queue, num_svm_pointers, LogValue(svm_pointers), LogValue(sizes), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
+					LogFunction("clEnqueueSVMMigrateMem(0x{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}) = {8}", command_queue.ToString("X8"), num_svm_pointers, LogValue(svm_pointers), LogValue(sizes), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}
 			DebugCheckErrors(retValue);
