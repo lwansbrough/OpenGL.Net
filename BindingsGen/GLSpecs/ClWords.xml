@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <words>
+	<word>And</word>
 	<word>Arg</word>
 	<word>Binary</word>
 	<word>Build</word>
@@ -14,6 +15,7 @@
 	<word>Enqueue</word>
 	<word>Events</word>
 	<word>Event</word>
+	<word>Fill</word>
 	<word>Formats</word>
 	<word>From</word>
 	<word>Kernels</word>
@@ -22,13 +24,18 @@
 	<word>Flush</word>
 	<word>Free</word>
 	<word>For</word>
+	<word>Host</word>
 	<word>Get</word>
 	<word>Group</word>
 	<word>IDs</word>
+	<word>IL</word>
 	<word>Image</word>
 	<word>Info</word>
 	<word>In</word>
+	<word>Map</word>
+	<word>Memcpy</word>
 	<word>Mem</word>
+	<word>Migrate</word>
 	<word>Native</word>
 	<word>ND</word>
 	<word>Pipe</word>
@@ -36,7 +43,10 @@
 	<word>Profiling</word>
 	<word>Program</word>
 	<word>Queue</word>
+	<word>Objects</word>
 	<word>Object</word>
+	<word>Pointer</word>
+	<word>Properties</word>
 	<word>Range</word>
 	<word>Read</word>
 	<word>Rect</word>
@@ -49,6 +59,7 @@
 	<word>Sub</word>
 	<word>Supported</word>
 	<word>SVM</word>
+	<word>Timer</word>
 	<word>Type</word>
 	<word>To</word>
 	<word>User</word>

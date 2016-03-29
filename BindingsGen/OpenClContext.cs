@@ -114,6 +114,20 @@ namespace BindingsGen
 				while ((line  = sr.ReadLine()) != null)
 					ProcessCommandLine(sr, line);
 			}
+
+			// Customization
+			FeatureCommand commonFeatures = new FeatureCommand();
+
+			commonFeatures.Api = "cl";
+
+			Feature featVersion100 = _Registry.Features.Find(delegate (Feature item) {
+				return (item.Number == "100");
+			});
+
+			EnumerantGroup errorCodesGroup = _Registry.Groups.Find(delegate (EnumerantGroup item) { return (item.Name == "ErrorCode"); });
+			foreach (Enumerant enumerant in errorCodesGroup.Enums)
+				commonFeatures.Enums.Add(new FeatureCommand.Item(enumerant.Name));
+			featVersion100.Requirements.Add(commonFeatures);
 		}
 
 		#region Enumerations
@@ -355,7 +369,7 @@ namespace BindingsGen
 
 				commandParameter.Group = commandArgType;
 				commandParameter.Length = null;
-				commandParameter.Type = TypeMap.CsTypeMap.MapType(commandArgType);
+				commandParameter.Type = commandArgType;
 				// commandParameter.TypeDecorators = null;
 				commandParameter.Name = commandArgName;
 
