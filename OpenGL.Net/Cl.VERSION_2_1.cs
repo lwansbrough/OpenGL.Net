@@ -69,7 +69,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetDevice(IntPtr device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
+		public static int GetDeviceAndHostTimer(IntPtr device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
 		{
 			int retValue;
 
@@ -88,18 +88,18 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetDevice(Object device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
+		public static int GetDeviceAndHostTimer(Object device, [Out] ulong[] device_timestamp, [Out] ulong[] host_timestamp)
 		{
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
 			try {
-				return (GetDevice(pin_device.AddrOfPinnedObject(), device_timestamp, host_timestamp));
+				return (GetDeviceAndHostTimer(pin_device.AddrOfPinnedObject(), device_timestamp, host_timestamp));
 			} finally {
 				pin_device.Free();
 			}
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int Get(IntPtr device, [Out] ulong[] host_timestamp)
+		public static int GetHostTimer(IntPtr device, [Out] ulong[] host_timestamp)
 		{
 			int retValue;
 
@@ -117,18 +117,18 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int Get(Object device, [Out] ulong[] host_timestamp)
+		public static int GetHostTimer(Object device, [Out] ulong[] host_timestamp)
 		{
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
 			try {
-				return (Get(pin_device.AddrOfPinnedObject(), host_timestamp));
+				return (GetHostTimer(pin_device.AddrOfPinnedObject(), host_timestamp));
 			} finally {
 				pin_device.Free();
 			}
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static IntPtr CreateProgramWith(IntPtr context, IntPtr il, uint length, int[] errcode_ret)
+		public static IntPtr CreateProgramWithIL(IntPtr context, IntPtr il, uint length, int[] errcode_ret)
 		{
 			IntPtr retValue;
 

@@ -26,7 +26,7 @@ namespace OpenCL
 	public partial class Cl
 	{
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static IntPtr CreateCommandQueueWith(IntPtr context, IntPtr device, ulong[] properties, int[] errcode_ret)
+		public static IntPtr CreateCommandQueueWithProperties(IntPtr context, IntPtr device, ulong[] properties, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
@@ -104,7 +104,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static IntPtr CreateSamplerWith(IntPtr context, ulong[] normalized_coords, int[] errcode_ret)
+		public static IntPtr CreateSamplerWithProperties(IntPtr context, ulong[] normalized_coords, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
@@ -123,7 +123,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static int SetKernelArgSVM(IntPtr kernel, uint arg_index, IntPtr arg_value)
+		public static int SetKernelArgSVMPointer(IntPtr kernel, uint arg_index, IntPtr arg_value)
 		{
 			int retValue;
 
@@ -168,7 +168,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static int EnqueueSVMMem(IntPtr command_queue, bool blocking_copy, IntPtr dst_ptr, IntPtr src_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMemcpy(IntPtr command_queue, bool blocking_copy, IntPtr dst_ptr, IntPtr src_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -187,7 +187,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static int EnqueueSVMMem(IntPtr command_queue, IntPtr svm_ptr, IntPtr pattern, uint pattern_size, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMemFill(IntPtr command_queue, IntPtr svm_ptr, IntPtr pattern, uint pattern_size, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -206,7 +206,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static int EnqueueSVM(IntPtr command_queue, bool blocking_map, ulong flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMap(IntPtr command_queue, bool blocking_map, ulong flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
