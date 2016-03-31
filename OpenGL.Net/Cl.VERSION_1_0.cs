@@ -62,6 +62,48 @@ namespace OpenCL
 		public const int PLATFORM_HOST_TIMER_RESOLUTION = 0x0905;
 
 		/// <summary>
+		/// Value of CL_DEVICE_TYPE_DEFAULT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int DEVICE_TYPE_DEFAULT = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_DEVICE_TYPE_CPU symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int DEVICE_TYPE_CPU = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_DEVICE_TYPE_GPU symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int DEVICE_TYPE_GPU = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_DEVICE_TYPE_ACCELERATOR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int DEVICE_TYPE_ACCELERATOR = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_DEVICE_TYPE_CUSTOM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int DEVICE_TYPE_CUSTOM = (1 << 4);
+
+		/// <summary>
+		/// Value of CL_DEVICE_TYPE_ALL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const uint DEVICE_TYPE_ALL = 0xFFFFFFFF;
+
+		/// <summary>
 		/// Value of CL_DEVICE_TYPE symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
@@ -1575,6 +1617,895 @@ namespace OpenCL
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int INVALID_DEVICE_QUEUE = -70;
 
+		/// <summary>
+		/// Value of CL_FP_DENORM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_DENORM = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_FP_INF_NAN symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_INF_NAN = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_FP_ROUND_TO_NEAREST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_ROUND_TO_NEAREST = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_FP_ROUND_TO_ZERO symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_ROUND_TO_ZERO = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_FP_ROUND_TO_INF symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_ROUND_TO_INF = (1 << 4);
+
+		/// <summary>
+		/// Value of CL_FP_FMA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_FMA = (1 << 5);
+
+		/// <summary>
+		/// Value of CL_FP_SOFT_FLOAT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_SOFT_FLOAT = (1 << 6);
+
+		/// <summary>
+		/// Value of CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int FP_CORRECTLY_ROUNDED_DIVIDE_SQRT = (1 << 7);
+
+		/// <summary>
+		/// Value of CL_NONE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int NONE = 0x0;
+
+		/// <summary>
+		/// Value of CL_READ_ONLY_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int READ_ONLY_CACHE = 0x1;
+
+		/// <summary>
+		/// Value of CL_READ_WRITE_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int READ_WRITE_CACHE = 0x2;
+
+		/// <summary>
+		/// Value of CL_LOCAL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int LOCAL = 0x1;
+
+		/// <summary>
+		/// Value of CL_GLOBAL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int GLOBAL = 0x2;
+
+		/// <summary>
+		/// Value of CL_EXEC_KERNEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int EXEC_KERNEL = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_EXEC_NATIVE_KERNEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int EXEC_NATIVE_KERNEL = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_QUEUE_PROFILING_ENABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int QUEUE_PROFILING_ENABLE = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_QUEUE_ON_DEVICE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int QUEUE_ON_DEVICE = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_QUEUE_ON_DEVICE_DEFAULT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[Log(BitmaskName = "cl")]
+		public const int QUEUE_ON_DEVICE_DEFAULT = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_CONTEXT_PLATFORM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int CONTEXT_PLATFORM = 0x1084;
+
+		/// <summary>
+		/// Value of CL_CONTEXT_INTEROP_USER_SYNC symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int CONTEXT_INTEROP_USER_SYNC = 0x1085;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_EQUALLY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_EQUALLY = 0x1086;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_COUNTS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_COUNTS = 0x1087;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_COUNTS_LIST_END symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_COUNTS_LIST_END = 0x0;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_AFFINITY_DOMAIN = 0x1088;
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NUMA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_NUMA = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L4_CACHE = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L3_CACHE = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L2_CACHE = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L1_CACHE = (1 << 4);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE = (1 << 5);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_COARSE_GRAIN_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_COARSE_GRAIN_BUFFER = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_FINE_GRAIN_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_FINE_GRAIN_BUFFER = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_FINE_GRAIN_SYSTEM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_FINE_GRAIN_SYSTEM = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_ATOMICS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_ATOMICS = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_MIGRATE_MEM_OBJECT_HOST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		[Log(BitmaskName = "cl")]
+		public const int MIGRATE_MEM_OBJECT_HOST = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		[Log(BitmaskName = "cl")]
+		public const int MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_R symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int R = 0x10B0;
+
+		/// <summary>
+		/// Value of CL_A symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int A = 0x10B1;
+
+		/// <summary>
+		/// Value of CL_RG symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RG = 0x10B2;
+
+		/// <summary>
+		/// Value of CL_RA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RA = 0x10B3;
+
+		/// <summary>
+		/// Value of CL_RGB symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RGB = 0x10B4;
+
+		/// <summary>
+		/// Value of CL_RGBA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RGBA = 0x10B5;
+
+		/// <summary>
+		/// Value of CL_BGRA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BGRA = 0x10B6;
+
+		/// <summary>
+		/// Value of CL_ARGB symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ARGB = 0x10B7;
+
+		/// <summary>
+		/// Value of CL_INTENSITY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int INTENSITY = 0x10B8;
+
+		/// <summary>
+		/// Value of CL_LUMINANCE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int LUMINANCE = 0x10B9;
+
+		/// <summary>
+		/// Value of CL_Rx symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int Rx = 0x10BA;
+
+		/// <summary>
+		/// Value of CL_RGx symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RGx = 0x10BB;
+
+		/// <summary>
+		/// Value of CL_RGBx symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int RGBx = 0x10BC;
+
+		/// <summary>
+		/// Value of CL_DEPTH symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEPTH = 0x10BD;
+
+		/// <summary>
+		/// Value of CL_DEPTH_STENCIL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEPTH_STENCIL = 0x10BE;
+
+		/// <summary>
+		/// Value of CL_sRGB symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int sRGB = 0x10BF;
+
+		/// <summary>
+		/// Value of CL_sRGBx symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int sRGBx = 0x10C0;
+
+		/// <summary>
+		/// Value of CL_sRGBA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int sRGBA = 0x10C1;
+
+		/// <summary>
+		/// Value of CL_sBGRA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int sBGRA = 0x10C2;
+
+		/// <summary>
+		/// Value of CL_ABGR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ABGR = 0x10C3;
+
+		/// <summary>
+		/// Value of CL_SNORM_INT8 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SNORM_INT8 = 0x10D0;
+
+		/// <summary>
+		/// Value of CL_SNORM_INT16 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SNORM_INT16 = 0x10D1;
+
+		/// <summary>
+		/// Value of CL_UNORM_INT8 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_INT8 = 0x10D2;
+
+		/// <summary>
+		/// Value of CL_UNORM_INT16 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_INT16 = 0x10D3;
+
+		/// <summary>
+		/// Value of CL_UNORM_SHORT_565 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_SHORT_565 = 0x10D4;
+
+		/// <summary>
+		/// Value of CL_UNORM_SHORT_555 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_SHORT_555 = 0x10D5;
+
+		/// <summary>
+		/// Value of CL_UNORM_INT_101010 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_INT_101010 = 0x10D6;
+
+		/// <summary>
+		/// Value of CL_SIGNED_INT8 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SIGNED_INT8 = 0x10D7;
+
+		/// <summary>
+		/// Value of CL_SIGNED_INT16 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SIGNED_INT16 = 0x10D8;
+
+		/// <summary>
+		/// Value of CL_SIGNED_INT32 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int SIGNED_INT32 = 0x10D9;
+
+		/// <summary>
+		/// Value of CL_UNSIGNED_INT8 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNSIGNED_INT8 = 0x10DA;
+
+		/// <summary>
+		/// Value of CL_UNSIGNED_INT16 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNSIGNED_INT16 = 0x10DB;
+
+		/// <summary>
+		/// Value of CL_UNSIGNED_INT32 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNSIGNED_INT32 = 0x10DC;
+
+		/// <summary>
+		/// Value of CL_HALF_FLOAT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int HALF_FLOAT = 0x10DD;
+
+		/// <summary>
+		/// Value of CL_FLOAT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int FLOAT = 0x10DE;
+
+		/// <summary>
+		/// Value of CL_UNORM_INT24 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_INT24 = 0x10DF;
+
+		/// <summary>
+		/// Value of CL_UNORM_INT_101010_2 symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int UNORM_INT_101010_2 = 0x10E0;
+
+		/// <summary>
+		/// Value of CL_ADDRESS_NONE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ADDRESS_NONE = 0x1130;
+
+		/// <summary>
+		/// Value of CL_ADDRESS_CLAMP_TO_EDGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ADDRESS_CLAMP_TO_EDGE = 0x1131;
+
+		/// <summary>
+		/// Value of CL_ADDRESS_CLAMP symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ADDRESS_CLAMP = 0x1132;
+
+		/// <summary>
+		/// Value of CL_ADDRESS_REPEAT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ADDRESS_REPEAT = 0x1133;
+
+		/// <summary>
+		/// Value of CL_ADDRESS_MIRRORED_REPEAT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int ADDRESS_MIRRORED_REPEAT = 0x1134;
+
+		/// <summary>
+		/// Value of CL_FILTER_NEAREST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int FILTER_NEAREST = 0x1140;
+
+		/// <summary>
+		/// Value of CL_FILTER_LINEAR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int FILTER_LINEAR = 0x1141;
+
+		/// <summary>
+		/// Value of CL_MAP_READ symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_READ = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_MAP_WRITE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_WRITE = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_MAP_WRITE_INVALIDATE_REGION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_WRITE_INVALIDATE_REGION = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_BUILD_SUCCESS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BUILD_SUCCESS = 0;
+
+		/// <summary>
+		/// Value of CL_BUILD_NONE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BUILD_NONE = -1;
+
+		/// <summary>
+		/// Value of CL_BUILD_ERROR symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BUILD_ERROR = -2;
+
+		/// <summary>
+		/// Value of CL_BUILD_IN_PROGRESS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int BUILD_IN_PROGRESS = -3;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_ADDRESS_QUALIFIER = 0x1196;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_ACCESS_QUALIFIER = 0x1197;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_NAME symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_TYPE_NAME = 0x1198;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_TYPE_QUALIFIER = 0x1199;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_NAME symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_NAME = 0x119A;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_GLOBAL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ADDRESS_GLOBAL = 0x119B;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_LOCAL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ADDRESS_LOCAL = 0x119C;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_CONSTANT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ADDRESS_CONSTANT = 0x119D;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_PRIVATE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ADDRESS_PRIVATE = 0x119E;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_READ_ONLY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ACCESS_READ_ONLY = 0x11A0;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_WRITE_ONLY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ACCESS_WRITE_ONLY = 0x11A1;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_READ_WRITE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ACCESS_READ_WRITE = 0x11A2;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_NONE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_ACCESS_NONE = 0x11A3;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_NONE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_TYPE_NONE = 0;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_CONST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_TYPE_CONST = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_RESTRICT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_TYPE_RESTRICT = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_VOLATILE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_TYPE_VOLATILE = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_PIPE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int KERNEL_ARG_TYPE_PIPE = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE = 0x2033;
+
+		/// <summary>
+		/// Value of CL_KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE = 0x2034;
+
+		/// <summary>
+		/// Value of CL_KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT = 0x11B8;
+
+		/// <summary>
+		/// Value of CL_KERNEL_EXEC_INFO_SVM_PTRS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_EXEC_INFO_SVM_PTRS = 0x11B6;
+
+		/// <summary>
+		/// Value of CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM = 0x11B7;
+
+		/// <summary>
+		/// Value of CL_COMMAND_NDRANGE_KERNEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_NDRANGE_KERNEL = 0x11F0;
+
+		/// <summary>
+		/// Value of CL_COMMAND_TASK symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_TASK = 0x11F1;
+
+		/// <summary>
+		/// Value of CL_COMMAND_NATIVE_KERNEL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_NATIVE_KERNEL = 0x11F2;
+
+		/// <summary>
+		/// Value of CL_COMMAND_READ_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_READ_BUFFER = 0x11F3;
+
+		/// <summary>
+		/// Value of CL_COMMAND_WRITE_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_WRITE_BUFFER = 0x11F4;
+
+		/// <summary>
+		/// Value of CL_COMMAND_COPY_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_COPY_BUFFER = 0x11F5;
+
+		/// <summary>
+		/// Value of CL_COMMAND_READ_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_READ_IMAGE = 0x11F6;
+
+		/// <summary>
+		/// Value of CL_COMMAND_WRITE_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_WRITE_IMAGE = 0x11F7;
+
+		/// <summary>
+		/// Value of CL_COMMAND_COPY_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_COPY_IMAGE = 0x11F8;
+
+		/// <summary>
+		/// Value of CL_COMMAND_COPY_IMAGE_TO_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_COPY_IMAGE_TO_BUFFER = 0x11F9;
+
+		/// <summary>
+		/// Value of CL_COMMAND_COPY_BUFFER_TO_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_COPY_BUFFER_TO_IMAGE = 0x11FA;
+
+		/// <summary>
+		/// Value of CL_COMMAND_MAP_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_MAP_BUFFER = 0x11FB;
+
+		/// <summary>
+		/// Value of CL_COMMAND_MAP_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_MAP_IMAGE = 0x11FC;
+
+		/// <summary>
+		/// Value of CL_COMMAND_UNMAP_MEM_OBJECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_UNMAP_MEM_OBJECT = 0x11FD;
+
+		/// <summary>
+		/// Value of CL_COMMAND_MARKER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_MARKER = 0x11FE;
+
+		/// <summary>
+		/// Value of CL_COMMAND_ACQUIRE_GL_OBJECTS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_ACQUIRE_GL_OBJECTS = 0x11FF;
+
+		/// <summary>
+		/// Value of CL_COMMAND_RELEASE_GL_OBJECTS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_RELEASE_GL_OBJECTS = 0x1200;
+
+		/// <summary>
+		/// Value of CL_COMMAND_READ_BUFFER_RECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_READ_BUFFER_RECT = 0x1201;
+
+		/// <summary>
+		/// Value of CL_COMMAND_WRITE_BUFFER_RECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_WRITE_BUFFER_RECT = 0x1202;
+
+		/// <summary>
+		/// Value of CL_COMMAND_COPY_BUFFER_RECT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_COPY_BUFFER_RECT = 0x1203;
+
+		/// <summary>
+		/// Value of CL_COMMAND_USER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_USER = 0x1204;
+
+		/// <summary>
+		/// Value of CL_COMMAND_BARRIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_BARRIER = 0x1205;
+
+		/// <summary>
+		/// Value of CL_COMMAND_MIGRATE_MEM_OBJECTS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_MIGRATE_MEM_OBJECTS = 0x1206;
+
+		/// <summary>
+		/// Value of CL_COMMAND_FILL_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_FILL_BUFFER = 0x1207;
+
+		/// <summary>
+		/// Value of CL_COMMAND_FILL_IMAGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_FILL_IMAGE = 0x1208;
+
+		/// <summary>
+		/// Value of CL_COMMAND_SVM_FREE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_SVM_FREE = 0x1209;
+
+		/// <summary>
+		/// Value of CL_COMMAND_SVM_MEMCPY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_SVM_MEMCPY = 0x120A;
+
+		/// <summary>
+		/// Value of CL_COMMAND_SVM_MEMFILL symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_SVM_MEMFILL = 0x120B;
+
+		/// <summary>
+		/// Value of CL_COMMAND_SVM_MAP symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_SVM_MAP = 0x120C;
+
+		/// <summary>
+		/// Value of CL_COMMAND_SVM_UNMAP symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int COMMAND_SVM_UNMAP = 0x120D;
+
+		/// <summary>
+		/// Value of CL_BUFFER_CREATE_TYPE_REGION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		[RequiredByFeature("CL_VERSION_1_1")]
+		public const int BUFFER_CREATE_TYPE_REGION = 0x1220;
+
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformIDs(uint num_entries, [Out] IntPtr[] platforms, [Out] uint[] num_platforms)
 		{
@@ -1635,7 +2566,7 @@ namespace OpenCL
 				fixed (uint* p_num_devices = num_devices)
 				{
 					Debug.Assert(Delegates.pclGetDeviceIDs != null, "pclGetDeviceIDs not implemented");
-					retValue = Delegates.pclGetDeviceIDs(platform, device_type, num_entries, p_devices, p_num_devices);
+					retValue = Delegates.pclGetDeviceIDs(platform, (ulong)device_type, num_entries, p_devices, p_num_devices);
 					LogFunction("clGetDeviceIDs(0x{0}, {1}, {2}, {3}, {4}) = {5}", platform.ToString("X8"), device_type, num_entries, LogValue(devices), LogValue(num_devices), retValue);
 				}
 			}
@@ -1716,7 +2647,7 @@ namespace OpenCL
 				fixed (int* p_errcode_ret = errcode_ret)
 				{
 					Debug.Assert(Delegates.pclCreateContextFromType != null, "pclCreateContextFromType not implemented");
-					retValue = Delegates.pclCreateContextFromType(p_properties, device_type, user_data, p_errcode_ret);
+					retValue = Delegates.pclCreateContextFromType(p_properties, (ulong)device_type, user_data, p_errcode_ret);
 					LogFunction("clCreateContextFromType({0}, {1}, 0x{2}, {3}) = {4}", LogValue(properties), device_type, user_data.ToString("X8"), LogValue(errcode_ret), retValue.ToString("X8"));
 				}
 			}

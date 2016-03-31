@@ -25,36 +25,6 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_ADDRESS_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_ADDRESS_QUALIFIER = 0x1196;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_ACCESS_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_ACCESS_QUALIFIER = 0x1197;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_NAME symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_TYPE_NAME = 0x1198;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_TYPE_QUALIFIER = 0x1199;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_NAME symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_NAME = 0x119A;
-
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public static int CreateSubDevice(IntPtr in_device, IntPtr[] properties, uint num_devices, IntPtr[] out_devices, uint[] num_devices_ret)
 		{
@@ -275,7 +245,7 @@ namespace OpenCL
 				fixed (IntPtr* p_event = @event)
 				{
 					Debug.Assert(Delegates.pclEnqueueMigrateMemObjects != null, "pclEnqueueMigrateMemObjects not implemented");
-					retValue = Delegates.pclEnqueueMigrateMemObjects(command_queue, num_mem_objects, p_mem_objects, flags, num_events_in_wait_list, p_event_wait_list, p_event);
+					retValue = Delegates.pclEnqueueMigrateMemObjects(command_queue, num_mem_objects, p_mem_objects, (ulong)flags, num_events_in_wait_list, p_event_wait_list, p_event);
 					LogFunction("clEnqueueMigrateMemObjects(0x{0}, {1}, {2}, {3}, {4}, {5}, {6}) = {7}", command_queue.ToString("X8"), num_mem_objects, LogValue(mem_objects), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}

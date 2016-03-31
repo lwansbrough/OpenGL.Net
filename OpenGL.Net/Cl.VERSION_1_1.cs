@@ -25,12 +25,6 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
-		/// <summary>
-		/// Value of CL_BUFFER_CREATE_TYPE_REGION symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_1")]
-		public const int BUFFER_CREATE_TYPE_REGION = 0x1220;
-
 		[RequiredByFeature("CL_VERSION_1_1")]
 		public static IntPtr CreateSubBuffer(IntPtr buffer, ulong flags, uint buffer_create_type, IntPtr buffer_create_info, int[] errcode_ret)
 		{

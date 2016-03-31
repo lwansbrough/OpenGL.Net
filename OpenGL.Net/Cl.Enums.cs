@@ -25,7 +25,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration ErrorCode.
 	/// </summary>
-	public enum ErrorCode
+	public enum ErrorCode : int
 	{
 		/// <summary>
 		/// Strongly typed for value CL_SUCCESS.
@@ -364,7 +364,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_platform_info.
 	/// </summary>
-	public enum cl_platform_info
+	public enum cl_platform_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PLATFORM_PROFILE.
@@ -399,9 +399,47 @@ namespace OpenCL
 	}
 
 	/// <summary>
+	/// Strongly typed enumeration cl_device_type.
+	/// </summary>
+	[Flags()]
+	public enum cl_device_type : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_DEFAULT.
+		/// </summary>
+		DeviceTypeDefault = Cl.DEVICE_TYPE_DEFAULT,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_CPU.
+		/// </summary>
+		DeviceTypeCpu = Cl.DEVICE_TYPE_CPU,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_GPU.
+		/// </summary>
+		DeviceTypeGpu = Cl.DEVICE_TYPE_GPU,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_ACCELERATOR.
+		/// </summary>
+		DeviceTypeAccelerator = Cl.DEVICE_TYPE_ACCELERATOR,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_CUSTOM.
+		/// </summary>
+		DeviceTypeCustom = Cl.DEVICE_TYPE_CUSTOM,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_TYPE_ALL.
+		/// </summary>
+		DeviceTypeAll = Cl.DEVICE_TYPE_ALL,
+
+	}
+
+	/// <summary>
 	/// Strongly typed enumeration cl_device_info.
 	/// </summary>
-	public enum cl_device_info
+	public enum cl_device_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_DEVICE_TYPE.
@@ -871,25 +909,142 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_mem_cache_type.
+	/// Strongly typed enumeration cl_device_fp_config.
 	/// </summary>
 	[Flags()]
+	public enum cl_device_fp_config : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_FP_DENORM.
+		/// </summary>
+		FpDenorm = Cl.FP_DENORM,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_INF_NAN.
+		/// </summary>
+		FpInfNan = Cl.FP_INF_NAN,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_ROUND_TO_NEAREST.
+		/// </summary>
+		FpRoundToNearest = Cl.FP_ROUND_TO_NEAREST,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_ROUND_TO_ZERO.
+		/// </summary>
+		FpRoundToZero = Cl.FP_ROUND_TO_ZERO,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_ROUND_TO_INF.
+		/// </summary>
+		FpRoundToInf = Cl.FP_ROUND_TO_INF,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_FMA.
+		/// </summary>
+		FpFma = Cl.FP_FMA,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_SOFT_FLOAT.
+		/// </summary>
+		FpSoftFloat = Cl.FP_SOFT_FLOAT,
+
+		/// <summary>
+		/// Strongly typed for value CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT.
+		/// </summary>
+		FpCorrectlyRoundedDivideSqrt = Cl.FP_CORRECTLY_ROUNDED_DIVIDE_SQRT,
+
+	}
+
+	/// <summary>
+	/// Strongly typed enumeration cl_device_mem_cache_type.
+	/// </summary>
 	public enum cl_device_mem_cache_type : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_NONE.
+		/// </summary>
+		None = Cl.NONE,
+
+		/// <summary>
+		/// Strongly typed for value CL_READ_ONLY_CACHE.
+		/// </summary>
+		ReadOnlyCache = Cl.READ_ONLY_CACHE,
+
+		/// <summary>
+		/// Strongly typed for value CL_READ_WRITE_CACHE.
+		/// </summary>
+		ReadWriteCache = Cl.READ_WRITE_CACHE,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_device_local_mem_type.
 	/// </summary>
-	[Flags()]
 	public enum cl_device_local_mem_type : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_LOCAL.
+		/// </summary>
+		Local = Cl.LOCAL,
+
+		/// <summary>
+		/// Strongly typed for value CL_GLOBAL.
+		/// </summary>
+		Global = Cl.GLOBAL,
+
+	}
+
+	/// <summary>
+	/// Strongly typed enumeration cl_device_exec_capabilities.
+	/// </summary>
+	[Flags()]
+	public enum cl_device_exec_capabilities : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_EXEC_KERNEL.
+		/// </summary>
+		ExecKernel = Cl.EXEC_KERNEL,
+
+		/// <summary>
+		/// Strongly typed for value CL_EXEC_NATIVE_KERNEL.
+		/// </summary>
+		ExecNativeKernel = Cl.EXEC_NATIVE_KERNEL,
+
+	}
+
+	/// <summary>
+	/// Strongly typed enumeration cl_command_queue_properties.
+	/// </summary>
+	[Flags()]
+	public enum cl_command_queue_properties : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE.
+		/// </summary>
+		QueueOutOfOrderExecModeEnable = Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_QUEUE_PROFILING_ENABLE.
+		/// </summary>
+		QueueProfilingEnable = Cl.QUEUE_PROFILING_ENABLE,
+
+		/// <summary>
+		/// Strongly typed for value CL_QUEUE_ON_DEVICE.
+		/// </summary>
+		QueueOnDevice = Cl.QUEUE_ON_DEVICE,
+
+		/// <summary>
+		/// Strongly typed for value CL_QUEUE_ON_DEVICE_DEFAULT.
+		/// </summary>
+		QueueOnDeviceDefault = Cl.QUEUE_ON_DEVICE_DEFAULT,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_context_info.
 	/// </summary>
-	public enum cl_context_info
+	public enum cl_context_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_CONTEXT_REFERENCE_COUNT.
@@ -916,15 +1071,74 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_context_properties.
 	/// </summary>
-	[Flags()]
-	public enum cl_context_properties : uint
+	public enum cl_context_properties
 	{
+		/// <summary>
+		/// Strongly typed for value CL_CONTEXT_PLATFORM.
+		/// </summary>
+		ContextPlatform = Cl.CONTEXT_PLATFORM,
+
+		/// <summary>
+		/// Strongly typed for value CL_CONTEXT_INTEROP_USER_SYNC.
+		/// </summary>
+		ContextInteropUserSync = Cl.CONTEXT_INTEROP_USER_SYNC,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_PARTITION_EQUALLY.
+		/// </summary>
+		DevicePartitionEqually = Cl.DEVICE_PARTITION_EQUALLY,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_PARTITION_BY_COUNTS.
+		/// </summary>
+		DevicePartitionByCounts = Cl.DEVICE_PARTITION_BY_COUNTS,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_PARTITION_BY_COUNTS_LIST_END.
+		/// </summary>
+		DevicePartitionByCountsListEnd = Cl.DEVICE_PARTITION_BY_COUNTS_LIST_END,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN.
+		/// </summary>
+		DevicePartitionByAffinityDomain = Cl.DEVICE_PARTITION_BY_AFFINITY_DOMAIN,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_NUMA, CL_DEVICE_SVM_COARSE_GRAIN_BUFFER.
+		/// </summary>
+		DeviceAffinityDomainNuma = Cl.DEVICE_AFFINITY_DOMAIN_NUMA,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE, CL_DEVICE_SVM_FINE_GRAIN_BUFFER.
+		/// </summary>
+		DeviceSvmFineGrainBuffer = Cl.DEVICE_SVM_FINE_GRAIN_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE, CL_DEVICE_SVM_FINE_GRAIN_SYSTEM.
+		/// </summary>
+		DeviceSvmFineGrainSystem = Cl.DEVICE_SVM_FINE_GRAIN_SYSTEM,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE, CL_DEVICE_SVM_ATOMICS.
+		/// </summary>
+		DeviceSvmAtomics = Cl.DEVICE_SVM_ATOMICS,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE.
+		/// </summary>
+		DeviceAffinityDomainL1Cache = Cl.DEVICE_AFFINITY_DOMAIN_L1_CACHE,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE.
+		/// </summary>
+		DeviceAffinityDomainNextPartitionable = Cl.DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_command_queue_info.
 	/// </summary>
-	public enum cl_command_queue_info
+	public enum cl_command_queue_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_QUEUE_CONTEXT.
@@ -959,25 +1173,226 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_channel_order.
+	/// Strongly typed enumeration cl_mem_migration_flags.
 	/// </summary>
 	[Flags()]
+	public enum cl_mem_migration_flags : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_MIGRATE_MEM_OBJECT_HOST.
+		/// </summary>
+		MigrateMemObjectHost = Cl.MIGRATE_MEM_OBJECT_HOST,
+
+		/// <summary>
+		/// Strongly typed for value CL_MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED.
+		/// </summary>
+		MigrateMemObjectContentUndefined = Cl.MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED,
+
+	}
+
+	/// <summary>
+	/// Strongly typed enumeration cl_channel_order.
+	/// </summary>
 	public enum cl_channel_order : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_R.
+		/// </summary>
+		R = Cl.R,
+
+		/// <summary>
+		/// Strongly typed for value CL_A.
+		/// </summary>
+		A = Cl.A,
+
+		/// <summary>
+		/// Strongly typed for value CL_RG.
+		/// </summary>
+		Rg = Cl.RG,
+
+		/// <summary>
+		/// Strongly typed for value CL_RA.
+		/// </summary>
+		Ra = Cl.RA,
+
+		/// <summary>
+		/// Strongly typed for value CL_RGB.
+		/// </summary>
+		Rgb = Cl.RGB,
+
+		/// <summary>
+		/// Strongly typed for value CL_RGBA.
+		/// </summary>
+		Rgba = Cl.RGBA,
+
+		/// <summary>
+		/// Strongly typed for value CL_BGRA.
+		/// </summary>
+		Bgra = Cl.BGRA,
+
+		/// <summary>
+		/// Strongly typed for value CL_ARGB.
+		/// </summary>
+		Argb = Cl.ARGB,
+
+		/// <summary>
+		/// Strongly typed for value CL_INTENSITY.
+		/// </summary>
+		Intensity = Cl.INTENSITY,
+
+		/// <summary>
+		/// Strongly typed for value CL_LUMINANCE.
+		/// </summary>
+		Luminance = Cl.LUMINANCE,
+
+		/// <summary>
+		/// Strongly typed for value CL_Rx.
+		/// </summary>
+		Rx = Cl.Rx,
+
+		/// <summary>
+		/// Strongly typed for value CL_RGx.
+		/// </summary>
+		Rgx = Cl.RGx,
+
+		/// <summary>
+		/// Strongly typed for value CL_RGBx.
+		/// </summary>
+		Rgbx = Cl.RGBx,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEPTH.
+		/// </summary>
+		Depth = Cl.DEPTH,
+
+		/// <summary>
+		/// Strongly typed for value CL_DEPTH_STENCIL.
+		/// </summary>
+		DepthStencil = Cl.DEPTH_STENCIL,
+
+		/// <summary>
+		/// Strongly typed for value CL_sRGB.
+		/// </summary>
+		Srgb = Cl.sRGB,
+
+		/// <summary>
+		/// Strongly typed for value CL_sRGBx.
+		/// </summary>
+		Srgbx = Cl.sRGBx,
+
+		/// <summary>
+		/// Strongly typed for value CL_sRGBA.
+		/// </summary>
+		Srgba = Cl.sRGBA,
+
+		/// <summary>
+		/// Strongly typed for value CL_sBGRA.
+		/// </summary>
+		Sbgra = Cl.sBGRA,
+
+		/// <summary>
+		/// Strongly typed for value CL_ABGR.
+		/// </summary>
+		Abgr = Cl.ABGR,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_channel_type.
 	/// </summary>
-	[Flags()]
 	public enum cl_channel_type : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_SNORM_INT8.
+		/// </summary>
+		SnormInt8 = Cl.SNORM_INT8,
+
+		/// <summary>
+		/// Strongly typed for value CL_SNORM_INT16.
+		/// </summary>
+		SnormInt16 = Cl.SNORM_INT16,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_INT8.
+		/// </summary>
+		UnormInt8 = Cl.UNORM_INT8,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_INT16.
+		/// </summary>
+		UnormInt16 = Cl.UNORM_INT16,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_SHORT_565.
+		/// </summary>
+		UnormShort565 = Cl.UNORM_SHORT_565,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_SHORT_555.
+		/// </summary>
+		UnormShort555 = Cl.UNORM_SHORT_555,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_INT_101010.
+		/// </summary>
+		UnormInt101010 = Cl.UNORM_INT_101010,
+
+		/// <summary>
+		/// Strongly typed for value CL_SIGNED_INT8.
+		/// </summary>
+		SignedInt8 = Cl.SIGNED_INT8,
+
+		/// <summary>
+		/// Strongly typed for value CL_SIGNED_INT16.
+		/// </summary>
+		SignedInt16 = Cl.SIGNED_INT16,
+
+		/// <summary>
+		/// Strongly typed for value CL_SIGNED_INT32.
+		/// </summary>
+		SignedInt32 = Cl.SIGNED_INT32,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNSIGNED_INT8.
+		/// </summary>
+		UnsignedInt8 = Cl.UNSIGNED_INT8,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNSIGNED_INT16.
+		/// </summary>
+		UnsignedInt16 = Cl.UNSIGNED_INT16,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNSIGNED_INT32.
+		/// </summary>
+		UnsignedInt32 = Cl.UNSIGNED_INT32,
+
+		/// <summary>
+		/// Strongly typed for value CL_HALF_FLOAT.
+		/// </summary>
+		HalfFloat = Cl.HALF_FLOAT,
+
+		/// <summary>
+		/// Strongly typed for value CL_FLOAT.
+		/// </summary>
+		Float = Cl.FLOAT,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_INT24.
+		/// </summary>
+		UnormInt24 = Cl.UNORM_INT24,
+
+		/// <summary>
+		/// Strongly typed for value CL_UNORM_INT_101010_2.
+		/// </summary>
+		UnormInt1010102 = Cl.UNORM_INT_101010_2,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_mem_object_type.
 	/// </summary>
-	public enum cl_mem_object_type
+	public enum cl_mem_object_type : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MEM_OBJECT_BUFFER.
@@ -1024,7 +1439,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_mem_info.
 	/// </summary>
-	public enum cl_mem_info
+	public enum cl_mem_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MEM_TYPE.
@@ -1081,7 +1496,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_image_info.
 	/// </summary>
-	public enum cl_image_info
+	public enum cl_image_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_IMAGE_FORMAT.
@@ -1153,23 +1568,56 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_addressing_mode.
 	/// </summary>
-	[Flags()]
 	public enum cl_addressing_mode : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_ADDRESS_NONE.
+		/// </summary>
+		AddressNone = Cl.ADDRESS_NONE,
+
+		/// <summary>
+		/// Strongly typed for value CL_ADDRESS_CLAMP_TO_EDGE.
+		/// </summary>
+		AddressClampToEdge = Cl.ADDRESS_CLAMP_TO_EDGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_ADDRESS_CLAMP.
+		/// </summary>
+		AddressClamp = Cl.ADDRESS_CLAMP,
+
+		/// <summary>
+		/// Strongly typed for value CL_ADDRESS_REPEAT.
+		/// </summary>
+		AddressRepeat = Cl.ADDRESS_REPEAT,
+
+		/// <summary>
+		/// Strongly typed for value CL_ADDRESS_MIRRORED_REPEAT.
+		/// </summary>
+		AddressMirroredRepeat = Cl.ADDRESS_MIRRORED_REPEAT,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_filter_mode.
 	/// </summary>
-	[Flags()]
 	public enum cl_filter_mode : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_FILTER_NEAREST.
+		/// </summary>
+		FilterNearest = Cl.FILTER_NEAREST,
+
+		/// <summary>
+		/// Strongly typed for value CL_FILTER_LINEAR.
+		/// </summary>
+		FilterLinear = Cl.FILTER_LINEAR,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_sampler_info.
 	/// </summary>
-	public enum cl_sampler_info
+	public enum cl_sampler_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_SAMPLER_REFERENCE_COUNT.
@@ -1214,9 +1662,32 @@ namespace OpenCL
 	}
 
 	/// <summary>
+	/// Strongly typed enumeration cl_map_flags.
+	/// </summary>
+	[Flags()]
+	public enum cl_map_flags : ulong
+	{
+		/// <summary>
+		/// Strongly typed for value CL_MAP_READ.
+		/// </summary>
+		MapRead = Cl.MAP_READ,
+
+		/// <summary>
+		/// Strongly typed for value CL_MAP_WRITE.
+		/// </summary>
+		MapWrite = Cl.MAP_WRITE,
+
+		/// <summary>
+		/// Strongly typed for value CL_MAP_WRITE_INVALIDATE_REGION.
+		/// </summary>
+		MapWriteInvalidateRegion = Cl.MAP_WRITE_INVALIDATE_REGION,
+
+	}
+
+	/// <summary>
 	/// Strongly typed enumeration cl_program_info.
 	/// </summary>
-	public enum cl_program_info
+	public enum cl_program_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROGRAM_REFERENCE_COUNT.
@@ -1273,7 +1744,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_program_build_info.
 	/// </summary>
-	public enum cl_program_build_info
+	public enum cl_program_build_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROGRAM_BUILD_STATUS.
@@ -1325,15 +1796,34 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_build_status.
 	/// </summary>
-	[Flags()]
-	public enum cl_build_status : uint
+	public enum cl_build_status : int
 	{
+		/// <summary>
+		/// Strongly typed for value CL_BUILD_SUCCESS.
+		/// </summary>
+		BuildSuccess = Cl.BUILD_SUCCESS,
+
+		/// <summary>
+		/// Strongly typed for value CL_BUILD_NONE.
+		/// </summary>
+		BuildNone = Cl.BUILD_NONE,
+
+		/// <summary>
+		/// Strongly typed for value CL_BUILD_ERROR.
+		/// </summary>
+		BuildError = Cl.BUILD_ERROR,
+
+		/// <summary>
+		/// Strongly typed for value CL_BUILD_IN_PROGRESS.
+		/// </summary>
+		BuildInProgress = Cl.BUILD_IN_PROGRESS,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_info.
 	/// </summary>
-	public enum cl_kernel_info
+	public enum cl_kernel_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_FUNCTION_NAME.
@@ -1380,7 +1870,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_arg_info.
 	/// </summary>
-	public enum cl_kernel_arg_info
+	public enum cl_kernel_arg_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_QUALIFIER.
@@ -1412,23 +1902,86 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_arg_address_qualifier.
 	/// </summary>
-	[Flags()]
 	public enum cl_kernel_arg_address_qualifier : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_GLOBAL.
+		/// </summary>
+		KernelArgAddressGlobal = Cl.KERNEL_ARG_ADDRESS_GLOBAL,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_LOCAL.
+		/// </summary>
+		KernelArgAddressLocal = Cl.KERNEL_ARG_ADDRESS_LOCAL,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_CONSTANT.
+		/// </summary>
+		KernelArgAddressConstant = Cl.KERNEL_ARG_ADDRESS_CONSTANT,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_PRIVATE.
+		/// </summary>
+		KernelArgAddressPrivate = Cl.KERNEL_ARG_ADDRESS_PRIVATE,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_arg_access_qualifier.
 	/// </summary>
-	[Flags()]
 	public enum cl_kernel_arg_access_qualifier : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ACCESS_READ_ONLY.
+		/// </summary>
+		KernelArgAccessReadOnly = Cl.KERNEL_ARG_ACCESS_READ_ONLY,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ACCESS_WRITE_ONLY.
+		/// </summary>
+		KernelArgAccessWriteOnly = Cl.KERNEL_ARG_ACCESS_WRITE_ONLY,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ACCESS_READ_WRITE.
+		/// </summary>
+		KernelArgAccessReadWrite = Cl.KERNEL_ARG_ACCESS_READ_WRITE,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_ACCESS_NONE.
+		/// </summary>
+		KernelArgAccessNone = Cl.KERNEL_ARG_ACCESS_NONE,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_TYPE_NONE.
+		/// </summary>
+		KernelArgTypeNone = Cl.KERNEL_ARG_TYPE_NONE,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_TYPE_CONST.
+		/// </summary>
+		KernelArgTypeConst = Cl.KERNEL_ARG_TYPE_CONST,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_TYPE_RESTRICT.
+		/// </summary>
+		KernelArgTypeRestrict = Cl.KERNEL_ARG_TYPE_RESTRICT,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_TYPE_VOLATILE.
+		/// </summary>
+		KernelArgTypeVolatile = Cl.KERNEL_ARG_TYPE_VOLATILE,
+
+		/// <summary>
+		/// Strongly typed for value CL_KERNEL_ARG_TYPE_PIPE.
+		/// </summary>
+		KernelArgTypePipe = Cl.KERNEL_ARG_TYPE_PIPE,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_work_group_info.
 	/// </summary>
-	public enum cl_kernel_work_group_info
+	public enum cl_kernel_work_group_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_WORK_GROUP_SIZE.
@@ -1465,7 +2018,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_kernel_sub_group_info.
 	/// </summary>
-	public enum cl_kernel_sub_group_info
+	public enum cl_kernel_sub_group_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE.
@@ -1497,7 +2050,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_event_info.
 	/// </summary>
-	public enum cl_event_info
+	public enum cl_event_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_EVENT_COMMAND_QUEUE.
@@ -1529,15 +2082,164 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_command_type.
 	/// </summary>
-	[Flags()]
 	public enum cl_command_type : uint
 	{
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_NDRANGE_KERNEL.
+		/// </summary>
+		CommandNdrangeKernel = Cl.COMMAND_NDRANGE_KERNEL,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_TASK.
+		/// </summary>
+		CommandTask = Cl.COMMAND_TASK,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_NATIVE_KERNEL.
+		/// </summary>
+		CommandNativeKernel = Cl.COMMAND_NATIVE_KERNEL,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_READ_BUFFER.
+		/// </summary>
+		CommandReadBuffer = Cl.COMMAND_READ_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_WRITE_BUFFER.
+		/// </summary>
+		CommandWriteBuffer = Cl.COMMAND_WRITE_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_COPY_BUFFER.
+		/// </summary>
+		CommandCopyBuffer = Cl.COMMAND_COPY_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_READ_IMAGE.
+		/// </summary>
+		CommandReadImage = Cl.COMMAND_READ_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_WRITE_IMAGE.
+		/// </summary>
+		CommandWriteImage = Cl.COMMAND_WRITE_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_COPY_IMAGE.
+		/// </summary>
+		CommandCopyImage = Cl.COMMAND_COPY_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_COPY_IMAGE_TO_BUFFER.
+		/// </summary>
+		CommandCopyImageToBuffer = Cl.COMMAND_COPY_IMAGE_TO_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_COPY_BUFFER_TO_IMAGE.
+		/// </summary>
+		CommandCopyBufferToImage = Cl.COMMAND_COPY_BUFFER_TO_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_MAP_BUFFER.
+		/// </summary>
+		CommandMapBuffer = Cl.COMMAND_MAP_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_MAP_IMAGE.
+		/// </summary>
+		CommandMapImage = Cl.COMMAND_MAP_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_UNMAP_MEM_OBJECT.
+		/// </summary>
+		CommandUnmapMemObject = Cl.COMMAND_UNMAP_MEM_OBJECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_MARKER.
+		/// </summary>
+		CommandMarker = Cl.COMMAND_MARKER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_ACQUIRE_GL_OBJECTS.
+		/// </summary>
+		CommandAcquireGlObjects = Cl.COMMAND_ACQUIRE_GL_OBJECTS,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_RELEASE_GL_OBJECTS.
+		/// </summary>
+		CommandReleaseGlObjects = Cl.COMMAND_RELEASE_GL_OBJECTS,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_READ_BUFFER_RECT.
+		/// </summary>
+		CommandReadBufferRect = Cl.COMMAND_READ_BUFFER_RECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_WRITE_BUFFER_RECT.
+		/// </summary>
+		CommandWriteBufferRect = Cl.COMMAND_WRITE_BUFFER_RECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_COPY_BUFFER_RECT.
+		/// </summary>
+		CommandCopyBufferRect = Cl.COMMAND_COPY_BUFFER_RECT,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_USER.
+		/// </summary>
+		CommandUser = Cl.COMMAND_USER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_BARRIER.
+		/// </summary>
+		CommandBarrier = Cl.COMMAND_BARRIER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_MIGRATE_MEM_OBJECTS.
+		/// </summary>
+		CommandMigrateMemObjects = Cl.COMMAND_MIGRATE_MEM_OBJECTS,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_FILL_BUFFER.
+		/// </summary>
+		CommandFillBuffer = Cl.COMMAND_FILL_BUFFER,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_FILL_IMAGE.
+		/// </summary>
+		CommandFillImage = Cl.COMMAND_FILL_IMAGE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_SVM_FREE.
+		/// </summary>
+		CommandSvmFree = Cl.COMMAND_SVM_FREE,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_SVM_MEMCPY.
+		/// </summary>
+		CommandSvmMemcpy = Cl.COMMAND_SVM_MEMCPY,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_SVM_MEMFILL.
+		/// </summary>
+		CommandSvmMemfill = Cl.COMMAND_SVM_MEMFILL,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_SVM_MAP.
+		/// </summary>
+		CommandSvmMap = Cl.COMMAND_SVM_MAP,
+
+		/// <summary>
+		/// Strongly typed for value CL_COMMAND_SVM_UNMAP.
+		/// </summary>
+		CommandSvmUnmap = Cl.COMMAND_SVM_UNMAP,
+
 	}
 
 	/// <summary>
 	/// Strongly typed enumeration cl_buffer_create_type.
 	/// </summary>
-	public enum cl_buffer_create_type
+	public enum cl_buffer_create_type : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_BUFFER_CREATE_TYPE_REGION.
@@ -1549,7 +2251,7 @@ namespace OpenCL
 	/// <summary>
 	/// Strongly typed enumeration cl_profiling_info.
 	/// </summary>
-	public enum cl_profiling_info
+	public enum cl_profiling_info : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROFILING_COMMAND_QUEUED.

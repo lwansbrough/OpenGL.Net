@@ -25,36 +25,6 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
-		/// <summary>
-		/// Value of CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE = 0x2033;
-
-		/// <summary>
-		/// Value of CL_KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE = 0x2034;
-
-		/// <summary>
-		/// Value of CL_KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT = 0x11B8;
-
-		/// <summary>
-		/// Value of CL_KERNEL_EXEC_INFO_SVM_PTRS symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_EXEC_INFO_SVM_PTRS = 0x11B6;
-
-		/// <summary>
-		/// Value of CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM = 0x11B7;
-
 		[RequiredByFeature("CL_VERSION_2_1")]
 		public static int SetDefaultDeviceCommandQueue(IntPtr context, IntPtr device, IntPtr command_queue)
 		{
@@ -208,7 +178,7 @@ namespace OpenCL
 				fixed (IntPtr* p_event = @event)
 				{
 					Debug.Assert(Delegates.pclEnqueueSVMMigrateMem != null, "pclEnqueueSVMMigrateMem not implemented");
-					retValue = Delegates.pclEnqueueSVMMigrateMem(command_queue, num_svm_pointers, p_svm_pointers, p_sizes, flags, num_events_in_wait_list, p_event_wait_list, p_event);
+					retValue = Delegates.pclEnqueueSVMMigrateMem(command_queue, num_svm_pointers, p_svm_pointers, p_sizes, (ulong)flags, num_events_in_wait_list, p_event_wait_list, p_event);
 					LogFunction("clEnqueueSVMMigrateMem(0x{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}) = {8}", command_queue.ToString("X8"), num_svm_pointers, LogValue(svm_pointers), LogValue(sizes), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}
