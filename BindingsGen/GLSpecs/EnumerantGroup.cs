@@ -50,6 +50,18 @@ namespace BindingsGen.GLSpecs
 		[XmlAttribute("comment")]
 		public String Comment;
 
+		/// <summary>
+		/// The underlying type of the enumeration, if any.
+		/// </summary>
+		[XmlIgnore()]
+		public String UnderlyingType;
+
+		/// <summary>
+		/// Same as <see cref="EnumerantBlock.Type"/>.
+		/// </summary>
+		[XmlIgnore()]
+		public String Type;
+
 		#endregion
 
 		#region Code Generation
@@ -60,12 +72,6 @@ namespace BindingsGen.GLSpecs
 				throw new ArgumentNullException("sw");
 			if (ctx == null)
 				throw new ArgumentNullException("ctx");
-
-			bool bitmask = Enums.TrueForAll(delegate(Enumerant item) {
-				Enumerant actualEnumerant = ctx.Registry.GetEnumerant(item.Name);
-
-				return (actualEnumerant == null || actualEnumerant.ParentEnumerantBlock.Type == "bitmask");
-			});
 
 			// Collect group enumerants by their value
 			Dictionary<string, List<Enumerant>> groupEnums = new Dictionary<string, List<Enumerant>>();
@@ -81,9 +87,14 @@ namespace BindingsGen.GLSpecs
 				}
 			}
 
-			// Modify canonical enumeration (value/block/group) definition
-			CommandFlagsDatabase.EnumerantItem enumerantExtension = CommandFlagsDatabase.FindEnumerant(Name);
+			// gl.xml specify bitmask enumerants using <enum> element
+			bool bitmask = Enums.TrueForAll(delegate(Enumerant item) {
+				Enumerant actualEnumerant = ctx.Registry.GetEnumerant(item.Name);
+				return (actualEnumerant == null || actualEnumerant.ParentEnumerantBlock.Type == "bitmask");
+			});
 
+			// Customization
+			CommandFlagsDatabase.EnumerantItem enumerantExtension = CommandFlagsDatabase.FindEnumerant(Name);
 			if (enumerantExtension != null) {
 				// ...override group information
 				if (enumerantExtension.Type != null) {
@@ -127,12 +138,21 @@ namespace BindingsGen.GLSpecs
 					uniqueEnums.Add(pair.Value[0]);
 			}
 
+			string underlyingType = String.Empty;
+
+			// GL bit enums are all uints
+			if (bitmask)
+				underlyingType = " : uint";
+			// Specific implementations
+			if (UnderlyingType != null)
+				underlyingType = String.Format(" : {0}", UnderlyingType);
+
 			sw.WriteLine("/// <summary>");
 			sw.WriteLine("/// Strongly typed enumeration {0}.", Name);
 			sw.WriteLine("/// </summary>");
 			if (bitmask)
 				sw.WriteLine("[Flags()]");
-			sw.WriteLine("public enum {0}{1}", Name, bitmask ? " : uint" : String.Empty);
+			sw.WriteLine("public enum {0}{1}", Name, underlyingType);
 			sw.WriteLine("{");
 			sw.Indent();
 			foreach (Enumerant enumerant in uniqueEnums) {

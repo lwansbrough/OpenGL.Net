@@ -116,17 +116,23 @@ namespace BindingsGen
 			}
 
 			// Customization
-			FeatureCommand commonFeatures = new FeatureCommand();
-
-			commonFeatures.Api = "cl";
-
 			Feature featVersion100 = _Registry.Features.Find(delegate (Feature item) {
 				return (item.Number == "100");
 			});
 
+			FeatureCommand commonFeatures = new FeatureCommand();
+			commonFeatures.Api = "cl";
+
 			EnumerantGroup errorCodesGroup = _Registry.Groups.Find(delegate (EnumerantGroup item) { return (item.Name == "ErrorCode"); });
 			foreach (Enumerant enumerant in errorCodesGroup.Enums)
 				commonFeatures.Enums.Add(new FeatureCommand.Item(enumerant.Name));
+
+			// Ensure all symbols have a requirement
+			foreach (EnumerantBlock enumerantBlock in _Registry.Enums)
+				foreach (Enumerant enumerant in enumerantBlock.Enums)
+					if (enumerant.RequiredBy.Count == 0)
+						commonFeatures.Enums.Add(new FeatureCommand.Item(enumerant.Name));
+
 			featVersion100.Requirements.Add(commonFeatures);
 		}
 
@@ -141,23 +147,62 @@ namespace BindingsGen
 				bool bitfield;
 
 				if (bitfield = semantic.EndsWith(_SemanticBitfield))
-					semantic.Substring(0, semantic.Length - _SemanticBitfield.Length);
+					semantic = semantic.Substring(0, semantic.Length - _SemanticBitfield.Length);
 
 				if (TypeMap.CsTypeMap.IsMappedType(semantic)) {
 					// Strongly-typed enumeration
 					EnumerantGroup enumerantGroup = new EnumerantGroup();
 
 					enumerantGroup.Name = semantic;     // XXX Style
+
+					#region enumerantGroup.UnderlyingType = uint/ulong/...
+
+					string semanticType;
+
+					if ((semanticType = TypeMap.CsTypeMap.MapType(semantic)) != null) {
+						bool enumTypeOk = false;
+
+						do {
+							switch (semanticType) {
+								case "sbyte":
+								case "short":
+								case "int":
+								case "long":
+								case "byte":
+								case "ushort":
+								case "uint":
+								case "ulong":
+									enumTypeOk = true;
+									break;
+								case null:
+									break;
+								default:
+									string nextSemanticType = TypeMap.CsTypeMap.MapType(semanticType);
+									semanticType = nextSemanticType != semanticType ? nextSemanticType : null;
+									break;
+							}
+						} while (semanticType != null && enumTypeOk == false);
+
+						enumerantGroup.UnderlyingType = semanticType;
+					} else {
+						enumerantGroup.UnderlyingType = null;
+					}
+
+					#endregion
+
 					_Registry.Groups.Add(enumerantGroup);
 					enumerantGroup.Enums.AddRange(ProcessEnumBlock(sr));
 					GenerateEnumerantBlockFromGroup(enumerantGroup, bitfield);
+
 				} else if (semantic == "Error Codes") {
 					EnumerantGroup enumerantGroup = new EnumerantGroup();
 
-					enumerantGroup.Name = "ErrorCode";	// Emulates Gl
+					enumerantGroup.Name = "ErrorCode";  // Emulates Gl
+					enumerantGroup.UnderlyingType = "int";
 					_Registry.Groups.Add(enumerantGroup);
 					enumerantGroup.Enums.AddRange(ProcessEnumBlock(sr));
 					GenerateEnumerantBlockFromGroup(enumerantGroup, bitfield);
+
 				} else if (semantic == "OpenCL Version") {
 					ProcessEnumVersion(sr);
 				}
@@ -233,7 +278,7 @@ namespace BindingsGen
 
 		private const string _SemanticBitfield = " - bitfield";
 
-		private static readonly Regex _RegexEnumStatement = new Regex(@"#define (?<EnumName>CL_[\w\d_]+) +(?<EnumValue>[\w_\dA-Fx\-\+]+)( +/\*.*\*/)?");
+		private static readonly Regex _RegexEnumStatement = new Regex(@"#define (?<EnumName>CL_[\w\d_]+) +(?<EnumValue>([\w_\dxA-F\-\+]+|\(\d \<\< \d\)))( +/\*.*\*/)?");
 
 		private static readonly Regex _RegexVersionStatement = new Regex(@"#define CL_VERSION_(?<Major>\d)_(?<Minor>\d) +1");
 
@@ -399,8 +444,11 @@ namespace BindingsGen
 				if (enumerantGroup == null)
 					continue;
 
-				foreach (Enumerant enumerant in enumerantGroup.Enums)
+				foreach (Enumerant enumerant in enumerantGroup.Enums) {
+					enumerant.RequiredBy.Add(commandFeature);
 					commandFeatureCommand.Enums.Add(new FeatureCommand.Item(enumerant.Name));
+				}
+					
 			}
 			commandFeatureCommand.Commands.Add(new FeatureCommand.Item(command.Prototype.Name));
 
