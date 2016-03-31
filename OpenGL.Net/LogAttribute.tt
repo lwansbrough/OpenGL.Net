@@ -1,4 +1,11 @@
-﻿
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Import Namespace="System" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Runtime.InteropServices" #>
+
 // Copyright (C) 2015-2016 Luca Piccioni
 // 
 // This library is free software; you can redistribute it and/or
@@ -17,8 +24,13 @@
 // USA
 
 using System;
+<#
+	var apis = new[] { "gl", "cl" };
 
-namespace OpenGL
+	for (int i = 0; i < apis.Length; i++) {
+#>
+
+namespace Open<#= apis[i].ToUpper()#>
 {
 	/// <summary>
 	/// Attribute defining information useful for logging the underlying member.
@@ -31,17 +43,6 @@ namespace OpenGL
 		public string BitmaskName;
 	}
 }
-
-namespace OpenCL
-{
-	/// <summary>
-	/// Attribute defining information useful for logging the underlying member.
-	/// </summary>
-	public sealed class LogAttribute : Attribute
-	{
-		/// <summary>
-		/// If it different from null, defines the name of the bitmask defining by the underlying member.
-		/// </summary>
-		public string BitmaskName;
-	}
+<#
 }
+#>

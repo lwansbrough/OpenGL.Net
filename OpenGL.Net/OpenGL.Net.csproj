@@ -253,7 +253,11 @@
     <Compile Include="IMG\Gl.IMG_texture_env_enhanced_fixed_function.cs" />
     <Compile Include="IMG\Gl.IMG_texture_filter_cubic.cs" />
     <Compile Include="IMG\Gl.IMG_user_clip_plane.cs" />
-    <Compile Include="LogAttribute.cs" />
+    <Compile Include="LogAttribute.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogAttribute.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeviceContext.cs" />
     <Compile Include="DeviceContextFactory.cs" />
     <Compile Include="DevicePixelFormat.cs" />
@@ -620,7 +624,9 @@
     </Compile>
     <Compile Include="REND\Gl.REND_screen_coordinates.cs" />
     <Compile Include="RequiredByFeatureAttribute.cs">
-      <SubType>Code</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequiredByFeatureAttribute.tt</DependentUpon>
     </Compile>
     <Compile Include="S3\Gl.S3_s3tc.cs" />
     <Compile Include="SGIS\Gl.SGIS_detail_texture.cs" />
@@ -738,6 +744,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LogAttribute.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogAttribute.cs</LastGenOutput>
+    </Content>
+    <Content Include="RequiredByFeatureAttribute.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RequiredByFeatureAttribute.cs</LastGenOutput>
+    </Content>
     <Content Include="Vector.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Vector.cs</LastGenOutput>
