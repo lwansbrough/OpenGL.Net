@@ -1842,24 +1842,6 @@ namespace OpenCL
 		public const int DEVICE_SVM_ATOMICS = (1 << 3);
 
 		/// <summary>
-		/// Value of CL_MIGRATE_MEM_OBJECT_HOST symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		[Log(BitmaskName = "cl")]
-		public const int MIGRATE_MEM_OBJECT_HOST = (1 << 0);
-
-		/// <summary>
-		/// Value of CL_MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		[Log(BitmaskName = "cl")]
-		public const int MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED = (1 << 1);
-
-		/// <summary>
 		/// Value of CL_R symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
@@ -2124,30 +2106,6 @@ namespace OpenCL
 		public const int FILTER_LINEAR = 0x1141;
 
 		/// <summary>
-		/// Value of CL_MAP_READ symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_0")]
-		[Log(BitmaskName = "cl")]
-		public const int MAP_READ = (1 << 0);
-
-		/// <summary>
-		/// Value of CL_MAP_WRITE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_0")]
-		[Log(BitmaskName = "cl")]
-		public const int MAP_WRITE = (1 << 1);
-
-		/// <summary>
-		/// Value of CL_MAP_WRITE_INVALIDATE_REGION symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_0")]
-		[Log(BitmaskName = "cl")]
-		public const int MAP_WRITE_INVALIDATE_REGION = (1 << 2);
-
-		/// <summary>
 		/// Value of CL_BUILD_SUCCESS symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
@@ -2170,41 +2128,6 @@ namespace OpenCL
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int BUILD_IN_PROGRESS = -3;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_ADDRESS_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_ADDRESS_QUALIFIER = 0x1196;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_ACCESS_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_ACCESS_QUALIFIER = 0x1197;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_NAME symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_TYPE_NAME = 0x1198;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_QUALIFIER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_TYPE_QUALIFIER = 0x1199;
-
-		/// <summary>
-		/// Value of CL_KERNEL_ARG_NAME symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_2")]
-		public const int KERNEL_ARG_NAME = 0x119A;
 
 		/// <summary>
 		/// Value of CL_KERNEL_ARG_ADDRESS_GLOBAL symbol.
@@ -2283,41 +2206,6 @@ namespace OpenCL
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_ARG_TYPE_PIPE = (1 << 3);
-
-		/// <summary>
-		/// Value of CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE = 0x2033;
-
-		/// <summary>
-		/// Value of CL_KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE = 0x2034;
-
-		/// <summary>
-		/// Value of CL_KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT = 0x11B8;
-
-		/// <summary>
-		/// Value of CL_KERNEL_EXEC_INFO_SVM_PTRS symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_EXEC_INFO_SVM_PTRS = 0x11B6;
-
-		/// <summary>
-		/// Value of CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_2_1")]
-		public const int KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM = 0x11B7;
 
 		/// <summary>
 		/// Value of CL_COMMAND_NDRANGE_KERNEL symbol.
@@ -2498,13 +2386,6 @@ namespace OpenCL
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int COMMAND_SVM_UNMAP = 0x120D;
-
-		/// <summary>
-		/// Value of CL_BUFFER_CREATE_TYPE_REGION symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		[RequiredByFeature("CL_VERSION_1_1")]
-		public const int BUFFER_CREATE_TYPE_REGION = 0x1220;
 
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformIDs(uint num_entries, [Out] IntPtr[] platforms, [Out] uint[] num_platforms)

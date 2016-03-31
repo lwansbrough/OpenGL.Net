@@ -25,6 +25,52 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ADDRESS_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_ADDRESS_QUALIFIER = 0x1196;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_ACCESS_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_ACCESS_QUALIFIER = 0x1197;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_NAME symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_TYPE_NAME = 0x1198;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_TYPE_QUALIFIER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_TYPE_QUALIFIER = 0x1199;
+
+		/// <summary>
+		/// Value of CL_KERNEL_ARG_NAME symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		public const int KERNEL_ARG_NAME = 0x119A;
+
+		/// <summary>
+		/// Value of CL_MIGRATE_MEM_OBJECT_HOST symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		[Log(BitmaskName = "cl")]
+		public const int MIGRATE_MEM_OBJECT_HOST = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_2")]
+		[RequiredByFeature("CL_VERSION_2_1")]
+		[Log(BitmaskName = "cl")]
+		public const int MIGRATE_MEM_OBJECT_CONTENT_UNDEFINED = (1 << 1);
+
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public static int CreateSubDevice(IntPtr in_device, IntPtr[] properties, uint num_devices, IntPtr[] out_devices, uint[] num_devices_ret)
 		{

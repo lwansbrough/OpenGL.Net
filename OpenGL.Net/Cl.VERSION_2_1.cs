@@ -25,6 +25,36 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
+		/// <summary>
+		/// Value of CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE = 0x2033;
+
+		/// <summary>
+		/// Value of CL_KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE = 0x2034;
+
+		/// <summary>
+		/// Value of CL_KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT = 0x11B8;
+
+		/// <summary>
+		/// Value of CL_KERNEL_EXEC_INFO_SVM_PTRS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_EXEC_INFO_SVM_PTRS = 0x11B6;
+
+		/// <summary>
+		/// Value of CL_KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_1")]
+		public const int KERNEL_EXEC_INFO_SVM_FINE_GRAIN_SYSTEM = 0x11B7;
+
 		[RequiredByFeature("CL_VERSION_2_1")]
 		public static int SetDefaultDeviceCommandQueue(IntPtr context, IntPtr device, IntPtr command_queue)
 		{

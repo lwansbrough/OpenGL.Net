@@ -25,6 +25,27 @@ namespace OpenCL
 {
 	public partial class Cl
 	{
+		/// <summary>
+		/// Value of CL_MAP_READ symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_READ = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_MAP_WRITE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_WRITE = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_MAP_WRITE_INVALIDATE_REGION symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_2_0")]
+		[Log(BitmaskName = "cl")]
+		public const int MAP_WRITE_INVALIDATE_REGION = (1 << 2);
+
 		[RequiredByFeature("CL_VERSION_2_0")]
 		public static IntPtr CreateCommandQueueWithProperties(IntPtr context, IntPtr device, ulong[] properties, int[] errcode_ret)
 		{
