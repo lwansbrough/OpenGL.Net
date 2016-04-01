@@ -152,8 +152,12 @@ namespace BindingsGen
 				if (TypeMap.CsTypeMap.IsMappedType(semantic)) {
 					// Strongly-typed enumeration
 					EnumerantGroup enumerantGroup = new EnumerantGroup();
+					string groupName = semantic.ToUpper();
 
-					enumerantGroup.Name = semantic;     // XXX Style
+					groupName = SpecificationStyle.GetEnumBindingName(groupName);
+					groupName = SpecificationStyle.GetCamelCase(groupName);
+
+					enumerantGroup.Name = groupName;
 
 					#region enumerantGroup.UnderlyingType = uint/ulong/...
 
@@ -412,7 +416,24 @@ namespace BindingsGen
 
 				CommandParameter commandParameter = new CommandParameter();
 
-				commandParameter.Group = commandArgType;
+				// Check whether a corresponding group has been registered
+				string groupName = commandArgType.ToUpper();
+				bool groupPointer = groupName.EndsWith("*");
+
+				if (groupPointer)
+					groupName = groupName.Substring(0, groupName.Length - 1).Trim();
+
+				groupName = SpecificationStyle.GetEnumBindingName(groupName);
+				groupName = SpecificationStyle.GetCamelCase(groupName);
+
+				if (_Registry.Groups.FindIndex(delegate (EnumerantGroup item) { return (item.Name == groupName); }) >= 0) {
+					commandArgType = TypeMap.CsTypeMap.MapType(groupName);
+					if (groupPointer)
+						commandArgType = groupName + " *";
+				} else
+					groupName = null;
+
+				commandParameter.Group = groupName;
 				commandParameter.Length = null;
 				commandParameter.Type = commandArgType;
 				// commandParameter.TypeDecorators = null;
