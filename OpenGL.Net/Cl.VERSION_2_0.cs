@@ -227,7 +227,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_0")]
-		public static int EnqueueSVMMap(IntPtr command_queue, bool blocking_map, ulong flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMap(IntPtr command_queue, bool blocking_map, MapFlags flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -236,7 +236,7 @@ namespace OpenCL
 				fixed (IntPtr* p_event = @event)
 				{
 					Debug.Assert(Delegates.pclEnqueueSVMMap != null, "pclEnqueueSVMMap not implemented");
-					retValue = Delegates.pclEnqueueSVMMap(command_queue, blocking_map, (ulong)flags, svm_ptr, size, num_events_in_wait_list, p_event_wait_list, p_event);
+					retValue = Delegates.pclEnqueueSVMMap(command_queue, blocking_map, (MapFlags)flags, svm_ptr, size, num_events_in_wait_list, p_event_wait_list, p_event);
 					LogFunction("clEnqueueSVMMap(0x{0}, {1}, {2}, 0x{3}, {4}, {5}, {6}, {7}) = {8}", command_queue.ToString("X8"), blocking_map, flags, svm_ptr.ToString("X8"), size, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}

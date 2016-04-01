@@ -668,6 +668,102 @@ namespace OpenCL
 		public const int DEVICE_SUB_GROUP_INDEPENDENT_FORWARD_PROGRESS = 0x105D;
 
 		/// <summary>
+		/// Value of CL_CONTEXT_PLATFORM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int CONTEXT_PLATFORM = 0x1084;
+
+		/// <summary>
+		/// Value of CL_CONTEXT_INTEROP_USER_SYNC symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int CONTEXT_INTEROP_USER_SYNC = 0x1085;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_EQUALLY symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_EQUALLY = 0x1086;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_COUNTS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_COUNTS = 0x1087;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_COUNTS_LIST_END symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_COUNTS_LIST_END = 0x0;
+
+		/// <summary>
+		/// Value of CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_PARTITION_BY_AFFINITY_DOMAIN = 0x1088;
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NUMA symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_NUMA = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L4_CACHE = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L3_CACHE = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L2_CACHE = (1 << 3);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_L1_CACHE = (1 << 4);
+
+		/// <summary>
+		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE = (1 << 5);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_COARSE_GRAIN_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_COARSE_GRAIN_BUFFER = (1 << 0);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_FINE_GRAIN_BUFFER symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_FINE_GRAIN_BUFFER = (1 << 1);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_FINE_GRAIN_SYSTEM symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_FINE_GRAIN_SYSTEM = (1 << 2);
+
+		/// <summary>
+		/// Value of CL_DEVICE_SVM_ATOMICS symbol.
+		/// </summary>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public const int DEVICE_SVM_ATOMICS = (1 << 3);
+
+		/// <summary>
 		/// Value of CL_CONTEXT_REFERENCE_COUNT symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
@@ -1746,102 +1842,6 @@ namespace OpenCL
 		public const int QUEUE_ON_DEVICE_DEFAULT = (1 << 3);
 
 		/// <summary>
-		/// Value of CL_CONTEXT_PLATFORM symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int CONTEXT_PLATFORM = 0x1084;
-
-		/// <summary>
-		/// Value of CL_CONTEXT_INTEROP_USER_SYNC symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int CONTEXT_INTEROP_USER_SYNC = 0x1085;
-
-		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_EQUALLY symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_PARTITION_EQUALLY = 0x1086;
-
-		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_BY_COUNTS symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_PARTITION_BY_COUNTS = 0x1087;
-
-		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_BY_COUNTS_LIST_END symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_PARTITION_BY_COUNTS_LIST_END = 0x0;
-
-		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_PARTITION_BY_AFFINITY_DOMAIN = 0x1088;
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NUMA symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_NUMA = (1 << 0);
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_L4_CACHE = (1 << 1);
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_L3_CACHE = (1 << 2);
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_L2_CACHE = (1 << 3);
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_L1_CACHE = (1 << 4);
-
-		/// <summary>
-		/// Value of CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE = (1 << 5);
-
-		/// <summary>
-		/// Value of CL_DEVICE_SVM_COARSE_GRAIN_BUFFER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_SVM_COARSE_GRAIN_BUFFER = (1 << 0);
-
-		/// <summary>
-		/// Value of CL_DEVICE_SVM_FINE_GRAIN_BUFFER symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_SVM_FINE_GRAIN_BUFFER = (1 << 1);
-
-		/// <summary>
-		/// Value of CL_DEVICE_SVM_FINE_GRAIN_SYSTEM symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_SVM_FINE_GRAIN_SYSTEM = (1 << 2);
-
-		/// <summary>
-		/// Value of CL_DEVICE_SVM_ATOMICS symbol.
-		/// </summary>
-		[RequiredByFeature("CL_VERSION_1_0")]
-		public const int DEVICE_SVM_ATOMICS = (1 << 3);
-
-		/// <summary>
 		/// Value of CL_R symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
@@ -2407,7 +2407,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetPlatformInfo(IntPtr platform, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetPlatformInfo(IntPtr platform, PlatformInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2415,7 +2415,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetPlatformInfo != null, "pclGetPlatformInfo not implemented");
-					retValue = Delegates.pclGetPlatformInfo(platform, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetPlatformInfo(platform, (PlatformInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetPlatformInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", platform.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2425,7 +2425,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetPlatformInfo(Object platform, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetPlatformInfo(Object platform, PlatformInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_platform = GCHandle.Alloc(platform, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2438,7 +2438,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetDeviceIDs(IntPtr platform, ulong device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
+		public static int GetDeviceIDs(IntPtr platform, DeviceType device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
 		{
 			int retValue;
 
@@ -2447,7 +2447,7 @@ namespace OpenCL
 				fixed (uint* p_num_devices = num_devices)
 				{
 					Debug.Assert(Delegates.pclGetDeviceIDs != null, "pclGetDeviceIDs not implemented");
-					retValue = Delegates.pclGetDeviceIDs(platform, (ulong)device_type, num_entries, p_devices, p_num_devices);
+					retValue = Delegates.pclGetDeviceIDs(platform, (DeviceType)device_type, num_entries, p_devices, p_num_devices);
 					LogFunction("clGetDeviceIDs(0x{0}, {1}, {2}, {3}, {4}) = {5}", platform.ToString("X8"), device_type, num_entries, LogValue(devices), LogValue(num_devices), retValue);
 				}
 			}
@@ -2457,7 +2457,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetDeviceIDs(Object platform, ulong device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
+		public static int GetDeviceIDs(Object platform, DeviceType device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
 		{
 			GCHandle pin_platform = GCHandle.Alloc(platform, GCHandleType.Pinned);
 			try {
@@ -2468,7 +2468,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetDeviceInfo(IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2476,7 +2476,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetDeviceInfo != null, "pclGetDeviceInfo not implemented");
-					retValue = Delegates.pclGetDeviceInfo(device, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetDeviceInfo(device, (DeviceInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetDeviceInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2486,7 +2486,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetDeviceInfo(Object device, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetDeviceInfo(Object device, DeviceInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2499,12 +2499,12 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static IntPtr CreateContext(cl_context_properties [] properties, uint num_devices, IntPtr[] devices, IntPtr pfn_notify, IntPtr user_data, int[] errcode_ret)
+		public static IntPtr CreateContext(ContextProperties [] properties, uint num_devices, IntPtr[] devices, IntPtr pfn_notify, IntPtr user_data, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
 			unsafe {
-				fixed (cl_context_properties * p_properties = properties)
+				fixed (ContextProperties * p_properties = properties)
 				fixed (IntPtr* p_devices = devices)
 				fixed (int* p_errcode_ret = errcode_ret)
 				{
@@ -2519,16 +2519,16 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static IntPtr CreateContextFromType(cl_context_properties [] properties, ulong device_type, IntPtr user_data, int[] errcode_ret)
+		public static IntPtr CreateContextFromType(ContextProperties [] properties, DeviceType device_type, IntPtr user_data, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
 			unsafe {
-				fixed (cl_context_properties * p_properties = properties)
+				fixed (ContextProperties * p_properties = properties)
 				fixed (int* p_errcode_ret = errcode_ret)
 				{
 					Debug.Assert(Delegates.pclCreateContextFromType != null, "pclCreateContextFromType not implemented");
-					retValue = Delegates.pclCreateContextFromType(p_properties, (ulong)device_type, user_data, p_errcode_ret);
+					retValue = Delegates.pclCreateContextFromType(p_properties, (DeviceType)device_type, user_data, p_errcode_ret);
 					LogFunction("clCreateContextFromType({0}, {1}, 0x{2}, {3}) = {4}", LogValue(properties), device_type, user_data.ToString("X8"), LogValue(errcode_ret), retValue.ToString("X8"));
 				}
 			}
@@ -2564,7 +2564,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetContextInfo(IntPtr context, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetContextInfo(IntPtr context, ContextInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2572,7 +2572,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetContextInfo != null, "pclGetContextInfo not implemented");
-					retValue = Delegates.pclGetContextInfo(context, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetContextInfo(context, (ContextInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetContextInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", context.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2582,7 +2582,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetContextInfo(Object context, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetContextInfo(Object context, ContextInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_context = GCHandle.Alloc(context, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2621,7 +2621,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetCommandQueueInfo(IntPtr command_queue, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetCommandQueueInfo(IntPtr command_queue, CommandQueueInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2629,7 +2629,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetCommandQueueInfo != null, "pclGetCommandQueueInfo not implemented");
-					retValue = Delegates.pclGetCommandQueueInfo(command_queue, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetCommandQueueInfo(command_queue, (CommandQueueInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetCommandQueueInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", command_queue.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2639,7 +2639,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetCommandQueueInfo(Object command_queue, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetCommandQueueInfo(Object command_queue, CommandQueueInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_command_queue = GCHandle.Alloc(command_queue, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2696,7 +2696,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetSupportedImageFormats(IntPtr context, ulong flags, uint image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
+		public static int GetSupportedImageFormats(IntPtr context, ulong flags, MemObjectType image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
 		{
 			int retValue;
 
@@ -2705,7 +2705,7 @@ namespace OpenCL
 				fixed (uint* p_num_image_formats = num_image_formats)
 				{
 					Debug.Assert(Delegates.pclGetSupportedImageFormats != null, "pclGetSupportedImageFormats not implemented");
-					retValue = Delegates.pclGetSupportedImageFormats(context, flags, (uint)image_type, num_entries, p_image_formats, p_num_image_formats);
+					retValue = Delegates.pclGetSupportedImageFormats(context, flags, (MemObjectType)image_type, num_entries, p_image_formats, p_num_image_formats);
 					LogFunction("clGetSupportedImageFormats(0x{0}, {1}, {2}, {3}, {4}, {5}) = {6}", context.ToString("X8"), flags, image_type, num_entries, LogValue(image_formats), LogValue(num_image_formats), retValue);
 				}
 			}
@@ -2715,7 +2715,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetSupportedImageFormats(Object context, ulong flags, uint image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
+		public static int GetSupportedImageFormats(Object context, ulong flags, MemObjectType image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
 		{
 			GCHandle pin_context = GCHandle.Alloc(context, GCHandleType.Pinned);
 			try {
@@ -2726,7 +2726,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetMemObjectInfo(IntPtr memobj, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetMemObjectInfo(IntPtr memobj, MemInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2734,7 +2734,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetMemObjectInfo != null, "pclGetMemObjectInfo not implemented");
-					retValue = Delegates.pclGetMemObjectInfo(memobj, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetMemObjectInfo(memobj, (MemInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetMemObjectInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", memobj.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2744,7 +2744,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetMemObjectInfo(Object memobj, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetMemObjectInfo(Object memobj, MemInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_memobj = GCHandle.Alloc(memobj, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2757,7 +2757,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetImageInfo(IntPtr image, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetImageInfo(IntPtr image, ImageInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2765,7 +2765,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetImageInfo != null, "pclGetImageInfo not implemented");
-					retValue = Delegates.pclGetImageInfo(image, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetImageInfo(image, (ImageInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetImageInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", image.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2775,7 +2775,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetImageInfo(Object image, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetImageInfo(Object image, ImageInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_image = GCHandle.Alloc(image, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2814,7 +2814,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetSamplerInfo(IntPtr sampler, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetSamplerInfo(IntPtr sampler, SamplerInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2822,7 +2822,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetSamplerInfo != null, "pclGetSamplerInfo not implemented");
-					retValue = Delegates.pclGetSamplerInfo(sampler, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetSamplerInfo(sampler, (SamplerInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetSamplerInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", sampler.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2832,7 +2832,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetSamplerInfo(Object sampler, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetSamplerInfo(Object sampler, SamplerInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_sampler = GCHandle.Alloc(sampler, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2931,7 +2931,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetProgramInfo(IntPtr program, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetProgramInfo(IntPtr program, ProgramInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2939,7 +2939,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetProgramInfo != null, "pclGetProgramInfo not implemented");
-					retValue = Delegates.pclGetProgramInfo(program, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetProgramInfo(program, (ProgramInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetProgramInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", program.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2949,7 +2949,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetProgramInfo(Object program, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetProgramInfo(Object program, ProgramInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_program = GCHandle.Alloc(program, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -2962,7 +2962,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetProgramBuildInfo(IntPtr program, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetProgramBuildInfo(IntPtr program, IntPtr device, ProgramBuildInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -2970,7 +2970,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetProgramBuildInfo != null, "pclGetProgramBuildInfo not implemented");
-					retValue = Delegates.pclGetProgramBuildInfo(program, device, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetProgramBuildInfo(program, device, (ProgramBuildInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetProgramBuildInfo(0x{0}, 0x{1}, {2}, {3}, 0x{4}, {5}) = {6}", program.ToString("X8"), device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -2980,7 +2980,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetProgramBuildInfo(Object program, Object device, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetProgramBuildInfo(Object program, Object device, ProgramBuildInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_program = GCHandle.Alloc(program, GCHandleType.Pinned);
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
@@ -3072,7 +3072,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetKernelInfo(IntPtr kernel, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelInfo(IntPtr kernel, KernelInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -3080,7 +3080,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetKernelInfo != null, "pclGetKernelInfo not implemented");
-					retValue = Delegates.pclGetKernelInfo(kernel, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetKernelInfo(kernel, (KernelInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetKernelInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", kernel.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -3090,7 +3090,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetKernelInfo(Object kernel, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelInfo(Object kernel, KernelInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_kernel = GCHandle.Alloc(kernel, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -3103,7 +3103,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, KernelWorkGroupInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -3111,7 +3111,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetKernelWorkGroupInfo != null, "pclGetKernelWorkGroupInfo not implemented");
-					retValue = Delegates.pclGetKernelWorkGroupInfo(kernel, device, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetKernelWorkGroupInfo(kernel, device, (KernelWorkGroupInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetKernelWorkGroupInfo(0x{0}, 0x{1}, {2}, {3}, 0x{4}, {5}) = {6}", kernel.ToString("X8"), device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -3121,7 +3121,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetKernelWorkGroupInfo(Object kernel, Object device, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelWorkGroupInfo(Object kernel, Object device, KernelWorkGroupInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_kernel = GCHandle.Alloc(kernel, GCHandleType.Pinned);
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
@@ -3154,7 +3154,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetEventInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetEventInfo(IntPtr @event, EventInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -3162,7 +3162,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetEventInfo != null, "pclGetEventInfo not implemented");
-					retValue = Delegates.pclGetEventInfo(@event, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetEventInfo(@event, (EventInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetEventInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", @event.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -3172,7 +3172,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetEventInfo(Object @event, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetEventInfo(Object @event, EventInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_event = GCHandle.Alloc(@event, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -3211,7 +3211,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetEventProfilingInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetEventProfilingInfo(IntPtr @event, ProfilingInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -3219,7 +3219,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetEventProfilingInfo != null, "pclGetEventProfilingInfo not implemented");
-					retValue = Delegates.pclGetEventProfilingInfo(@event, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetEventProfilingInfo(@event, (ProfilingInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetEventProfilingInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", @event.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -3229,7 +3229,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_0")]
-		public static int GetEventProfilingInfo(Object @event, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetEventProfilingInfo(Object @event, ProfilingInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_event = GCHandle.Alloc(@event, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);

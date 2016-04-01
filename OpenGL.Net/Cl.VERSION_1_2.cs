@@ -212,7 +212,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_2")]
-		public static int GetKernelArgInfo(IntPtr kernel, uint arg_indx, uint param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelArgInfo(IntPtr kernel, uint arg_indx, KernelArgInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -220,7 +220,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetKernelArgInfo != null, "pclGetKernelArgInfo not implemented");
-					retValue = Delegates.pclGetKernelArgInfo(kernel, arg_indx, (uint)param_name, param_value_size, param_value, p_param_value_size_ret);
+					retValue = Delegates.pclGetKernelArgInfo(kernel, arg_indx, (KernelArgInfo)param_name, param_value_size, param_value, p_param_value_size_ret);
 					LogFunction("clGetKernelArgInfo(0x{0}, {1}, {2}, {3}, 0x{4}, {5}) = {6}", kernel.ToString("X8"), arg_indx, param_name, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -230,7 +230,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_2")]
-		public static int GetKernelArgInfo(Object kernel, uint arg_indx, uint param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelArgInfo(Object kernel, uint arg_indx, KernelArgInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_kernel = GCHandle.Alloc(kernel, GCHandleType.Pinned);
 			GCHandle pin_param_value = GCHandle.Alloc(param_value, GCHandleType.Pinned);
@@ -281,7 +281,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_1_2")]
-		public static int EnqueueMigrateMemObjects(IntPtr command_queue, uint num_mem_objects, IntPtr[] mem_objects, ulong flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueMigrateMemObjects(IntPtr command_queue, uint num_mem_objects, IntPtr[] mem_objects, MemMigrationFlags flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -291,7 +291,7 @@ namespace OpenCL
 				fixed (IntPtr* p_event = @event)
 				{
 					Debug.Assert(Delegates.pclEnqueueMigrateMemObjects != null, "pclEnqueueMigrateMemObjects not implemented");
-					retValue = Delegates.pclEnqueueMigrateMemObjects(command_queue, num_mem_objects, p_mem_objects, (ulong)flags, num_events_in_wait_list, p_event_wait_list, p_event);
+					retValue = Delegates.pclEnqueueMigrateMemObjects(command_queue, num_mem_objects, p_mem_objects, (MemMigrationFlags)flags, num_events_in_wait_list, p_event_wait_list, p_event);
 					LogFunction("clEnqueueMigrateMemObjects(0x{0}, {1}, {2}, {3}, {4}, {5}, {6}) = {7}", command_queue.ToString("X8"), num_mem_objects, LogValue(mem_objects), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}

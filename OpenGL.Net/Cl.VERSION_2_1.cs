@@ -164,7 +164,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetKernelSubGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint input_value_size, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelSubGroupInfo(IntPtr kernel, IntPtr device, KernelSubGroupInfo param_name, uint input_value_size, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
 			int retValue;
 
@@ -172,7 +172,7 @@ namespace OpenCL
 				fixed (uint* p_param_value_size_ret = param_value_size_ret)
 				{
 					Debug.Assert(Delegates.pclGetKernelSubGroupInfo != null, "pclGetKernelSubGroupInfo not implemented");
-					retValue = Delegates.pclGetKernelSubGroupInfo(kernel, device, (uint)param_name, input_value_size, param_value_size, param_value.ToPointer(), p_param_value_size_ret);
+					retValue = Delegates.pclGetKernelSubGroupInfo(kernel, device, (KernelSubGroupInfo)param_name, input_value_size, param_value_size, param_value.ToPointer(), p_param_value_size_ret);
 					LogFunction("clGetKernelSubGroupInfo(0x{0}, 0x{1}, {2}, {3}, {4}, 0x{5}, {6}) = {7}", kernel.ToString("X8"), device.ToString("X8"), param_name, input_value_size, param_value_size, param_value.ToString("X8"), LogValue(param_value_size_ret), retValue);
 				}
 			}
@@ -182,7 +182,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int GetKernelSubGroupInfo(Object kernel, Object device, uint param_name, uint input_value_size, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
+		public static int GetKernelSubGroupInfo(Object kernel, Object device, KernelSubGroupInfo param_name, uint input_value_size, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
 			GCHandle pin_kernel = GCHandle.Alloc(kernel, GCHandleType.Pinned);
 			GCHandle pin_device = GCHandle.Alloc(device, GCHandleType.Pinned);
@@ -197,7 +197,7 @@ namespace OpenCL
 		}
 
 		[RequiredByFeature("CL_VERSION_2_1")]
-		public static int EnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr[] svm_pointers, uint[] sizes, ulong flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
+		public static int EnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr[] svm_pointers, uint[] sizes, MemMigrationFlags flags, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
 			int retValue;
 
@@ -208,7 +208,7 @@ namespace OpenCL
 				fixed (IntPtr* p_event = @event)
 				{
 					Debug.Assert(Delegates.pclEnqueueSVMMigrateMem != null, "pclEnqueueSVMMigrateMem not implemented");
-					retValue = Delegates.pclEnqueueSVMMigrateMem(command_queue, num_svm_pointers, p_svm_pointers, p_sizes, (ulong)flags, num_events_in_wait_list, p_event_wait_list, p_event);
+					retValue = Delegates.pclEnqueueSVMMigrateMem(command_queue, num_svm_pointers, p_svm_pointers, p_sizes, (MemMigrationFlags)flags, num_events_in_wait_list, p_event_wait_list, p_event);
 					LogFunction("clEnqueueSVMMigrateMem(0x{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}) = {8}", command_queue.ToString("X8"), num_svm_pointers, LogValue(svm_pointers), LogValue(sizes), flags, num_events_in_wait_list, LogValue(event_wait_list), LogValue(@event), retValue);
 				}
 			}

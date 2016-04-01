@@ -335,9 +335,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_bool.
+	/// Strongly typed enumeration Bool.
 	/// </summary>
-	public enum cl_bool
+	public enum Bool
 	{
 		/// <summary>
 		/// Strongly typed for value CL_FALSE.
@@ -362,9 +362,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_platform_info.
+	/// Strongly typed enumeration PlatformInfo.
 	/// </summary>
-	public enum cl_platform_info : uint
+	public enum PlatformInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PLATFORM_PROFILE.
@@ -399,10 +399,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_type.
+	/// Strongly typed enumeration DeviceType.
 	/// </summary>
 	[Flags()]
-	public enum cl_device_type : ulong
+	public enum DeviceType : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_DEVICE_TYPE_DEFAULT.
@@ -437,9 +437,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_info.
+	/// Strongly typed enumeration DeviceInfo.
 	/// </summary>
-	public enum cl_device_info : uint
+	public enum DeviceInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_DEVICE_TYPE.
@@ -909,10 +909,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_fp_config.
+	/// Strongly typed enumeration DeviceFpConfig.
 	/// </summary>
 	[Flags()]
-	public enum cl_device_fp_config : ulong
+	public enum DeviceFpConfig : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_FP_DENORM.
@@ -957,9 +957,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_mem_cache_type.
+	/// Strongly typed enumeration DeviceMemCacheType.
 	/// </summary>
-	public enum cl_device_mem_cache_type : uint
+	public enum DeviceMemCacheType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_NONE.
@@ -979,9 +979,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_local_mem_type.
+	/// Strongly typed enumeration DeviceLocalMemType.
 	/// </summary>
-	public enum cl_device_local_mem_type : uint
+	public enum DeviceLocalMemType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_LOCAL.
@@ -996,10 +996,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_device_exec_capabilities.
+	/// Strongly typed enumeration DeviceExecCapabilities.
 	/// </summary>
 	[Flags()]
-	public enum cl_device_exec_capabilities : ulong
+	public enum DeviceExecCapabilities : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_EXEC_KERNEL.
@@ -1014,10 +1014,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_command_queue_properties.
+	/// Strongly typed enumeration CommandQueueProperties.
 	/// </summary>
 	[Flags()]
-	public enum cl_command_queue_properties : ulong
+	public enum CommandQueueProperties : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE.
@@ -1042,9 +1042,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_context_info.
+	/// Strongly typed enumeration ContextInfo.
 	/// </summary>
-	public enum cl_context_info : uint
+	public enum ContextInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_CONTEXT_REFERENCE_COUNT.
@@ -1069,9 +1069,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_context_properties.
+	/// Strongly typed enumeration ContextProperties.
 	/// </summary>
-	public enum cl_context_properties
+	public enum ContextProperties
 	{
 		/// <summary>
 		/// Strongly typed for value CL_CONTEXT_PLATFORM.
@@ -1136,9 +1136,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_command_queue_info.
+	/// Strongly typed enumeration CommandQueueInfo.
 	/// </summary>
-	public enum cl_command_queue_info : uint
+	public enum CommandQueueInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_QUEUE_CONTEXT.
@@ -1173,10 +1173,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_mem_migration_flags.
+	/// Strongly typed enumeration MemMigrationFlags.
 	/// </summary>
 	[Flags()]
-	public enum cl_mem_migration_flags : ulong
+	public enum MemMigrationFlags : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MIGRATE_MEM_OBJECT_HOST.
@@ -1191,9 +1191,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_channel_order.
+	/// Strongly typed enumeration ChannelOrder.
 	/// </summary>
-	public enum cl_channel_order : uint
+	public enum ChannelOrder : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_R.
@@ -1298,9 +1298,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_channel_type.
+	/// Strongly typed enumeration ChannelType.
 	/// </summary>
-	public enum cl_channel_type : uint
+	public enum ChannelType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_SNORM_INT8.
@@ -1390,9 +1390,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_mem_object_type.
+	/// Strongly typed enumeration MemObjectType.
 	/// </summary>
-	public enum cl_mem_object_type : uint
+	public enum MemObjectType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MEM_OBJECT_BUFFER.
@@ -1437,9 +1437,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_mem_info.
+	/// Strongly typed enumeration MemInfo.
 	/// </summary>
-	public enum cl_mem_info : uint
+	public enum MemInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MEM_TYPE.
@@ -1494,9 +1494,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_image_info.
+	/// Strongly typed enumeration ImageInfo.
 	/// </summary>
-	public enum cl_image_info : uint
+	public enum ImageInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_IMAGE_FORMAT.
@@ -1566,9 +1566,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_addressing_mode.
+	/// Strongly typed enumeration AddressingMode.
 	/// </summary>
-	public enum cl_addressing_mode : uint
+	public enum AddressingMode : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_ADDRESS_NONE.
@@ -1598,9 +1598,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_filter_mode.
+	/// Strongly typed enumeration FilterMode.
 	/// </summary>
-	public enum cl_filter_mode : uint
+	public enum FilterMode : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_FILTER_NEAREST.
@@ -1615,9 +1615,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_sampler_info.
+	/// Strongly typed enumeration SamplerInfo.
 	/// </summary>
-	public enum cl_sampler_info : uint
+	public enum SamplerInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_SAMPLER_REFERENCE_COUNT.
@@ -1662,10 +1662,10 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_map_flags.
+	/// Strongly typed enumeration MapFlags.
 	/// </summary>
 	[Flags()]
-	public enum cl_map_flags : ulong
+	public enum MapFlags : ulong
 	{
 		/// <summary>
 		/// Strongly typed for value CL_MAP_READ.
@@ -1685,9 +1685,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_program_info.
+	/// Strongly typed enumeration ProgramInfo.
 	/// </summary>
-	public enum cl_program_info : uint
+	public enum ProgramInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROGRAM_REFERENCE_COUNT.
@@ -1742,9 +1742,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_program_build_info.
+	/// Strongly typed enumeration ProgramBuildInfo.
 	/// </summary>
-	public enum cl_program_build_info : uint
+	public enum ProgramBuildInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROGRAM_BUILD_STATUS.
@@ -1794,9 +1794,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_build_status.
+	/// Strongly typed enumeration BuildStatus.
 	/// </summary>
-	public enum cl_build_status : int
+	public enum BuildStatus : int
 	{
 		/// <summary>
 		/// Strongly typed for value CL_BUILD_SUCCESS.
@@ -1821,9 +1821,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_info.
+	/// Strongly typed enumeration KernelInfo.
 	/// </summary>
-	public enum cl_kernel_info : uint
+	public enum KernelInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_FUNCTION_NAME.
@@ -1868,9 +1868,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_arg_info.
+	/// Strongly typed enumeration KernelArgInfo.
 	/// </summary>
-	public enum cl_kernel_arg_info : uint
+	public enum KernelArgInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_QUALIFIER.
@@ -1900,9 +1900,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_arg_address_qualifier.
+	/// Strongly typed enumeration KernelArgAddressQualifier.
 	/// </summary>
-	public enum cl_kernel_arg_address_qualifier : uint
+	public enum KernelArgAddressQualifier : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_ARG_ADDRESS_GLOBAL.
@@ -1927,9 +1927,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_arg_access_qualifier.
+	/// Strongly typed enumeration KernelArgAccessQualifier.
 	/// </summary>
-	public enum cl_kernel_arg_access_qualifier : uint
+	public enum KernelArgAccessQualifier : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_ARG_ACCESS_READ_ONLY.
@@ -1979,9 +1979,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_work_group_info.
+	/// Strongly typed enumeration KernelWorkGroupInfo.
 	/// </summary>
-	public enum cl_kernel_work_group_info : uint
+	public enum KernelWorkGroupInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_WORK_GROUP_SIZE.
@@ -2016,9 +2016,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_kernel_sub_group_info.
+	/// Strongly typed enumeration KernelSubGroupInfo.
 	/// </summary>
-	public enum cl_kernel_sub_group_info : uint
+	public enum KernelSubGroupInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_KERNEL_MAX_SUB_GROUP_SIZE_FOR_NDRANGE.
@@ -2048,9 +2048,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_event_info.
+	/// Strongly typed enumeration EventInfo.
 	/// </summary>
-	public enum cl_event_info : uint
+	public enum EventInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_EVENT_COMMAND_QUEUE.
@@ -2080,9 +2080,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_command_type.
+	/// Strongly typed enumeration CommandType.
 	/// </summary>
-	public enum cl_command_type : uint
+	public enum CommandType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_COMMAND_NDRANGE_KERNEL.
@@ -2237,9 +2237,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_buffer_create_type.
+	/// Strongly typed enumeration BufferCreateType.
 	/// </summary>
-	public enum cl_buffer_create_type : uint
+	public enum BufferCreateType : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_BUFFER_CREATE_TYPE_REGION.
@@ -2249,9 +2249,9 @@ namespace OpenCL
 	}
 
 	/// <summary>
-	/// Strongly typed enumeration cl_profiling_info.
+	/// Strongly typed enumeration ProfilingInfo.
 	/// </summary>
-	public enum cl_profiling_info : uint
+	public enum ProfilingInfo : uint
 	{
 		/// <summary>
 		/// Strongly typed for value CL_PROFILING_COMMAND_QUEUED.

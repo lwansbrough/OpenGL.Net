@@ -35,17 +35,17 @@ namespace OpenCL
 			internal static clGetPlatformIDs pclGetPlatformIDs;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetPlatformInfo(IntPtr platform, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetPlatformInfo(IntPtr platform, PlatformInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetPlatformInfo pclGetPlatformInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetDeviceIDs(IntPtr platform, ulong device_type, uint num_entries, IntPtr* devices, uint* num_devices);
+			internal unsafe delegate int clGetDeviceIDs(IntPtr platform, DeviceType device_type, uint num_entries, IntPtr* devices, uint* num_devices);
 
 			internal static clGetDeviceIDs pclGetDeviceIDs;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetDeviceInfo(IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetDeviceInfo(IntPtr device, DeviceInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetDeviceInfo pclGetDeviceInfo;
 
@@ -80,12 +80,12 @@ namespace OpenCL
 			internal static clGetHostTimer pclGetHostTimer;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate IntPtr clCreateContext(cl_context_properties * properties, uint num_devices, IntPtr* devices, IntPtr pfn_notify, IntPtr user_data, int* errcode_ret);
+			internal unsafe delegate IntPtr clCreateContext(ContextProperties * properties, uint num_devices, IntPtr* devices, IntPtr pfn_notify, IntPtr user_data, int* errcode_ret);
 
 			internal static clCreateContext pclCreateContext;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate IntPtr clCreateContextFromType(cl_context_properties * properties, ulong device_type, IntPtr user_data, int* errcode_ret);
+			internal unsafe delegate IntPtr clCreateContextFromType(ContextProperties * properties, DeviceType device_type, IntPtr user_data, int* errcode_ret);
 
 			internal static clCreateContextFromType pclCreateContextFromType;
 
@@ -100,7 +100,7 @@ namespace OpenCL
 			internal static clReleaseContext pclReleaseContext;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetContextInfo(IntPtr context, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetContextInfo(IntPtr context, ContextInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetContextInfo pclGetContextInfo;
 
@@ -120,7 +120,7 @@ namespace OpenCL
 			internal static clReleaseCommandQueue pclReleaseCommandQueue;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetCommandQueueInfo(IntPtr command_queue, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetCommandQueueInfo(IntPtr command_queue, CommandQueueInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetCommandQueueInfo pclGetCommandQueueInfo;
 
@@ -130,7 +130,7 @@ namespace OpenCL
 			internal static clCreateBuffer pclCreateBuffer;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate IntPtr clCreateSubBuffer(IntPtr buffer, ulong flags, uint buffer_create_type, IntPtr buffer_create_info, int* errcode_ret);
+			internal unsafe delegate IntPtr clCreateSubBuffer(IntPtr buffer, ulong flags, BufferCreateType buffer_create_type, IntPtr buffer_create_info, int* errcode_ret);
 
 			internal static clCreateSubBuffer pclCreateSubBuffer;
 
@@ -155,17 +155,17 @@ namespace OpenCL
 			internal static clReleaseMemObject pclReleaseMemObject;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetSupportedImageFormats(IntPtr context, ulong flags, uint image_type, uint num_entries, Cl.ImageFormat* image_formats, uint* num_image_formats);
+			internal unsafe delegate int clGetSupportedImageFormats(IntPtr context, ulong flags, MemObjectType image_type, uint num_entries, Cl.ImageFormat* image_formats, uint* num_image_formats);
 
 			internal static clGetSupportedImageFormats pclGetSupportedImageFormats;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetMemObjectInfo(IntPtr memobj, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetMemObjectInfo(IntPtr memobj, MemInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetMemObjectInfo pclGetMemObjectInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetImageInfo(IntPtr image, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetImageInfo(IntPtr image, ImageInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetImageInfo pclGetImageInfo;
 
@@ -200,7 +200,7 @@ namespace OpenCL
 			internal static clReleaseSampler pclReleaseSampler;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetSamplerInfo(IntPtr sampler, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetSamplerInfo(IntPtr sampler, SamplerInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetSamplerInfo pclGetSamplerInfo;
 
@@ -255,12 +255,12 @@ namespace OpenCL
 			internal static clUnloadPlatformCompiler pclUnloadPlatformCompiler;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetProgramInfo(IntPtr program, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetProgramInfo(IntPtr program, ProgramInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetProgramInfo pclGetProgramInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetProgramBuildInfo(IntPtr program, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetProgramBuildInfo(IntPtr program, IntPtr device, ProgramBuildInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetProgramBuildInfo pclGetProgramBuildInfo;
 
@@ -305,22 +305,22 @@ namespace OpenCL
 			internal static clSetKernelExecInfo pclSetKernelExecInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetKernelInfo(IntPtr kernel, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetKernelInfo(IntPtr kernel, KernelInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetKernelInfo pclGetKernelInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetKernelArgInfo(IntPtr kernel, uint arg_indx, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetKernelArgInfo(IntPtr kernel, uint arg_indx, KernelArgInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetKernelArgInfo pclGetKernelArgInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, KernelWorkGroupInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetKernelWorkGroupInfo pclGetKernelWorkGroupInfo;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetKernelSubGroupInfo(IntPtr kernel, IntPtr device, uint param_name, uint input_value_size, uint param_value_size, void* param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetKernelSubGroupInfo(IntPtr kernel, IntPtr device, KernelSubGroupInfo param_name, uint input_value_size, uint param_value_size, void* param_value, uint* param_value_size_ret);
 
 			internal static clGetKernelSubGroupInfo pclGetKernelSubGroupInfo;
 
@@ -330,7 +330,7 @@ namespace OpenCL
 			internal static clWaitForEvents pclWaitForEvents;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetEventInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetEventInfo(IntPtr @event, EventInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetEventInfo pclGetEventInfo;
 
@@ -355,7 +355,7 @@ namespace OpenCL
 			internal static clSetEventCallback pclSetEventCallback;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clGetEventProfilingInfo(IntPtr @event, uint param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
+			internal unsafe delegate int clGetEventProfilingInfo(IntPtr @event, ProfilingInfo param_name, uint param_value_size, IntPtr param_value, uint* param_value_size_ret);
 
 			internal static clGetEventProfilingInfo pclGetEventProfilingInfo;
 
@@ -440,7 +440,7 @@ namespace OpenCL
 			internal static clEnqueueUnmapMemObject pclEnqueueUnmapMemObject;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clEnqueueMigrateMemObjects(IntPtr command_queue, uint num_mem_objects, IntPtr* mem_objects, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal unsafe delegate int clEnqueueMigrateMemObjects(IntPtr command_queue, uint num_mem_objects, IntPtr* mem_objects, MemMigrationFlags flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			internal static clEnqueueMigrateMemObjects pclEnqueueMigrateMemObjects;
 
@@ -480,7 +480,7 @@ namespace OpenCL
 			internal static clEnqueueSVMMemFill pclEnqueueSVMMemFill;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clEnqueueSVMMap(IntPtr command_queue, bool blocking_map, ulong flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal unsafe delegate int clEnqueueSVMMap(IntPtr command_queue, bool blocking_map, MapFlags flags, IntPtr svm_ptr, uint size, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			internal static clEnqueueSVMMap pclEnqueueSVMMap;
 
@@ -490,7 +490,7 @@ namespace OpenCL
 			internal static clEnqueueSVMUnmap pclEnqueueSVMUnmap;
 
 			[SuppressUnmanagedCodeSecurity()]
-			internal unsafe delegate int clEnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr* svm_pointers, uint* sizes, ulong flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
+			internal unsafe delegate int clEnqueueSVMMigrateMem(IntPtr command_queue, uint num_svm_pointers, IntPtr* svm_pointers, uint* sizes, MemMigrationFlags flags, uint num_events_in_wait_list, IntPtr* event_wait_list, IntPtr* @event);
 
 			internal static clEnqueueSVMMigrateMem pclEnqueueSVMMigrateMem;
 

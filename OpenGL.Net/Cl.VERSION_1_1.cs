@@ -32,7 +32,7 @@ namespace OpenCL
 		public const int BUFFER_CREATE_TYPE_REGION = 0x1220;
 
 		[RequiredByFeature("CL_VERSION_1_1")]
-		public static IntPtr CreateSubBuffer(IntPtr buffer, ulong flags, uint buffer_create_type, IntPtr buffer_create_info, int[] errcode_ret)
+		public static IntPtr CreateSubBuffer(IntPtr buffer, ulong flags, BufferCreateType buffer_create_type, IntPtr buffer_create_info, int[] errcode_ret)
 		{
 			IntPtr retValue;
 
@@ -40,7 +40,7 @@ namespace OpenCL
 				fixed (int* p_errcode_ret = errcode_ret)
 				{
 					Debug.Assert(Delegates.pclCreateSubBuffer != null, "pclCreateSubBuffer not implemented");
-					retValue = Delegates.pclCreateSubBuffer(buffer, flags, (uint)buffer_create_type, buffer_create_info, p_errcode_ret);
+					retValue = Delegates.pclCreateSubBuffer(buffer, flags, (BufferCreateType)buffer_create_type, buffer_create_info, p_errcode_ret);
 					LogFunction("clCreateSubBuffer(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", buffer.ToString("X8"), flags, buffer_create_type, buffer_create_info.ToString("X8"), LogValue(errcode_ret), retValue.ToString("X8"));
 				}
 			}
