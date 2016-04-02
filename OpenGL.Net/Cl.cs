@@ -83,7 +83,10 @@ namespace OpenCL
 		[Conditional("DEBUG")]
 		private static void DebugCheckErrors(object returnValue)
 		{
-			
+			ErrorCode errorCode = (ErrorCode)returnValue;
+
+			if (errorCode != ErrorCode.Success)
+				throw new InvalidOperationException(errorCode.ToString());
 		}
 
 		#endregion

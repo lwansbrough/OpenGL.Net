@@ -2387,6 +2387,21 @@ namespace OpenCL
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int COMMAND_SVM_UNMAP = 0x120D;
 
+		/// <summary>
+		/// Obtain the list of platforms available.
+		/// </summary>
+		/// <param name="num_entries">
+		/// The number of cl_platform_id entries that can be added to platforms. If platforms is not NULL, the num_entries must be 
+		/// greater than zero.
+		/// </param>
+		/// <param name="platforms">
+		/// Returns a list of OpenCL platforms found. The cl_platform_id values returned in platforms can be used to identify a 
+		/// specific OpenCL platform. If platforms argument is NULL, this argument is ignored. The number of OpenCL platforms 
+		/// returned is the mininum of the value specified by num_entries or the number of OpenCL platforms available.
+		/// </param>
+		/// <param name="num_platforms">
+		/// Returns the number of OpenCL platforms available. If num_platforms is NULL, this argument is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformIDs(uint num_entries, [Out] IntPtr[] platforms, [Out] uint[] num_platforms)
 		{
@@ -2406,6 +2421,28 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get specific information about the OpenCL platform.
+		/// </summary>
+		/// <param name="platform">
+		/// The platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the platform information being queried. It can be one of the values specified in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name will be returned. Possible param_value 
+		/// values returned are listed in the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformInfo(IntPtr platform, PlatformInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2424,6 +2461,28 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get specific information about the OpenCL platform.
+		/// </summary>
+		/// <param name="platform">
+		/// The platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the platform information being queried. It can be one of the values specified in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name will be returned. Possible param_value 
+		/// values returned are listed in the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformInfo(Object platform, PlatformInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2437,6 +2496,29 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Obtain the list of devices available on a platform.
+		/// </summary>
+		/// <param name="platform">
+		/// Refers to the platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="device_type">
+		/// A bitfield that identifies the type of OpenCL device. The device_type can be used to query specific OpenCL devices or 
+		/// all OpenCL devices available. The valid values for device_type are specified in the following table.
+		/// </param>
+		/// <param name="num_entries">
+		/// The number of cl_device_id entries that can be added to devices. If devices is not NULL, the num_entries must be greater 
+		/// than zero.
+		/// </param>
+		/// <param name="devices">
+		/// A list of OpenCL devices found. The cl_device_id values returned in devices can be used to identify a specific OpenCL 
+		/// device. If devices argument is NULL, this argument is ignored. The number of OpenCL devices returned is the mininum of 
+		/// the value specified by num_entries or the number of OpenCL devices whose type matches device_type.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of OpenCL devices available that match device_type. If num_devices is NULL, this argument is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetDeviceIDs(IntPtr platform, DeviceType device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
 		{
@@ -2456,6 +2538,29 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Obtain the list of devices available on a platform.
+		/// </summary>
+		/// <param name="platform">
+		/// Refers to the platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="device_type">
+		/// A bitfield that identifies the type of OpenCL device. The device_type can be used to query specific OpenCL devices or 
+		/// all OpenCL devices available. The valid values for device_type are specified in the following table.
+		/// </param>
+		/// <param name="num_entries">
+		/// The number of cl_device_id entries that can be added to devices. If devices is not NULL, the num_entries must be greater 
+		/// than zero.
+		/// </param>
+		/// <param name="devices">
+		/// A list of OpenCL devices found. The cl_device_id values returned in devices can be used to identify a specific OpenCL 
+		/// device. If devices argument is NULL, this argument is ignored. The number of OpenCL devices returned is the mininum of 
+		/// the value specified by num_entries or the number of OpenCL devices whose type matches device_type.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of OpenCL devices available that match device_type. If num_devices is NULL, this argument is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetDeviceIDs(Object platform, DeviceType device_type, uint num_entries, [Out] IntPtr[] devices, [Out] uint[] num_devices)
 		{
@@ -2467,6 +2572,27 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name as specified in the table below will be 
+		/// returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2485,6 +2611,27 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name as specified in the table below will be 
+		/// returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetDeviceInfo(Object device, DeviceInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2498,6 +2645,34 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Creates an OpenCL context.
+		/// </summary>
+		/// <param name="properties">
+		/// Specifies a list of context property names and their corresponding values. Each property name is immediately followed by 
+		/// the corresponding desired value. The list is terminated with 0. properties can be NULL in which case the platform that 
+		/// is selected is implementation-defined. The list of supported properties is described in the table below.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of devices specified in the devices argument.
+		/// </param>
+		/// <param name="devices">
+		/// A pointer to a list of unique devices returned by Gl.GetDeviceIDs or sub-devices created by Gl.CreateSubDevices for a 
+		/// platform. Duplicate devices specified in devices are ignored.
+		/// </param>
+		/// <param name="pfn_notify">
+		/// A callback function that can be registered by the application. This callback function will be used by the OpenCL 
+		/// implementation to report information on errors during context creation as well as errors that occur at runtime in this 
+		/// context. This callback function may be called asynchronously by the OpenCL implementation. It is the application's 
+		/// responsibility to ensure that the callback function is thread-safe. If pfn_notify is NULL, no callback function is 
+		/// registered. The parameters to this callback function are:
+		/// </param>
+		/// <param name="user_data">
+		/// Passed as the user_data argument when pfn_notify is called. user_data can be NULL.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Returns an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateContext(ContextProperties [] properties, uint num_devices, IntPtr[] devices, IntPtr pfn_notify, IntPtr user_data, int[] errcode_ret)
 		{
@@ -2518,6 +2693,23 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Create an OpenCL context from a device type that identifies the specific device(s) to use.
+		/// </summary>
+		/// <param name="properties">
+		/// Specifies a list of context property names and their corresponding values. Each property name is immediately followed by 
+		/// the corresponding desired value. The list of supported properties is described in the table below. properties can also 
+		/// be NULL in which case the platform that is selected is implementation-defined.
+		/// </param>
+		/// <param name="device_type">
+		/// A bit-field that identifies the type of device and is described in the table below.
+		/// </param>
+		/// <param name="user_data">
+		/// Passed as the user_data argument when pfn_notify is called. user_data can be NULL.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Return an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateContextFromType(ContextProperties [] properties, DeviceType device_type, IntPtr user_data, int[] errcode_ret)
 		{
@@ -2537,6 +2729,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Increment the context reference count.
+		/// </summary>
+		/// <param name="context">
+		/// The context to retain.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainContext(IntPtr context)
 		{
@@ -2550,6 +2748,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrement the context reference count.
+		/// </summary>
+		/// <param name="context">
+		/// The context to release.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseContext(IntPtr context)
 		{
@@ -2563,6 +2767,25 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Query information about a context.
+		/// </summary>
+		/// <param name="context">
+		/// Specifies the OpenCL context being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that specifies the information to query. The valid values for param_name are:
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be greater than or equal to the size of 
+		/// return type as described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetContextInfo(IntPtr context, ContextInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2581,6 +2804,25 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Query information about a context.
+		/// </summary>
+		/// <param name="context">
+		/// Specifies the OpenCL context being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that specifies the information to query. The valid values for param_name are:
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be greater than or equal to the size of 
+		/// return type as described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetContextInfo(Object context, ContextInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2594,6 +2836,12 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Increments the command_queue reference count.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Specifies the command-queue to retain.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainCommandQueue(IntPtr command_queue)
 		{
@@ -2607,6 +2855,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the command_queue reference count.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Specifies the command-queue to release.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseCommandQueue(IntPtr command_queue)
 		{
@@ -2620,6 +2874,25 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Query information about a command-queue.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Specifies the command-queue being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetCommandQueueInfo(IntPtr command_queue, CommandQueueInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2638,6 +2911,25 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Query information about a command-queue.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Specifies the command-queue being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetCommandQueueInfo(Object command_queue, CommandQueueInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2651,6 +2943,27 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Creates a buffer object.
+		/// </summary>
+		/// <param name="context">
+		/// A valid OpenCL context used to create the buffer object.
+		/// </param>
+		/// <param name="flags">
+		/// A bit-field that is used to specify allocation and usage information such as the memory arena that should be used to 
+		/// allocate the buffer object and how it will be used. The following table describes the possible values for flags. If 
+		/// value specified for flags is 0, the default is used which is CL_MEM_READ_WRITE.
+		/// </param>
+		/// <param name="size">
+		/// The size in bytes of the buffer memory object to be allocated.
+		/// </param>
+		/// <param name="host_ptr">
+		/// A pointer to the buffer data that may already be allocated by the application. The size of the buffer that host_ptr 
+		/// points to must be ≥ size bytes.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Returns an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateBuffer(IntPtr context, ulong flags, uint size, IntPtr host_ptr, int[] errcode_ret)
 		{
@@ -2669,6 +2982,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Increments the memory object reference count.
+		/// </summary>
+		/// <param name="memobj">
+		/// A valid memory object.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainMemObject(IntPtr memobj)
 		{
@@ -2682,6 +3001,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the memory object reference count.
+		/// </summary>
+		/// <param name="memobj">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseMemObject(IntPtr memobj)
 		{
@@ -2695,6 +3020,36 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get the list of image formats supported by an OpenCL implementation.
+		/// </summary>
+		/// <param name="context">
+		/// A valid OpenCL context on which the image object(s) will be created.
+		/// </param>
+		/// <param name="flags">
+		/// A bit-field that is used to specify allocation and usage information about the image memory object being queried and is 
+		/// described in the table below. To get a list of supported image formats that can be read from or written to by a kernel, 
+		/// flags must be set to CL_MEM_READ_WRITE (get a list of images that can be read from and written to by different kernel 
+		/// instances when correctly ordered by event dependencies), CL_MEM_READ_ONLY (list of images that can be read from by a 
+		/// kernel) or CL_MEM_WRITE_ONLY (list of images that can be written to by a kernel). To get a list of supported image 
+		/// formats that can be both read from and written to by a kernel, flags must be set to CL_MEM_KERNEL_READ_AND_WRITE. Please 
+		/// see section 5.3.2.2 for clarification.
+		/// </param>
+		/// <param name="image_type">
+		/// Describes the image type and must be either CL_MEM_OBJECT_IMAGE1D, CL_MEM_OBJECT_IMAGE1D_BUFFER, CL_MEM_OBJECT_IMAGE2D, 
+		/// CL_MEM_OBJECT_IMAGE3D, CL_MEM_OBJECT_IMAGE1D_ARRAY or CL_MEM_OBJECT_IMAGE2D_ARRAY.
+		/// </param>
+		/// <param name="num_entries">
+		/// Specifies the number of entries that can be returned in the memory location given by image_formats.
+		/// </param>
+		/// <param name="image_formats">
+		/// A pointer to a memory location where the list of supported image formats are returned. Each entry describes a 
+		/// Gl._image_format structure supported by the OpenCL implementation. If image_formats is NULL, it is ignored.
+		/// </param>
+		/// <param name="num_image_formats">
+		/// The actual number of supported image formats for a specific context and values specified by flags. If num_image_formats 
+		/// is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetSupportedImageFormats(IntPtr context, ulong flags, MemObjectType image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
 		{
@@ -2714,6 +3069,36 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get the list of image formats supported by an OpenCL implementation.
+		/// </summary>
+		/// <param name="context">
+		/// A valid OpenCL context on which the image object(s) will be created.
+		/// </param>
+		/// <param name="flags">
+		/// A bit-field that is used to specify allocation and usage information about the image memory object being queried and is 
+		/// described in the table below. To get a list of supported image formats that can be read from or written to by a kernel, 
+		/// flags must be set to CL_MEM_READ_WRITE (get a list of images that can be read from and written to by different kernel 
+		/// instances when correctly ordered by event dependencies), CL_MEM_READ_ONLY (list of images that can be read from by a 
+		/// kernel) or CL_MEM_WRITE_ONLY (list of images that can be written to by a kernel). To get a list of supported image 
+		/// formats that can be both read from and written to by a kernel, flags must be set to CL_MEM_KERNEL_READ_AND_WRITE. Please 
+		/// see section 5.3.2.2 for clarification.
+		/// </param>
+		/// <param name="image_type">
+		/// Describes the image type and must be either CL_MEM_OBJECT_IMAGE1D, CL_MEM_OBJECT_IMAGE1D_BUFFER, CL_MEM_OBJECT_IMAGE2D, 
+		/// CL_MEM_OBJECT_IMAGE3D, CL_MEM_OBJECT_IMAGE1D_ARRAY or CL_MEM_OBJECT_IMAGE2D_ARRAY.
+		/// </param>
+		/// <param name="num_entries">
+		/// Specifies the number of entries that can be returned in the memory location given by image_formats.
+		/// </param>
+		/// <param name="image_formats">
+		/// A pointer to a memory location where the list of supported image formats are returned. Each entry describes a 
+		/// Gl._image_format structure supported by the OpenCL implementation. If image_formats is NULL, it is ignored.
+		/// </param>
+		/// <param name="num_image_formats">
+		/// The actual number of supported image formats for a specific context and values specified by flags. If num_image_formats 
+		/// is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetSupportedImageFormats(Object context, ulong flags, MemObjectType image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, [Out] uint[] num_image_formats)
 		{
@@ -2725,6 +3110,26 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Get information that is common to all memory objects (buffer and image objects).
+		/// </summary>
+		/// <param name="memobj">
+		/// Specifies the memory object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetMemObjectInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetMemObjectInfo(IntPtr memobj, MemInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2743,6 +3148,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get information that is common to all memory objects (buffer and image objects).
+		/// </summary>
+		/// <param name="memobj">
+		/// Specifies the memory object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetMemObjectInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetMemObjectInfo(Object memobj, MemInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2756,6 +3181,26 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Get information specific to an image object created with clCreateImage.
+		/// </summary>
+		/// <param name="image">
+		/// Specifies the image object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetImageInfo is described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetImageInfo(IntPtr image, ImageInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2774,6 +3219,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Get information specific to an image object created with clCreateImage.
+		/// </summary>
+		/// <param name="image">
+		/// Specifies the image object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetImageInfo is described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetImageInfo(Object image, ImageInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2787,6 +3252,12 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Increments the sampler reference count.
+		/// </summary>
+		/// <param name="sampler">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainSampler(IntPtr sampler)
 		{
@@ -2800,6 +3271,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the sampler reference count.
+		/// </summary>
+		/// <param name="sampler">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseSampler(IntPtr sampler)
 		{
@@ -2813,6 +3290,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the sampler object.
+		/// </summary>
+		/// <param name="sampler">
+		/// Specifies the sampler being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetSamplerInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetSamplerInfo(IntPtr sampler, SamplerInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2831,6 +3328,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the sampler object.
+		/// </summary>
+		/// <param name="sampler">
+		/// Specifies the sampler being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetSamplerInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetSamplerInfo(Object sampler, SamplerInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2844,6 +3361,26 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Creates a program object for a context, and loads the source code specified by the text strings in the strings array into the program object.
+		/// </summary>
+		/// <param name="context">
+		/// Must be a valid OpenCL context.
+		/// </param>
+		/// <param name="count">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="strings">
+		/// An array of count pointers to optionally null-terminated character strings that make up the source code.
+		/// </param>
+		/// <param name="lengths">
+		/// An array with the number of chars in each string (the string length). If an element in lengths is zero, its accompanying 
+		/// string is null-terminated. If lengths is NULL, all strings in the strings argument are considered null-terminated. Any 
+		/// length value passed in that is greater than zero excludes the null terminator in its count.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Returns an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateProgramWithSource(IntPtr context, uint count, String[] strings, uint[] lengths, int[] errcode_ret)
 		{
@@ -2863,6 +3400,37 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Creates a program object for a context, and loads the binary bits specified by binary into the program object.
+		/// </summary>
+		/// <param name="context">
+		/// Must be a valid OpenCL context.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of devices listed in device_list.
+		/// </param>
+		/// <param name="device_list">
+		/// A pointer to a list of devices that are in context. device_list must be a non-NULL value. The binaries are loaded for 
+		/// devices specified in this list.
+		/// </param>
+		/// <param name="lengths">
+		/// An array of the size in bytes of the program binaries to be loaded for devices specified by device_list.
+		/// </param>
+		/// <param name="binaries">
+		/// An array of pointers to program binaries to be loaded for devices specified by device_list. For each device given by 
+		/// device_list[i], the pointer to the program binary for that device is given by binaries[i] and the length of this 
+		/// corresponding binary is given by lengths[i]. lengths[i] cannot be zero and binaries[i] cannot be a NULL pointer.
+		/// </param>
+		/// <param name="binary_status">
+		/// Returns whether the program binary for each device specified in device_list was loaded successfully or not. It is an 
+		/// array of num_devices entries and returns CL_SUCCESS in binary_status[i] if binary was successfully loaded for device 
+		/// specified by device_list[i]; otherwise returns CL_INVALID_VALUE if lengths[i] is zero or if binaries[i] is a NULL value 
+		/// or CL_INVALID_BINARY in binary_status[i] if program binary is not a valid binary for the specified device. If 
+		/// binary_status is NULL, it is ignored.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Returns an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateProgramWithBinary(IntPtr context, uint num_devices, IntPtr[] device_list, uint[] lengths, IntPtr[] binaries, int[] binary_status, int[] errcode_ret)
 		{
@@ -2885,6 +3453,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Increments the program reference count.
+		/// </summary>
+		/// <param name="program">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainProgram(IntPtr program)
 		{
@@ -2898,6 +3472,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the program reference count.
+		/// </summary>
+		/// <param name="program">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseProgram(IntPtr program)
 		{
@@ -2911,6 +3491,38 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Builds (compiles and links) a program executable from the program source or binary.
+		/// </summary>
+		/// <param name="program">
+		/// The program object.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of devices listed in device_list.
+		/// </param>
+		/// <param name="device_list">
+		/// A pointer to a list of devices associated with program. If device_list is a NULL value, the program executable is built 
+		/// for all devices associated with program for which a source or binary has been loaded. If device_list is a non-NULL 
+		/// value, the program executable is built for devices specified in this list for which a source or binary has been loaded.
+		/// </param>
+		/// <param name="options">
+		/// A pointer to a null-terminated string of characters that describes the build options to be used for building the program 
+		/// executable. Certain options are ignored when program is created with IL. The list of supported options is described 
+		/// below.
+		/// </param>
+		/// <param name="pfn_notify">
+		/// A function pointer to a notification routine. The notification routine is a callback function that an application can 
+		/// register and which will be called when the program executable has been built (successfully or unsuccessfully). If 
+		/// pfn_notify is not NULL, clBuildProgram does not need to wait for the build to complete and can return immediately once 
+		/// the build operation can begin. The build operation can begin if the context, program whose sources are being compiled 
+		/// and linked, list of devices and build options specified are all valid and appropriate host and device resources needed 
+		/// to perform the build are available. If pfn_notify is NULL, clBuildProgram does not return until the build has completed. 
+		/// This callback function may be called asynchronously by the OpenCL implementation. It is the application’s responsibility 
+		/// to ensure that the callback function is thread-safe.
+		/// </param>
+		/// <param name="user_data">
+		/// Passed as an argument when pfn_notify is called. user_data can be NULL.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int BuildProgram(IntPtr program, uint num_devices, IntPtr[] device_list, char [] options, IntPtr pfn_notify, IntPtr user_data)
 		{
@@ -2930,6 +3542,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the program object.
+		/// </summary>
+		/// <param name="program">
+		/// Specifies the program object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetProgramInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetProgramInfo(IntPtr program, ProgramInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2948,6 +3580,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the program object.
+		/// </summary>
+		/// <param name="program">
+		/// Specifies the program object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetProgramInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetProgramInfo(Object program, ProgramInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2961,6 +3613,30 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Returns build information for each device in the program object.
+		/// </summary>
+		/// <param name="program">
+		/// Specifies the program object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Specifies the device for which build information is being queried. device must be a valid device associated with 
+		/// program.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetProgramBuildInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetProgramBuildInfo(IntPtr program, IntPtr device, ProgramBuildInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2979,6 +3655,30 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns build information for each device in the program object.
+		/// </summary>
+		/// <param name="program">
+		/// Specifies the program object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Specifies the device for which build information is being queried. device must be a valid device associated with 
+		/// program.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetProgramBuildInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetProgramBuildInfo(Object program, Object device, ProgramBuildInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -2994,6 +3694,18 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Creates a kernel object.
+		/// </summary>
+		/// <param name="program">
+		/// A program object with a successfully built executable.
+		/// </param>
+		/// <param name="kernel_name">
+		/// A function name in the program declared with the Gl.kernel qualifier.
+		/// </param>
+		/// <param name="errcode_ret">
+		/// Returns an appropriate error code. If errcode_ret is NULL, no error code is returned.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateKernel(IntPtr program, char [] kernel_name, int[] errcode_ret)
 		{
@@ -3013,6 +3725,22 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Creates kernel objects for all kernel functions in a program object.
+		/// </summary>
+		/// <param name="program">
+		/// A program object with a successfully built executable.
+		/// </param>
+		/// <param name="num_kernels">
+		/// The size of memory pointed to by kernels specified as the number of cl_kernel entries.
+		/// </param>
+		/// <param name="kernels">
+		/// The buffer where the kernel objects for kernels in program will be returned. If kernels is NULL, it is ignored. If 
+		/// kernels is not NULL, num_kernels must be greater than or equal to the number of kernels in program.
+		/// </param>
+		/// <param name="num_kernels_ret">
+		/// The number of kernels in program. If num_kernels_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int CreateKernelsInProgram(IntPtr program, uint num_kernels, IntPtr[] kernels, uint[] num_kernels_ret)
 		{
@@ -3032,6 +3760,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Increments the kernel object reference count.
+		/// </summary>
+		/// <param name="kernel">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int RetainKernel(IntPtr kernel)
 		{
@@ -3045,6 +3779,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the kernel reference count.
+		/// </summary>
+		/// <param name="kernel">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseKernel(IntPtr kernel)
 		{
@@ -3058,6 +3798,29 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Set the argument value for a specific argument of a kernel.
+		/// </summary>
+		/// <param name="kernel">
+		/// A valid kernel object.
+		/// </param>
+		/// <param name="arg_index">
+		/// The argument index. Arguments to the kernel are referred by indices that go from 0 for the leftmost argument to n - 1, 
+		/// where n is the total number of arguments declared by a kernel.
+		/// </param>
+		/// <param name="arg_size">
+		/// Specifies the size of the argument value. If the argument is a memory object, the size is the size of the memory object. 
+		/// For arguments declared with the Gl.cal qualifier, the size specified will be the size in bytes of the buffer that must 
+		/// be allocated for the Gl.cal argument. If the argument is of type sampler_t, the arg_size value must be equal to 
+		/// sizeof(cl_sampler). If the argument is of type queue_t, the arg_size value must be equal to sizeof(cl_command_queue). 
+		/// For all other arguments, the size will be the size of argument type.
+		/// </param>
+		/// <param name="arg_value">
+		/// A pointer to data that should be used as the argument value for argument specified by arg_index. The argument data 
+		/// pointed to by arg_value is copied and the arg_value pointer can therefore be reused by the application after 
+		/// clSetKernelArg returns. The argument value specified is the value used by all API calls that enqueue kernel 
+		/// (Gl.EnqueueNDRangeKernel) until the argument value is changed by a call to clSetKernelArg for kernel.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int SetKernelArg(IntPtr kernel, uint arg_index, uint arg_size, IntPtr arg_value)
 		{
@@ -3071,6 +3834,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the kernel object.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetKernelInfo(IntPtr kernel, KernelInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3089,6 +3872,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the kernel object.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetKernelInfo(Object kernel, KernelInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3102,6 +3905,31 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Returns information about the kernel object that may be specific to a device.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Identifies a specific device in the list of devices associated with kernel. The list of devices is the list of devices 
+		/// in the OpenCL context that is associated with kernel. If the list of devices associated with kernel is a single device, 
+		/// device can be a NULL value.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelWorkGroupInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, KernelWorkGroupInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3120,6 +3948,31 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the kernel object that may be specific to a device.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Identifies a specific device in the list of devices associated with kernel. The list of devices is the list of devices 
+		/// in the OpenCL context that is associated with kernel. If the list of devices associated with kernel is a single device, 
+		/// device can be a NULL value.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelWorkGroupInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetKernelWorkGroupInfo(Object kernel, Object device, KernelWorkGroupInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3135,6 +3988,14 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Waits on the host thread for commands identified by event objects to complete.
+		/// </summary>
+		/// <param name="num_events">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_list">
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int WaitForEvents(uint num_events, IntPtr[] event_list)
 		{
@@ -3153,6 +4014,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the event object.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetEventInfo is described in the table below (Table 5.22):
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of the return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetEventInfo(IntPtr @event, EventInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3171,6 +4052,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns information about the event object.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:Object"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetEventInfo is described in the table below (Table 5.22):
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of the return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetEventInfo(Object @event, EventInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3184,6 +4085,12 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Creates a user event object.
+		/// </summary>
+		/// <param name="context">
+		/// A valid OpenCL context.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static IntPtr CreateUserEvent(IntPtr context)
 		{
@@ -3197,6 +4104,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Decrements the event reference count.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int ReleaseEvent(IntPtr @event)
 		{
@@ -3210,6 +4123,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns profiling information for the command associated with event if profiling is enabled.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the profiling data to query. The list of supported param_name types and the information returned in 
+		/// param_value by clGetEventProfilingInfo is described in the table of parameter queries below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. if param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetEventProfilingInfo(IntPtr @event, ProfilingInfo param_name, uint param_value_size, IntPtr param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3228,6 +4161,26 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Returns profiling information for the command associated with event if profiling is enabled.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:Object"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the profiling data to query. The list of supported param_name types and the information returned in 
+		/// param_value by clGetEventProfilingInfo is described in the table of parameter queries below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. if param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetEventProfilingInfo(Object @event, ProfilingInfo param_name, uint param_value_size, Object param_value, [Out] uint[] param_value_size_ret)
 		{
@@ -3241,6 +4194,12 @@ namespace OpenCL
 			}
 		}
 
+		/// <summary>
+		/// Issues all previously queued OpenCL commands in a command-queue to the device associated with the command-queue.
+		/// </summary>
+		/// <param name="command_queue">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int Flush(IntPtr command_queue)
 		{
@@ -3254,6 +4213,12 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Blocks until all previously queued OpenCL commands in a command-queue are issued to the associated device and have completed.
+		/// </summary>
+		/// <param name="command_queue">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int Finish(IntPtr command_queue)
 		{
@@ -3267,6 +4232,42 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueue commands to read from a buffer object to host memory.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Is a valid host command-queue in which the read command will be queued. command_queue and buffer must be created with 
+		/// the same OpenCL context.
+		/// </param>
+		/// <param name="buffer">
+		/// Refers to a valid buffer object.
+		/// </param>
+		/// <param name="blocking_read">
+		/// Indicates if the read operations are blocking or non-blocking.
+		/// </param>
+		/// <param name="offset">
+		/// The offset in bytes in the buffer object to read from.
+		/// </param>
+		/// <param name="size">
+		/// The size in bytes of data being read.
+		/// </param>
+		/// <param name="ptr">
+		/// The pointer to buffer in host memory where data is to be read into.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// event_wait_list and num_events_in_wait_list specify events that need to complete before this particular command can be 
+		/// executed. If event_wait_list is NULL, then this particular command does not wait on any event to complete. If 
+		/// event_wait_list is NULL, num_events_in_wait_list must be 0. If event_wait_list is not NULL, the list of events pointed 
+		/// to by event_wait_list must be valid and num_events_in_wait_list must be greater than 0. The events specified in 
+		/// event_wait_list act as synchronization points. The context associated with events in event_wait_list and command_queue 
+		/// must be the same. The memory associated with event_wait_list can be reused or freed after the function returns.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueReadBuffer(IntPtr command_queue, IntPtr buffer, bool blocking_read, uint offset, uint size, IntPtr ptr, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3286,6 +4287,42 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueue commands to write to a buffer object from host memory.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Is a valid host command-queue in which the write command will be queued. command_queue and buffer must be created with 
+		/// the same OpenCL context.
+		/// </param>
+		/// <param name="buffer">
+		/// Refers to a valid buffer object.
+		/// </param>
+		/// <param name="blocking_write">
+		/// Indicates if the write operations are blocking or nonblocking.
+		/// </param>
+		/// <param name="offset">
+		/// The offset in bytes in the buffer object to write to.
+		/// </param>
+		/// <param name="size">
+		/// The size in bytes of data being written.
+		/// </param>
+		/// <param name="ptr">
+		/// The pointer to buffer in host memory where data is to be written from.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// event_wait_list and num_events_in_wait_list specify events that need to complete before this particular command can be 
+		/// executed. If event_wait_list is NULL, then this particular command does not wait on any event to complete. If 
+		/// event_wait_list is NULL, num_events_in_wait_list must be 0. If event_wait_list is not NULL, the list of events pointed 
+		/// to by event_wait_list must be valid and num_events_in_wait_list must be greater than 0. The events specified in 
+		/// event_wait_list act as synchronization points. The context associated with events in event_wait_list and command_queue 
+		/// must be the same. The memory associated with event_wait_list can be reused or freed after the function returns.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueWriteBuffer(IntPtr command_queue, IntPtr buffer, bool blocking_write, uint offset, uint size, IntPtr ptr, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3305,6 +4342,42 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to copy from one buffer object to another.
+		/// </summary>
+		/// <param name="command_queue">
+		/// The host command-queue in which the copy command will be queued. The OpenCL context associated with command_queue, 
+		/// src_buffer, and dst_buffer must be the same.
+		/// </param>
+		/// <param name="src_buffer">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="dst_buffer">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="src_offset">
+		/// The offset where to begin copying data from src_buffer.
+		/// </param>
+		/// <param name="dst_offset">
+		/// The offset where to begin copying data into dst_buffer.
+		/// </param>
+		/// <param name="size">
+		/// Refers to the size in bytes to copy.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// Specify events that need to complete before this particular command can be executed. If event_wait_list is NULL, then 
+		/// this particular command does not wait on any event to complete. If event_wait_list is NULL, num_events_in_wait_list must 
+		/// be 0. If event_wait_list is not NULL, the list of events pointed to by event_wait_list must be valid and 
+		/// num_events_in_wait_list must be greater than 0. The events specified in event_wait_list act as synchronization points. 
+		/// The context associated with events in event_wait_list and command_queue must be the same. The memory associated with 
+		/// event_wait_list can be reused or freed after the function returns.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueCopyBuffer(IntPtr command_queue, IntPtr src_buffer, IntPtr dst_buffer, uint src_offset, uint dst_offset, uint size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3324,6 +4397,41 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueue commands to read from an image or image array object to host memory.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Refers to the host command-queue in which the read command will be queued. command_queue and image must be created with 
+		/// the same OpenCL context.
+		/// </param>
+		/// <param name="image">
+		/// Refers to a valid image or image array object.
+		/// </param>
+		/// <param name="blocking_read">
+		/// Indicates if the read operations are blocking or non-blocking.
+		/// </param>
+		/// <param name="row_pitch">
+		/// The length of each row in bytes. This value must be greater than or equal to the element size in bytes * width. If 
+		/// row_pitch is set to 0, the appropriate row pitch is calculated based on the size of each element in bytes multiplied by 
+		/// width.
+		/// </param>
+		/// <param name="slice_pitch">
+		/// Size in bytes of the 2D slice of the 3D region of a 3D image or each image of a 1D or 2D image array being read. This 
+		/// must be 0 if image is a 1D or 2D image. Otherwise this value must be greater than or equal to row_pitch * height. If 
+		/// slice_pitch is set to 0, the appropriate slice pitch is calculated based on the row_pitch * height.
+		/// </param>
+		/// <param name="ptr">
+		/// The pointer to a buffer in host memory where image data is to be read from.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueReadImage(IntPtr command_queue, IntPtr image, bool blocking_read, uint row_pitch, uint slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3343,6 +4451,41 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to write to an image or image array object from host memory.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Refers to the host command-queue in which the write command will be queued. command_queue and image must be created with 
+		/// the same OpenCL context.
+		/// </param>
+		/// <param name="image">
+		/// Refers to a valid image or image array object.
+		/// </param>
+		/// <param name="blocking_write">
+		/// Indicates if the write operation is blocking or non-blocking.
+		/// </param>
+		/// <param name="input_row_pitch">
+		/// The length of each row in bytes. This value must be greater than or equal to the element size in bytes * width. If 
+		/// input_row_pitch is set to 0, the appropriate row pitch is calculated based on the size of each element in bytes 
+		/// multiplied by width.
+		/// </param>
+		/// <param name="input_slice_pitch">
+		/// Size in bytes of the 2D slice of the 3D region of a 3D image or each image of a 1D or 2D image array being written. This 
+		/// must be 0 if image is a 1D or 2D image. Otherwise this value must be greater than or equal to row_pitch * height. If 
+		/// input_slice_pitch is set to 0, the appropriate slice pitch is calculated based on the row_pitch * height.
+		/// </param>
+		/// <param name="ptr">
+		/// The pointer to a buffer in host memory where image data is to be written to.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueWriteImage(IntPtr command_queue, IntPtr image, bool blocking_write, uint input_row_pitch, uint input_slice_pitch, IntPtr ptr, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3362,6 +4505,28 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to copy image objects.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Refers to the host command-queue in which the copy command will be queued. The OpenCL context associated with 
+		/// command_queue, src_image and dst_image must be the same.
+		/// </param>
+		/// <param name="src_image">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="dst_image">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueCopyImage(IntPtr command_queue, IntPtr src_image, IntPtr dst_image, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3381,6 +4546,36 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to copy an image object to a buffer object.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Must be a valid host command-queue. The OpenCL context associated with command_queue, src_image, and dst_buffer must be 
+		/// the same.
+		/// </param>
+		/// <param name="src_image">
+		/// A valid image object.
+		/// </param>
+		/// <param name="dst_buffer">
+		/// A valid buffer object.
+		/// </param>
+		/// <param name="dst_offset">
+		/// Refers to the offset where to begin copying data into dst_buffer. The size in bytes of the region to be copied referred 
+		/// to as dst_cb is computed as width * height * depth * bytes/image element if src_image is a 3D image object, is computed 
+		/// as width * height * bytes/image element if src_image is a 2D image, is computed as width * height * arraysize * 
+		/// bytes/image element if src_image is a 2D image array object, is computed as width * bytes/image element if src_image is 
+		/// a 1D image or 1D image buffer object and is computed as width * arraysize * bytes/image element if src_image is a 1D 
+		/// image array object.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueCopyImageToBuffer(IntPtr command_queue, IntPtr src_image, IntPtr dst_buffer, uint dst_offset, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3400,6 +4595,31 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to copy a buffer object to an image object.
+		/// </summary>
+		/// <param name="command_queue">
+		/// A valid host command-queue. The OpenCL context associated with command_queue, src_buffer, and dst_image must be the 
+		/// same.
+		/// </param>
+		/// <param name="src_buffer">
+		/// A valid buffer object.
+		/// </param>
+		/// <param name="dst_image">
+		/// A valid image object.
+		/// </param>
+		/// <param name="src_offset">
+		/// The offset where to begin copying data from src_buffer.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueCopyBufferToImage(IntPtr command_queue, IntPtr src_buffer, IntPtr dst_image, uint src_offset, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3419,6 +4639,27 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to unmap a previously mapped region of a memory object.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Must be a valid host command-queue.
+		/// </param>
+		/// <param name="memobj">
+		/// A valid memory (buffer or image) object. The OpenCL context associated with command_queue and memobj must be the same.
+		/// </param>
+		/// <param name="mapped_ptr">
+		/// The host address returned by a previous call to Gl.EnqueueMapBuffer or Gl.EnqueueMapImage for memobj.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueUnmapMemObject(IntPtr command_queue, IntPtr memobj, IntPtr mapped_ptr, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3438,6 +4679,56 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to execute a kernel on a device.
+		/// </summary>
+		/// <param name="command_queue">
+		/// A valid host command-queue. The kernel will be queued for execution on the device associated with command_queue.
+		/// </param>
+		/// <param name="kernel">
+		/// A valid kernel object. The OpenCL context associated with kernel and command_queue must be the same.
+		/// </param>
+		/// <param name="work_dim">
+		/// The number of dimensions used to specify the global work-items and work-items in the work-group. work_dim must be 
+		/// greater than zero and less than or equal to CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS. If global_work_size is NULL, or the 
+		/// value in any passed dimension is 0 then the kernel command will trivially succeed after its event dependencies are 
+		/// satisfied and subsequently update its completion event. The behavior in this situation is similar to that of an enqueued 
+		/// marker, except that unlike a marker, an enqueued kernel with no events passed to event_wait_list may run at any time.
+		/// </param>
+		/// <param name="global_work_offset">
+		/// global_work_offset can be used to specify an array of work_dim unsigned values that describe the offset used to 
+		/// calculate the global ID of a work-item. If global_work_offset is NULL, the global IDs start at offset (0, 0, ... 0).
+		/// </param>
+		/// <param name="global_work_size">
+		/// Points to an array of work_dim unsigned values that describe the number of global work-items in work_dim dimensions that 
+		/// will execute the kernel function. The total number of global work-items is computed as global_work_size[0] *...* 
+		/// global_work_size[work_dim - 1].
+		/// </param>
+		/// <param name="local_work_size">
+		/// Points to an array of work_dim unsigned values that describe the number of work-items that make up a work-group (also 
+		/// referred to as the size of the work-group) that will execute the kernel specified by kernel. The total number of 
+		/// work-items in a work-group is computed as local_work_size[0] *... * local_work_size[work_dim - 1]. The total number of 
+		/// work-items in the work-group must be less than or equal to the CL_KERNEL_WORK_GROUP_SIZE value specified in table of 
+		/// OpenCL Device Queries for Gl.GetDeviceInfo and the number of work-items specified in local_work_size[0],... 
+		/// local_work_size[work_dim - 1] must be less than or equal to the corresponding values specified by 
+		/// CL_DEVICE_MAX_WORK_ITEM_SIZES[0],.... CL_DEVICE_MAX_WORK_ITEM_SIZES[work_dim - 1]. The explicitly specified 
+		/// local_work_size will be used to determine how to break the global work-items specified by global_work_size into 
+		/// appropriate work-group instances.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// Specify events that need to complete before this particular command can be executed. If event_wait_list is NULL, then 
+		/// this particular command does not wait on any event to complete. If event_wait_list is NULL, num_events_in_wait_list must 
+		/// be 0. If event_wait_list is not NULL, the list of events pointed to by event_wait_list must be valid and 
+		/// num_events_in_wait_list must be greater than 0. The events specified in event_wait_list act as synchronization points. 
+		/// The context associated with events in event_wait_list and command_queue must be the same. The memory associated with 
+		/// event_wait_list can be reused or freed after the function returns.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueNDRangeKernel(IntPtr command_queue, IntPtr kernel, uint work_dim, uint[] global_work_offset, uint[] global_work_size, uint[] local_work_size, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
@@ -3460,6 +4751,45 @@ namespace OpenCL
 			return (retValue);
 		}
 
+		/// <summary>
+		/// Enqueues a command to execute a native C/C++ function not compiled using the OpenCL compiler.
+		/// </summary>
+		/// <param name="command_queue">
+		/// A valid host command-queue. A native user function can only be executed on a command-queue created on a device that has 
+		/// CL_EXEC_NATIVE_KERNEL capability set in CL_DEVICE_EXECUTION_CAPABILITIES as specified in the table of OpenCL Device 
+		/// Queries for Gl.GetDeviceInfo.
+		/// </param>
+		/// <param name="args">
+		/// A pointer to the args list that user_func should be called with.
+		/// </param>
+		/// <param name="cb_args">
+		/// The size in bytes of the args list that args points to.
+		/// </param>
+		/// <param name="num_mem_objects">
+		/// The number of buffer objects that are passed in args.
+		/// </param>
+		/// <param name="mem_list">
+		/// A list of valid buffer objects, if num_mem_objects &gt; 0. The buffer object values specified in mem_list are memory 
+		/// object handles (cl_mem values) returned by Gl.CreateBuffer or NULL.
+		/// </param>
+		/// <param name="args_mem_loc">
+		/// A pointer to appropriate locations that args points to where memory object handles (cl_mem values) are stored. Before 
+		/// the user function is executed, the memory object handles are replaced by pointers to global memory.
+		/// </param>
+		/// <param name="num_events_in_wait_list">
+		/// A <see cref="T:uint"/>.
+		/// </param>
+		/// <param name="event_wait_list">
+		/// Specify events that need to complete before this particular command can be executed. If event_wait_list is NULL, then 
+		/// this particular command does not wait on any event to complete. If event_wait_list is NULL, num_events_in_wait_list must 
+		/// be 0. If event_wait_list is not NULL, the list of events pointed to by event_wait_list must be valid and 
+		/// num_events_in_wait_list must be greater than 0. The events specified in event_wait_list act as synchronization points. 
+		/// The context associated with events in event_wait_list and command_queue must be the same. The memory associated with 
+		/// event_wait_list can be reused or freed after the function returns.
+		/// </param>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr[]"/>.
+		/// </param>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int EnqueueNativeKernel(IntPtr command_queue, IntPtr args, uint cb_args, uint num_mem_objects, IntPtr[] mem_list, IntPtr[] args_mem_loc, uint num_events_in_wait_list, IntPtr[] event_wait_list, IntPtr[] @event)
 		{
