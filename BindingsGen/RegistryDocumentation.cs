@@ -25,7 +25,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using System.Xml.Schema;
-using System.Xml.XPath;
 using System.Xml.Xsl;
 
 using BindingsGen.GLSpecs;
@@ -44,12 +43,6 @@ namespace BindingsGen
 		/// </summary>
 		static RegistryDocumentation()
 		{
-#if !DEBUG
-			ScanDocumentation_GL4();
-			ScanDocumentation_GL2();
-			ScanDocumentation_EGL();
-#endif
-
 			TranformEnumerantMan2 = new XslCompiledTransform();
 			using (Stream xsltStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BindingsGen.GLSpecs.EnumerantDoc_Man2.xslt")) {
 				using (XmlReader xmlReader = XmlReader.Create(xsltStream)) {
@@ -131,6 +124,9 @@ namespace BindingsGen
 			if (GenerateDocumentation_EGL(sw, ctx, enumerant))
 				return;
 
+			if (GenerateDocumentation_CL(sw, ctx, enumerant))
+				return;
+
 			// Fallback (generic documentation)
 			sw.WriteLine("/// <summary>");
 			sw.WriteLine("/// Value of {0} symbol{1}.", enumerant.Name, enumerant.IsDeprecated ? " (DEPRECATED)" : String.Empty);
@@ -142,7 +138,7 @@ namespace BindingsGen
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
-			if (sDocumentationEnumMap4.TryGetValue(enumerant.Name, out enumDocumentations) == false)
+			if (_DocumentationEnumMap4.TryGetValue(enumerant.Name, out enumDocumentations) == false)
 				return (false);
 
 			bool arrangeInPara = enumDocumentations.Count > 1;
@@ -170,7 +166,7 @@ namespace BindingsGen
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
-			if (sDocumentationEnumMap2.TryGetValue(enumerant.Name, out enumDocumentations) == false)
+			if (_DocumentationEnumMap2.TryGetValue(enumerant.Name, out enumDocumentations) == false)
 				return (false);
 
 			bool arrangeInPara = enumDocumentations.Count > 1;
@@ -198,7 +194,35 @@ namespace BindingsGen
 		{
 			List<EnumerationDocumentationBase> enumDocumentations;
 
-			if (sDocumentationEnumMapE.TryGetValue(enumerant.Name, out enumDocumentations) == false)
+			if (_DocumentationEnumMapE.TryGetValue(enumerant.Name, out enumDocumentations) == false)
+				return (false);
+
+			bool arrangeInPara = enumDocumentations.Count > 1;
+
+			sw.WriteLine("/// <summary>");
+
+			foreach (EnumerationDocumentationBase enumDocumentation in enumDocumentations) {
+				List<string> enumerantDocLines = SplitDocumentationLines(enumDocumentation.GetDocumentation(ctx, TranformEnumerantMan4));
+
+				if (arrangeInPara)
+					sw.WriteLine("/// <para>");
+				foreach (string line in enumerantDocLines)
+					sw.WriteLine("/// {0}", line);
+				if (arrangeInPara)
+					sw.WriteLine("/// </para>");
+			}
+			sw.WriteLine("/// </summary>");
+
+			GenerateDocumentation_Remarks(sw, ctx, enumerant);
+
+			return (true);
+		}
+
+		private static bool GenerateDocumentation_CL(SourceStreamWriter sw, ISpecContext ctx, Enumerant enumerant)
+		{
+			List<EnumerationDocumentationBase> enumDocumentations;
+
+			if (_DocumentationEnumMapCL.TryGetValue(enumerant.Name, out enumDocumentations) == false)
 				return (false);
 
 			bool arrangeInPara = enumDocumentations.Count > 1;
@@ -243,9 +267,9 @@ namespace BindingsGen
 #endif
 		}
 
-#endregion
+		#endregion
 
-#region Command Documentation
+		#region Command Documentation
 
 		/// <summary>
 		/// Generate a <see cref="Command"/> documentation, sourced from OpenGL 2 manual, OpenGL 4 manual or a generic one.
@@ -287,6 +311,14 @@ namespace BindingsGen
 				sb.AppendFormat("Unable to generate EGL documentation: {0}", exception.Message);
 			}
 
+			// EGL documentation
+			try {
+				if (GenerateDocumentation_CL(sw, ctx, command, true, commandParams))
+					return;
+			} catch (Exception exception) {
+				sb.AppendFormat("Unable to generate EGL documentation: {0}", exception.Message);
+			}
+
 			// Fallback (generic documentation)
 			GenerateDocumentation_GL4(sw, ctx, command, false, commandParams);
 		}
@@ -313,7 +345,7 @@ namespace BindingsGen
 			XmlNamespaceManager nsmgr = new XmlNamespaceManager(new NameTable());
 			nsmgr.AddNamespace("mml", "http://www.w3.org/2001/XMLSchema-instance");
 
-			if (sDocumentationMap2.TryGetValue(command.Prototype.Name, out xml))
+			if (_DocumentationMap2.TryGetValue(command.Prototype.Name, out xml))
 				root = xml.DocumentElement;
 
 			if (fail && (root == null))
@@ -485,7 +517,7 @@ namespace BindingsGen
 			nsmgr.AddNamespace("mml", "http://www.w3.org/2001/XMLSchema-instance");
 			nsmgr.AddNamespace("x", "http://docbook.org/ns/docbook");
 
-			if (sDocumentationMap4.TryGetValue(command.Prototype.Name, out xml))
+			if (_DocumentationMap4.TryGetValue(command.Prototype.Name, out xml))
 				root = xml.DocumentElement;
 
 			if (fail && (root == null))
@@ -558,8 +590,8 @@ namespace BindingsGen
 					if (xmlIdentifier != null)
 						paramDoc = GetDocumentationLines(xmlIdentifier.InnerXml, TranformCommandMan4, ctx);
 					else {
-						if (mWarningLog != null)
-							mWarningLog.WriteLine("Missing documentation: {0}.{1}.{2}", ctx.Class, command.GetImplementationName(ctx), param.Name);
+						if (_WarningLog != null)
+							_WarningLog.WriteLine("Missing documentation: {0}.{1}.{2}", ctx.Class, command.GetImplementationName(ctx), param.Name);
 						Console.WriteLine("Unable to to document {0}.{1}.{2}", ctx.Class, command.GetImplementationName(ctx), param.Name);
 					}
 				}
@@ -697,7 +729,7 @@ namespace BindingsGen
 			nsmgr.AddNamespace("mml", "http://www.w3.org/2001/XMLSchema-instance");
 			nsmgr.AddNamespace("x", "http://docbook.org/ns/docbook");
 
-			if (sDocumentationMapE.TryGetValue(command.Prototype.Name, out xml))
+			if (_DocumentationMapE.TryGetValue(command.Prototype.Name, out xml))
 				root = xml.DocumentElement;
 
 			if (fail && (root == null))
@@ -750,9 +782,90 @@ namespace BindingsGen
 			return (true);
 		}
 
-#endregion
+		/// <summary>
+		/// Generate a <see cref="Command"/> documentation using the OpenGL 4 manual.
+		/// </summary>
+		/// <param name="sw">
+		/// A <see cref="SourceStreamWriter"/> used to write the documentation of <paramref name="command"/>.
+		/// </param>
+		/// <param name="ctx">
+		/// A <see cref="RegistryContext"/> that defines the OpenGL specification.
+		/// </param>
+		/// <param name="command">
+		/// The <see cref="Command"/> to be documented.
+		/// </param>
+		/// <param name="fail"></param>
+		public static bool GenerateDocumentation_CL(SourceStreamWriter sw, ISpecContext ctx, Command command, bool fail, List<CommandParameter> commandParams)
+		{
+			XmlDocument xml = null;
+			XmlElement root = null;
 
-#region Text Processing
+			XmlNamespaceManager nsmgr = new XmlNamespaceManager(new NameTable());
+			nsmgr.AddNamespace("mml", "http://www.w3.org/2001/XMLSchema-instance");
+			//nsmgr.AddNamespace("x", "http://docbook.org/ns/docbook");
+
+			if (_DocumentationMapCL.TryGetValue(command.Prototype.Name, out xml))
+				root = xml.DocumentElement;
+
+			if (fail && (root == null))
+				return (false);
+
+			#region Summary
+
+			string purpose = String.Format("Binding for {0}.", command.Prototype.Name);
+
+			if (root != null) {
+				XmlNode xmlIdentifier = xml.SelectSingleNode("/refentry/refnamediv/refpurpose", nsmgr);
+				if (xmlIdentifier != null)
+					purpose = GetDocumentationLine(xmlIdentifier.InnerText, TranformCommandMan4, ctx);
+			}
+
+			sw.WriteLine("/// <summary>");
+			sw.WriteLine("/// {0}", purpose);
+			sw.WriteLine("/// </summary>");
+
+			#endregion
+
+			#region Parameters
+
+			foreach (CommandParameter param in commandParams) {
+				List<string> paramDoc = new List<string>();
+
+				// Note: in the case of overloaded methods, some parameters are implicit. Skip the documentation for those parameters.
+				if (param.IsImplicit(ctx, command))
+					continue;
+
+				// Default
+				paramDoc.Add(String.Format("A <see cref=\"T:{0}\"/>.", param.GetImplementationType(ctx, command)));
+
+				if (root != null) {
+					XmlNode xmlIdentifier;
+
+					string xpath1 = String.Format("/refentry/refsect1[@id='parameters']/variablelist/varlistentry[normalize-space(term/varname/text()) = '{0}']/listitem/para", param.ImportName);
+					xmlIdentifier = root.SelectSingleNode(xpath1, nsmgr);
+					if (xmlIdentifier != null)
+						paramDoc = GetDocumentationLines(xmlIdentifier.InnerXml, TranformCommandMan4, ctx);
+
+					string xpath2 = String.Format("/refentry/refsect1[@id='parameters']/variablelist/varlistentry[normalize-space(term/text()) = '{0}']/listitem/para", param.ImportName);
+					xmlIdentifier = root.SelectSingleNode(xpath2, nsmgr);
+					if (xmlIdentifier != null)
+						paramDoc = GetDocumentationLines(xmlIdentifier.InnerXml, TranformCommandMan4, ctx);
+				}
+
+				sw.WriteLine("/// <param name=\"{0}\">", param.ImplementationNameRaw);
+				foreach (string line in paramDoc)
+					sw.WriteLine("/// {0}", line);
+				sw.WriteLine("/// </param>");
+			}
+
+			#endregion
+
+			return (true);
+		}
+
+		#endregion
+
+		#region Text Processing
 
 		/// <summary>
 		/// Translate the XHTML documentation using a <see cref="XslCompiledTransform"/>.
@@ -926,14 +1039,14 @@ namespace BindingsGen
 			return (new List<string>(periods));
 		}
 
-#endregion
+		#endregion
 
-#region Documentation Scanning
+		#region Documentation Scanning
 
 		/// <summary>
 		/// Index all documented OpenGL commands the the OpenGL 2 manual.
 		/// </summary>
-		private static void ScanDocumentation_GL2()
+		public static void ScanDocumentation_GL2()
 		{
 			Console.WriteLine("Scanning registry documentation (GL2)...");
 
@@ -955,8 +1068,8 @@ namespace BindingsGen
 
 			LocalXhtmlXmlResolver.Touch();
 
-			Dictionary<string, XmlDocument> commandsMap = sDocumentationMap2;
-			Dictionary<string, List<EnumerationDocumentationBase>> enumerantsMap = sDocumentationEnumMap2;
+			Dictionary<string, XmlDocument> commandsMap = _DocumentationMap2;
+			Dictionary<string, List<EnumerationDocumentationBase>> enumerantsMap = _DocumentationEnumMap2;
 
 			using (ManualResetEvent waitThreads = new ManualResetEvent(false)) {
 				foreach (List<string> items in documentationJobs) {
@@ -1037,13 +1150,13 @@ namespace BindingsGen
 				waitThreads.WaitOne();
 			}
 
-			Console.WriteLine("\r\tFound documentation for {0} commands and {1} enumerants.", sDocumentationMap2.Count, sDocumentationEnumMap2.Count);
+			Console.WriteLine("\r\tFound documentation for {0} commands and {1} enumerants.", _DocumentationMap2.Count, _DocumentationEnumMap2.Count);
 		}
 
 		/// <summary>
 		/// Index all documented OpenGL commands the the OpenGL 4 manual.
 		/// </summary>
-		private static void ScanDocumentation_GL4()
+		public static void ScanDocumentation_GL4()
 		{
 			Console.WriteLine("Scanning registry documentation (GL4)...");
 
@@ -1085,10 +1198,10 @@ namespace BindingsGen
 						foreach (XmlNode xmlIdentifier in xmlIdentifiers) {
 							if (!Regex.IsMatch(xmlIdentifier.InnerText, "^(gl|wgl|glX).*"))
 								continue;
-							if (sDocumentationMap4.ContainsKey(xmlIdentifier.InnerText))
+							if (_DocumentationMap4.ContainsKey(xmlIdentifier.InnerText))
 								continue;
 
-							sDocumentationMap4.Add(xmlIdentifier.InnerText, xml);
+							_DocumentationMap4.Add(xmlIdentifier.InnerText, xml);
 						}
 
 						XmlNodeList enumerants;
@@ -1108,10 +1221,10 @@ namespace BindingsGen
 							if (!Regex.IsMatch(enumerantId.InnerText, "^(GL_|WGL_|GLX_).*"))
 								continue;
 
-							if (!sDocumentationEnumMap4.ContainsKey(enumerantId.InnerText))
-								sDocumentationEnumMap4.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
+							if (!_DocumentationEnumMap4.ContainsKey(enumerantId.InnerText))
+								_DocumentationEnumMap4.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
 
-							sDocumentationEnumMap4[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
+							_DocumentationEnumMap4[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
 						}
 
 #if false
@@ -1138,13 +1251,13 @@ namespace BindingsGen
 				}
 			}
 
-			Console.WriteLine("\tFound documentation for {0} commands and {1} enumerants.", sDocumentationMap4.Count, sDocumentationEnumMap4.Count);
+			Console.WriteLine("\tFound documentation for {0} commands and {1} enumerants.", _DocumentationMap4.Count, _DocumentationEnumMap4.Count);
 		}
 
 		/// <summary>
 		/// Index all documented OpenGL commands the the EGL manual.
 		/// </summary>
-		private static void ScanDocumentation_EGL()
+		public static void ScanDocumentation_EGL()
 		{
 			Console.WriteLine("Scanning registry documentation (EGL)...");
 
@@ -1184,10 +1297,10 @@ namespace BindingsGen
 						foreach (XmlNode xmlIdentifier in xmlIdentifiers) {
 							if (!Regex.IsMatch(xmlIdentifier.InnerText, "^(gl|wgl|glX|egl).*"))
 								continue;
-							if (sDocumentationMapE.ContainsKey(xmlIdentifier.InnerText))
+							if (_DocumentationMapE.ContainsKey(xmlIdentifier.InnerText))
 								continue;
 
-							sDocumentationMapE.Add(xmlIdentifier.InnerText, xml);
+							_DocumentationMapE.Add(xmlIdentifier.InnerText, xml);
 						}
 
 						// Extract enumeration documentation:
@@ -1205,10 +1318,10 @@ namespace BindingsGen
 							if (!Regex.IsMatch(enumerantId.InnerText, "^(GL_|WGL_|GLX_|EGL_).*"))
 								continue;
 
-							if (!sDocumentationEnumMapE.ContainsKey(enumerantId.InnerText))
-								sDocumentationEnumMapE.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
+							if (!_DocumentationEnumMapE.ContainsKey(enumerantId.InnerText))
+								_DocumentationEnumMapE.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
 
-							sDocumentationEnumMapE[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
+							_DocumentationEnumMapE[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
 						}
 					}
 				} catch (Exception) {
@@ -1218,7 +1331,89 @@ namespace BindingsGen
 
 
 
-			Console.WriteLine("\tFound documentation for {0} commands.", sDocumentationMapE.Count);
+			Console.WriteLine("\tFound documentation for {0} commands.", _DocumentationMapE.Count);
+		}
+
+		/// <summary>
+		/// Index all documented OpenGL commands the the EGL manual.
+		/// </summary>
+		public static void ScanDocumentation_CL()
+		{
+			Console.WriteLine("Scanning registry documentation (CL)...");
+
+			foreach (string documentationFile in Directory.GetFiles(Path.Combine(Program.BasePath, "GLMan/CL"))) {
+				if (documentationFile.ToLowerInvariant().EndsWith(".xml") == false)
+					continue;
+				if (Regex.IsMatch(Path.GetFileName(documentationFile), "^cl[A-Z].*") == false)
+					continue;
+
+				try {
+					// Load XML file
+					using (FileStream fs = new FileStream(documentationFile, FileMode.Open, FileAccess.Read)) {
+						XmlDocument xml = new XmlDocument();
+
+						XmlNamespaceManager nsmgr = new XmlNamespaceManager(new NameTable());
+						nsmgr.AddNamespace("mml", "http://www.w3.org/2001/XMLSchema-instance");
+						//nsmgr.AddNamespace("x", "http://docbook.org/ns/docbook");
+
+						XmlParserContext context = new XmlParserContext(null, nsmgr, null, XmlSpace.Default);
+						XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+
+						xmlReaderSettings.ProhibitDtd = false;
+						xmlReaderSettings.ConformanceLevel = ConformanceLevel.Auto;
+						xmlReaderSettings.XmlResolver = new LocalXhtmlXmlResolver(Path.Combine(Program.BasePath, "GLMan/CL"), Path.Combine(Program.BasePath, "GLMan/DTD"));
+						xmlReaderSettings.IgnoreComments = true;
+						xmlReaderSettings.CheckCharacters = false;
+						xmlReaderSettings.ValidationType = ValidationType.None;
+						xmlReaderSettings.ValidationFlags = XmlSchemaValidationFlags.None;
+
+						using (XmlReader xmlReader = XmlReader.Create(fs, xmlReaderSettings, context)) {
+							xml.Load(xmlReader);
+						}
+
+						XmlNodeList xmlIdentifiers = xml.DocumentElement.SelectNodes("/refentry/refsynopsisdiv/funcsynopsis/funcprototype/funcdef/function", nsmgr);
+
+						if (xmlIdentifiers.Count == 0)
+							continue;
+
+						foreach (XmlNode xmlIdentifier in xmlIdentifiers) {
+							string functionName = xmlIdentifier.InnerText.Trim();
+
+							if (!Regex.IsMatch(functionName, "^(cl).*"))
+								continue;
+							if (_DocumentationMapCL.ContainsKey(functionName))
+								continue;
+
+							_DocumentationMapCL.Add(functionName, xml);
+						}
+
+						// Extract enumeration documentation:
+						XmlNodeList enumerants = xml.SelectNodes("/refentry/refsect1[@xml:id='description']/variablelist/varlistentry", nsmgr);
+
+						foreach (XmlNode enumerant in enumerants) {
+							XmlNode enumerantId = enumerant.SelectSingleNode("term/constant", nsmgr);
+							if (enumerantId == null)
+								continue;
+
+							XmlNode enumerantDoc = enumerant.SelectSingleNode("listitem", nsmgr);
+							if (enumerantDoc == null)
+								continue;
+
+							if (!Regex.IsMatch(enumerantId.InnerText, "^(CL_).*"))
+								continue;
+
+							if (!_DocumentationEnumMapCL.ContainsKey(enumerantId.InnerText))
+								_DocumentationEnumMapCL.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
+
+							_DocumentationEnumMapCL[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
+						}
+					}
+				} catch (Exception) {
+					continue;
+				}
+			}
+
+			Console.WriteLine("\tFound documentation for {0} commands.", _DocumentationMapCL.Count);
 		}
 
 		private abstract class EnumerationDocumentationBase
@@ -1297,32 +1492,42 @@ namespace BindingsGen
 		/// <summary>
 		/// Map between the GL command name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, XmlDocument> sDocumentationMap2 = new Dictionary<string, XmlDocument>();
+		private static readonly Dictionary<string, XmlDocument> _DocumentationMap2 = new Dictionary<string, XmlDocument>();
 
 		/// <summary>
 		/// Map between the GL enumerant name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> sDocumentationEnumMap2 = new Dictionary<string, List<EnumerationDocumentationBase>>();
+		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> _DocumentationEnumMap2 = new Dictionary<string, List<EnumerationDocumentationBase>>();
 
 		/// <summary>
 		/// Map between the GL command name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, XmlDocument> sDocumentationMap4 = new Dictionary<string, XmlDocument>();
+		private static readonly Dictionary<string, XmlDocument> _DocumentationMap4 = new Dictionary<string, XmlDocument>();
 
 		/// <summary>
 		/// Map between the GL enumerant name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> sDocumentationEnumMap4 = new Dictionary<string, List<EnumerationDocumentationBase>>();
+		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> _DocumentationEnumMap4 = new Dictionary<string, List<EnumerationDocumentationBase>>();
 
 		/// <summary>
 		/// Map between the GL command name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, XmlDocument> sDocumentationMapE = new Dictionary<string, XmlDocument>();
+		private static readonly Dictionary<string, XmlDocument> _DocumentationMapE = new Dictionary<string, XmlDocument>();
 
 		/// <summary>
 		/// Map between the GL enumerant name and the relative documentation.
 		/// </summary>
-		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> sDocumentationEnumMapE = new Dictionary<string, List<EnumerationDocumentationBase>>();
+		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> _DocumentationEnumMapE = new Dictionary<string, List<EnumerationDocumentationBase>>();
+
+		/// <summary>
+		/// Map between the GL command name and the relative documentation.
+		/// </summary>
+		private static readonly Dictionary<string, XmlDocument> _DocumentationMapCL = new Dictionary<string, XmlDocument>();
+
+		/// <summary>
+		/// Map between the GL enumerant name and the relative documentation.
+		/// </summary>
+		private static readonly Dictionary<string, List<EnumerationDocumentationBase>> _DocumentationEnumMapCL = new Dictionary<string, List<EnumerationDocumentationBase>>();
 
 		/// <summary>
 		/// XHTML/XML DTD entity resolver.
@@ -1346,29 +1551,38 @@ namespace BindingsGen
 				KnownUris["-//W3C//DTD XHTML 1.0 Transitional//EN"] = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd";
 				LocalDtdPaths[KnownUris["-//W3C//DTD XHTML 1.0 Transitional//EN"]] = "xhtml1-transitional.dtd";
 
-				mDtdPath = Path.Combine(Program.BasePath, "GLMan/DTD");
+				_DtdPath = Path.Combine(Program.BasePath, "GLMan/DTD");
 
 				string[] dtdFiles;
 
-				dtdFiles = Directory.GetFiles(mDtdPath, "*.dtd");
+				dtdFiles = Directory.GetFiles(_DtdPath, "*.dtd");
 				foreach (string dtdFile in dtdFiles)
 					LocalDtdRelPaths[dtdFile] = dtdFile.Replace('\\', '/');
 
-				dtdFiles = Directory.GetFiles(mDtdPath, "*.mod");
+				dtdFiles = Directory.GetFiles(_DtdPath, "*.mod");
 				foreach (string dtdFile in dtdFiles)
 					LocalDtdRelPaths[dtdFile] = dtdFile.Replace('\\', '/');
 
-				dtdFiles = Directory.GetFiles(mDtdPath, "*.ent");
+				dtdFiles = Directory.GetFiles(_DtdPath, "*.ent");
 				foreach (string dtdFile in dtdFiles)
 					LocalDtdRelPaths[dtdFile] = dtdFile.Replace('\\', '/');
 			}
 
 			public LocalXhtmlXmlResolver(string documentPath)
 			{
-				DocumentPath = Path.GetDirectoryName(documentPath);
+				ManDirectoryPath = null;
+				DtdPath = Path.GetDirectoryName(documentPath);
 			}
 
-			public readonly string DocumentPath;
+			public LocalXhtmlXmlResolver(string manDirectory, string documentPath)
+			{
+				ManDirectoryPath = manDirectory;
+				DtdPath = Path.GetDirectoryName(documentPath);
+			}
+
+			public readonly string DtdPath;
+
+			public readonly string ManDirectoryPath;
 
 			public static void Touch() { }
 
@@ -1378,11 +1592,11 @@ namespace BindingsGen
 			private static readonly Dictionary<string, string> LocalDtdRelPaths = new Dictionary<string, string>();
 
 
-			private static string mDtdPath;
+			private static string _DtdPath;
 
 			public override Uri ResolveUri(Uri baseUri, string relativeUri)
 			{
-				lock (sSyncObject) {
+				lock (_SyncObject) {
 					return KnownUris.ContainsKey(relativeUri) ?
 						new Uri(KnownUris[relativeUri]) :
 						base.ResolveUri(baseUri, relativeUri)
@@ -1395,7 +1609,7 @@ namespace BindingsGen
 				if (absoluteUri == null)
 					throw new ArgumentNullException("absoluteUri");
 
-				lock (sSyncObject) {
+				lock (_SyncObject) {
 
 					//resolve resources from cache (if possible)
 					if ((absoluteUri.Scheme == "http") && (ofObjectToReturn == null || ofObjectToReturn == typeof(Stream))) {
@@ -1436,7 +1650,7 @@ namespace BindingsGen
 							if (done == true) {
 								localPath = localPath.Substring(localPath.LastIndexOf("/") + 1);
 
-								using (StreamWriter fs = new StreamWriter(Path.Combine(mDtdPath, localPath), false)) {
+								using (StreamWriter fs = new StreamWriter(Path.Combine(_DtdPath, localPath), false)) {
 									Stream rStream = webResponse.GetResponseStream();
 
 									using (StreamReader sr = new StreamReader(rStream)) {
@@ -1453,11 +1667,16 @@ namespace BindingsGen
 							}
 						}
 
-						return (new FileStream(Path.Combine(mDtdPath, LocalDtdPaths[absoluteUri.OriginalString]), FileMode.Open, FileAccess.Read));
+						return (new FileStream(Path.Combine(_DtdPath, LocalDtdPaths[absoluteUri.OriginalString]), FileMode.Open, FileAccess.Read));
 					} else if ((absoluteUri.Scheme == "file") && (ofObjectToReturn == null || ofObjectToReturn == typeof(Stream))) {
 						string localPath = Path.GetFileName(absoluteUri.OriginalString);
 
-						return (new FileStream(Path.Combine(DocumentPath, localPath), FileMode.Open, FileAccess.Read));
+						if (File.Exists(Path.Combine(DtdPath, localPath)))
+							return (new FileStream(Path.Combine(DtdPath, localPath), FileMode.Open, FileAccess.Read));
+						else if (ManDirectoryPath != null && File.Exists(Path.Combine(ManDirectoryPath, localPath)))
+							return (new FileStream(Path.Combine(ManDirectoryPath, localPath), FileMode.Open, FileAccess.Read));
+						else
+							return (new FileStream(Path.Combine(DtdPath, localPath), FileMode.Open, FileAccess.Read));
 					}
 
 					//otherwise use the default behavior of the XmlUrlResolver class (resolve resources from source)
@@ -1465,29 +1684,29 @@ namespace BindingsGen
 				}
 			}
 
-			private static readonly object sSyncObject = new object();
+			private static readonly object _SyncObject = new object();
 		}
 
-#endregion
+		#endregion
 
-#region Logging
+		#region Logging
 
 		public static void CreateLog()
 		{
-			mWarningLog = new StreamWriter("../../DocWarnings.txt");
+			_WarningLog = new StreamWriter("../../DocWarnings.txt");
 		}
 
 		public static void CloseLog()
 		{
-			mWarningLog.Close();
-			mWarningLog = null;
+			_WarningLog.Close();
+			_WarningLog = null;
 		}
 
 		/// <summary>
 		/// Stream used for logging documentation warnings.
 		/// </summary>
-		private static StreamWriter mWarningLog;
+		private static StreamWriter _WarningLog;
 
-#endregion
+		#endregion
 	}
 }

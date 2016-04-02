@@ -624,7 +624,7 @@ namespace BindingsGen.GLSpecs
 		/// </param>
 		private void GenerateImplementation_Signature(SourceStreamWriter sw, ISpecContext ctx, List<CommandParameter> commandParams, string implementationName, string returnType)
 		{
-#if !DEBUG
+#if !DEBUG || ENABLE_DOC
 			// Documentation
 			RegistryDocumentation.GenerateDocumentation(sw, ctx, this, commandParams);
 #endif

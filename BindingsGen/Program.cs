@@ -39,11 +39,17 @@ namespace BindingsGen
 		{
 			ISpecContext ctx;
 			RegistryProcessor glRegistryProcessor;
+			bool mangl = false;
 
 			RegistryDocumentation.CreateLog();
 
 			// OpenGL
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--gl"); }) >= 0)) {
+#if !DEBUG || ENABLE_DOC
+				RegistryDocumentation.ScanDocumentation_GL4();
+				RegistryDocumentation.ScanDocumentation_GL2();
+				mangl = true;
+#endif
 				ctx = new RegistryContext("Gl", Path.Combine(BasePath, "GLSpecs/gl.xml"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
 				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
@@ -53,6 +59,12 @@ namespace BindingsGen
 
 			// OpenGL for Windows
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--wgl"); }) >= 0)) {
+#if !DEBUG || ENABLE_DOC
+				if (mangl == false) {
+					RegistryDocumentation.ScanDocumentation_GL4();
+					RegistryDocumentation.ScanDocumentation_GL2();
+				}
+#endif
 				ctx = new RegistryContext("Wgl", Path.Combine(BasePath, "GLSpecs/wgl.xml"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
 				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
@@ -62,6 +74,12 @@ namespace BindingsGen
 
 			// OpenGL for Unix
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--xgl"); }) >= 0)) {
+#if !DEBUG || ENABLE_DOC
+				if (mangl == false) {
+					RegistryDocumentation.ScanDocumentation_GL4();
+					RegistryDocumentation.ScanDocumentation_GL2();
+				}
+#endif
 				ctx = new RegistryContext("Glx", Path.Combine(BasePath, "GLSpecs/glx.xml"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
 				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
@@ -71,6 +89,9 @@ namespace BindingsGen
 
 			// EGL
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--egl"); }) >= 0)) {
+#if !DEBUG || ENABLE_DOC
+				RegistryDocumentation.ScanDocumentation_EGL();
+#endif
 				ctx = new RegistryContext("Egl", Path.Combine(BasePath, "GLSpecs/egl.xml"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
 				GenerateCommandsAndEnums(glRegistryProcessor, ctx);
@@ -80,6 +101,9 @@ namespace BindingsGen
 
 			// OpenCL
 			if ((args.Length == 0) || (Array.FindIndex(args, delegate(string item) { return (item == "--cl"); }) >= 0)) {
+#if !DEBUG || ENABLE_DOC
+				RegistryDocumentation.ScanDocumentation_CL();
+#endif
 				ctx = new OpenClContext("Cl", Path.Combine(BasePath, "GLSpecs/OpenCL/cl.h"));
 				glRegistryProcessor = new RegistryProcessor(ctx.Registry);
 				glRegistryProcessor.Namespace = "OpenCL";		// Custom namespace for resolving OpenGL namespace conflicts
