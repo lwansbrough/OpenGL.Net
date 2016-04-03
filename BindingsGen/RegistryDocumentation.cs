@@ -1,5 +1,5 @@
 
-// Copyright (C) 2015 Luca Piccioni
+// Copyright (C) 2015-2016 Luca Piccioni
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -230,7 +230,11 @@ namespace BindingsGen
 			sw.WriteLine("/// <summary>");
 
 			foreach (EnumerationDocumentationBase enumDocumentation in enumDocumentations) {
-				List<string> enumerantDocLines = SplitDocumentationLines(enumDocumentation.GetDocumentation(ctx, TranformEnumerantMan4));
+				string enumerantDoc = enumDocumentation.GetDocumentation(ctx, TranformEnumerantMan2);
+				if (enumerantDoc == null)
+					continue;
+
+				List<string> enumerantDocLines = SplitDocumentationLines(enumerantDoc);
 
 				if (arrangeInPara)
 					sw.WriteLine("/// <para>");
@@ -817,7 +821,7 @@ namespace BindingsGen
 			if (root != null) {
 				XmlNode xmlIdentifier = xml.SelectSingleNode("/refentry/refnamediv/refpurpose", nsmgr);
 				if (xmlIdentifier != null)
-					purpose = GetDocumentationLine(xmlIdentifier.InnerText, TranformCommandMan4, ctx);
+					purpose = GetDocumentationLine(xmlIdentifier.InnerText, TranformCommandMan2, ctx);
 			}
 
 			sw.WriteLine("/// <summary>");
@@ -1388,24 +1392,27 @@ namespace BindingsGen
 						}
 
 						// Extract enumeration documentation:
-						XmlNodeList enumerants = xml.SelectNodes("/refentry/refsect1[@xml:id='description']/variablelist/varlistentry", nsmgr);
+						XmlNodeList enumerants = xml.SelectNodes("/refentry/refsect1[@id='parameters']/variablelist/varlistentry/listitem/informaltable/tgroup/tbody/row", nsmgr);
 
 						foreach (XmlNode enumerant in enumerants) {
-							XmlNode enumerantId = enumerant.SelectSingleNode("term/constant", nsmgr);
+							XmlNode enumerantId = enumerant.SelectSingleNode("entry/constant", nsmgr);
 							if (enumerantId == null)
 								continue;
 
-							XmlNode enumerantDoc = enumerant.SelectSingleNode("listitem", nsmgr);
+							string enumerantIdText = Regex.Replace(enumerantId.InnerText.Trim(), @"[\b\n\r]", String.Empty);
+							string commandName = xmlIdentifiers[0].InnerText.Trim();
+							
+							if (!Regex.IsMatch(enumerantIdText, "^(CL_).*"))
+								continue;
+
+							XmlNode enumerantDoc = enumerant.SelectSingleNode("entry[last()]", nsmgr);
 							if (enumerantDoc == null)
 								continue;
 
-							if (!Regex.IsMatch(enumerantId.InnerText, "^(CL_).*"))
-								continue;
+							if (!_DocumentationEnumMapCL.ContainsKey(enumerantIdText))
+								_DocumentationEnumMapCL.Add(enumerantIdText, new List<EnumerationDocumentationBase>());
 
-							if (!_DocumentationEnumMapCL.ContainsKey(enumerantId.InnerText))
-								_DocumentationEnumMapCL.Add(enumerantId.InnerText, new List<EnumerationDocumentationBase>());
-
-							_DocumentationEnumMapCL[enumerantId.InnerText].Add(new EnumerationDocumentationGetParam(xml, xmlIdentifiers[0].InnerText, enumerantDoc));
+							_DocumentationEnumMapCL[enumerantIdText].Add(new EnumerationDocumentationGetParam(xml, commandName, enumerantDoc));
 						}
 					}
 				} catch (Exception) {
@@ -1420,6 +1427,12 @@ namespace BindingsGen
 		{
 			public EnumerationDocumentationBase(XmlDocument xml, string command, XmlNode docNode)
 			{
+				if (xml == null)
+					throw new ArgumentNullException("xml");
+				if (command == null)
+					throw new ArgumentNullException("command");
+				if (docNode == null)
+					throw new ArgumentNullException("docNode");
 				Document = xml;
 				CommandRef = command;
 				EnumNode = docNode;
@@ -1445,6 +1458,9 @@ namespace BindingsGen
 			public override string GetDocumentation(ISpecContext ctx, XslCompiledTransform transform)
 			{
 				Command commandRef = ctx.Registry.GetCommand(CommandRef);
+				if (commandRef == null)
+					return (null);
+
 				StringBuilder doc = new StringBuilder();
 
 				doc.AppendFormat("{0}.{1}: ", ctx.Class, commandRef.GetImplementationName(ctx));
