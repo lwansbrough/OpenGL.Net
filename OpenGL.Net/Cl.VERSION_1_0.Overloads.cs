@@ -76,8 +76,6 @@ namespace OpenCL
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public static int GetPlatformInfo(IntPtr platform, PlatformInfo param_name, out ulong param_value)
 		{
-			const uint ParamMaxLength = 256;
-
 			int err;
 			uint paramLength;
 
@@ -85,10 +83,165 @@ namespace OpenCL
 
 			GCHandle paramBufferHandle = GCHandle.Alloc(param_value, GCHandleType.Pinned);
 			try {
-				err = GetPlatformInfo(platform, param_name, ParamMaxLength, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+				err = GetPlatformInfo(platform, param_name, 4, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
 			} finally {
 				paramBufferHandle.Free();
 			}
+
+			return (err);
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// 
+		/// </param>
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, out bool param_value)
+		{
+			int err;
+			int paramBuffer = SUCCESS;
+			uint paramLength;
+
+			GCHandle paramBufferHandle = GCHandle.Alloc(paramBuffer, GCHandleType.Pinned);
+			try {
+				err = GetDeviceInfo(device, param_name, 4, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+			} finally {
+				paramBufferHandle.Free();
+			}
+
+			param_value = paramBuffer == SUCCESS;
+
+			return (err);
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// 
+		/// </param>
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, out uint param_value)
+		{
+			int err;
+			uint paramLength;
+
+			param_value = 0;
+
+			GCHandle paramBufferHandle = GCHandle.Alloc(param_value, GCHandleType.Pinned);
+			try {
+				err = GetDeviceInfo(device, param_name, 4, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+			} finally {
+				paramBufferHandle.Free();
+			}
+
+			return (err);
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// 
+		/// </param>
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, out ulong param_value)
+		{
+			int err;
+			uint paramLength;
+
+			param_value = 0;
+
+			GCHandle paramBufferHandle = GCHandle.Alloc(param_value, GCHandleType.Pinned);
+			try {
+				err = GetDeviceInfo(device, param_name, 8, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+			} finally {
+				paramBufferHandle.Free();
+			}
+
+			return (err);
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// 
+		/// </param>
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, out IntPtr param_value)
+		{
+			int err;
+			uint paramLength;
+
+			param_value = IntPtr.Zero;
+
+			GCHandle paramBufferHandle = GCHandle.Alloc(param_value, GCHandleType.Pinned);
+			try {
+				err = GetDeviceInfo(device, param_name, (uint)IntPtr.Size, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+			} finally {
+				paramBufferHandle.Free();
+			}
+
+			return (err);
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// 
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, out string param_value)
+		{
+			const uint ParamMaxLength = 4096;
+
+			int err;
+			byte[] paramBuffer = new byte[ParamMaxLength];
+			uint paramLength;
+
+			GCHandle paramBufferHandle = GCHandle.Alloc(paramBuffer, GCHandleType.Pinned);
+			try {
+				err = GetDeviceInfo(device, param_name, ParamMaxLength, paramBufferHandle.AddrOfPinnedObject(), out paramLength);
+			} finally {
+				paramBufferHandle.Free();
+			}
+			
+			param_value = Encoding.ASCII.GetString(paramBuffer).Trim();
 
 			return (err);
 		}
