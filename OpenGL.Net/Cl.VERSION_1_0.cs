@@ -26,37 +26,46 @@ namespace OpenCL
 	public partial class Cl
 	{
 		/// <summary>
-		/// Value of CL_PLATFORM_PROFILE symbol.
+		/// Cl.GetPlatformInfo: openCL profile string. Returns the profile name supported by the implementation. The profile name 
+		/// returned can be one of the following strings: FULL_PROFILE - if the implementation supports the OpenCL specification 
+		/// (functionality defined as part of the core specification and does not require any extensions to be supported). 
+		/// EMBEDDED_PROFILE - if the implementation supports the OpenCL embedded profile. The embedded profile is defined to be a 
+		/// subset for each version of OpenCL. The embedded profile for OpenCL 2.1 is described in section 7.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_PROFILE = 0x0900;
 
 		/// <summary>
-		/// Value of CL_PLATFORM_VERSION symbol.
+		/// Cl.GetPlatformInfo: openCL version string. Returns the OpenCL version supported by the implementation. This version 
+		/// string has the following format: 
+		/// OpenCL&lt;space&gt;&lt;major_version.minor_version&gt;&lt;space&gt;&lt;platform-specific information&gt; The 
+		/// major_version.minor_version value returned will be 2.1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_VERSION = 0x0901;
 
 		/// <summary>
-		/// Value of CL_PLATFORM_NAME symbol.
+		/// Cl.GetPlatformInfo: platform name string.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_NAME = 0x0902;
 
 		/// <summary>
-		/// Value of CL_PLATFORM_VENDOR symbol.
+		/// Cl.GetPlatformInfo: platform vendor string.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_VENDOR = 0x0903;
 
 		/// <summary>
-		/// Value of CL_PLATFORM_EXTENSIONS symbol.
+		/// Cl.GetPlatformInfo: returns a space-separated list of extension names (the extension names themselves do not contain any 
+		/// spaces) supported by the platform. Extensions defined here must be supported by all devices associated with this 
+		/// platform.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_EXTENSIONS = 0x0904;
 
 		/// <summary>
-		/// Value of CL_PLATFORM_HOST_TIMER_RESOLUTION symbol.
+		/// Cl.GetPlatformInfo: returns the resolution of the host timer in nanoseconds as used by Cl.GetDeviceAndHostTimer.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PLATFORM_HOST_TIMER_RESOLUTION = 0x0905;

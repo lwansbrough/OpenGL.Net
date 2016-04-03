@@ -1392,28 +1392,16 @@ namespace BindingsGen
 						}
 
 						// Extract enumeration documentation:
-						XmlNodeList enumerants = xml.SelectNodes("/refentry/refsect1[@id='parameters']/variablelist/varlistentry/listitem/informaltable/tgroup/tbody/row", nsmgr);
+						XmlNodeList enumerants;
+						string commandName = xmlIdentifiers[0].InnerText.Trim();
 
-						foreach (XmlNode enumerant in enumerants) {
-							XmlNode enumerantId = enumerant.SelectSingleNode("entry/constant", nsmgr);
-							if (enumerantId == null)
-								continue;
+						enumerants = xml.SelectNodes("/refentry/refsect1[@id='parameters']/variablelist/varlistentry/listitem/informaltable/tgroup/tbody/row", nsmgr);
+						if (enumerants.Count > 0)
+							ScanDocumentation_CL_Enumerants(commandName, xml, enumerants, nsmgr);
 
-							string enumerantIdText = Regex.Replace(enumerantId.InnerText.Trim(), @"[\b\n\r]", String.Empty);
-							string commandName = xmlIdentifiers[0].InnerText.Trim();
-							
-							if (!Regex.IsMatch(enumerantIdText, "^(CL_).*"))
-								continue;
-
-							XmlNode enumerantDoc = enumerant.SelectSingleNode("entry[last()]", nsmgr);
-							if (enumerantDoc == null)
-								continue;
-
-							if (!_DocumentationEnumMapCL.ContainsKey(enumerantIdText))
-								_DocumentationEnumMapCL.Add(enumerantIdText, new List<EnumerationDocumentationBase>());
-
-							_DocumentationEnumMapCL[enumerantIdText].Add(new EnumerationDocumentationGetParam(xml, commandName, enumerantDoc));
-						}
+						enumerants = xml.SelectNodes("/refentry/refsect1[@id='parameters']/informaltable/tgroup/tbody/row", nsmgr);
+						if (enumerants.Count > 0)
+							ScanDocumentation_CL_Enumerants(commandName, xml, enumerants, nsmgr);
 					}
 				} catch (Exception) {
 					continue;
@@ -1421,6 +1409,32 @@ namespace BindingsGen
 			}
 
 			Console.WriteLine("\tFound documentation for {0} commands.", _DocumentationMapCL.Count);
+		}
+
+		/// <summary>
+		/// Index all documented OpenGL commands the the EGL manual.
+		/// </summary>
+		public static void ScanDocumentation_CL_Enumerants(string commandName, XmlDocument xml, XmlNodeList enumerants, XmlNamespaceManager nsmgr)
+		{
+			foreach (XmlNode enumerant in enumerants) {
+				XmlNode enumerantId = enumerant.SelectSingleNode("entry/constant", nsmgr);
+				if (enumerantId == null)
+					continue;
+
+				string enumerantIdText = Regex.Replace(enumerantId.InnerText.Trim(), @"[\b\n\r]", String.Empty);
+							
+				if (!Regex.IsMatch(enumerantIdText, "^(CL_).*"))
+					continue;
+
+				XmlNode enumerantDoc = enumerant.SelectSingleNode("entry[last()]", nsmgr);
+				if (enumerantDoc == null)
+					continue;
+
+				if (!_DocumentationEnumMapCL.ContainsKey(enumerantIdText))
+					_DocumentationEnumMapCL.Add(enumerantIdText, new List<EnumerationDocumentationBase>());
+
+				_DocumentationEnumMapCL[enumerantIdText].Add(new EnumerationDocumentationGetParam(xml, commandName, enumerantDoc));
+			}
 		}
 
 		private abstract class EnumerationDocumentationBase
