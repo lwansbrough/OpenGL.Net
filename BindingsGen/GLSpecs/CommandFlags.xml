@@ -315,8 +315,20 @@
 	
 	<!-- CL -->
 
-	<command name="^cl(GetPlatformIDs|GetPlatformInfo)$">
+	<command name="^clGet(Platform|Device)(IDs|Info)$">
 		<flags>OutParamLast</flags>
 	</command>
+
+	<command name="^clGet(Context|CommandQueue|MemObject|Image|Sampler|Program(Build?)|Kernel(WorkGroup)?|Event(Profiling)?)Info$">
+		<flags>OutParamLast</flags>
+	</command>
+
+	<command name="^clGetSupportedImageFormats$">
+		<flags>OutParamLast</flags>
+	</command>
+
+	<!--<command name="^clCreate(Context(FromType)|Buffer|ProgramWithSource|ProgramWithBinary|Kernel|KernelsInProgram)?$">
+		<flags>OutParamLast</flags>
+	</command>-->
 	
 </command_overrides>

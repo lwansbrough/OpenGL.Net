@@ -3005,6 +3005,48 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Obtain the list of devices available on a platform.
+		/// </summary>
+		/// <param name="platform">
+		/// Refers to the platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="device_type">
+		/// A bitfield that identifies the type of OpenCL device. The device_type can be used to query specific OpenCL devices or 
+		/// all OpenCL devices available. The valid values for device_type are specified in the following table.
+		/// </param>
+		/// <param name="num_entries">
+		/// The number of cl_device_id entries that can be added to devices. If devices is not NULL, the num_entries must be greater 
+		/// than zero.
+		/// </param>
+		/// <param name="devices">
+		/// A list of OpenCL devices found. The cl_device_id values returned in devices can be used to identify a specific OpenCL 
+		/// device. If devices argument is NULL, this argument is ignored. The number of OpenCL devices returned is the mininum of 
+		/// the value specified by num_entries or the number of OpenCL devices whose type matches device_type.
+		/// </param>
+		/// <param name="num_devices">
+		/// The number of OpenCL devices available that match device_type. If num_devices is NULL, this argument is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetDeviceIDs(IntPtr platform, DeviceType device_type, uint num_entries, [Out] IntPtr[] devices, out uint num_devices)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (IntPtr* p_devices = devices)
+				fixed (uint* p_num_devices = &num_devices)
+				{
+					Debug.Assert(Delegates.pclGetDeviceIDs != null, "pclGetDeviceIDs not implemented");
+					retValue = Delegates.pclGetDeviceIDs(platform, device_type, num_entries, p_devices, p_num_devices);
+					LogFunction("clGetDeviceIDs(0x{0}, {1}, {2}, {3}, {4}) = {5}", platform.ToString("X8"), device_type, num_entries, LogValue(devices), num_devices, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Get information about an OpenCL device.
 		/// </summary>
 		/// <param name="device">
@@ -3075,6 +3117,45 @@ namespace OpenCL
 				pin_device.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Get information about an OpenCL device.
+		/// </summary>
+		/// <param name="device">
+		/// A device returned by Gl.GetDeviceIDs.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the device information being queried. It can be one of the values as specified 
+		/// in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name as specified in the table below will be 
+		/// returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetDeviceInfo(IntPtr device, DeviceInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetDeviceInfo != null, "pclGetDeviceInfo not implemented");
+					retValue = Delegates.pclGetDeviceInfo(device, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetDeviceInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -3269,6 +3350,43 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Query information about a context.
+		/// </summary>
+		/// <param name="context">
+		/// Specifies the OpenCL context being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that specifies the information to query. The valid values for param_name are:
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be greater than or equal to the size of 
+		/// return type as described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetContextInfo(IntPtr context, ContextInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetContextInfo != null, "pclGetContextInfo not implemented");
+					retValue = Delegates.pclGetContextInfo(context, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetContextInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", context.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Increments the command_queue reference count.
 		/// </summary>
 		/// <param name="command_queue">
@@ -3373,6 +3491,43 @@ namespace OpenCL
 				pin_command_queue.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Query information about a command-queue.
+		/// </summary>
+		/// <param name="command_queue">
+		/// Specifies the command-queue being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetCommandQueueInfo(IntPtr command_queue, CommandQueueInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetCommandQueueInfo != null, "pclGetCommandQueueInfo not implemented");
+					retValue = Delegates.pclGetCommandQueueInfo(command_queue, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetCommandQueueInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", command_queue.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -3543,6 +3698,55 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Get the list of image formats supported by an OpenCL implementation.
+		/// </summary>
+		/// <param name="context">
+		/// A valid OpenCL context on which the image object(s) will be created.
+		/// </param>
+		/// <param name="flags">
+		/// A bit-field that is used to specify allocation and usage information about the image memory object being queried and is 
+		/// described in the table below. To get a list of supported image formats that can be read from or written to by a kernel, 
+		/// flags must be set to CL_MEM_READ_WRITE (get a list of images that can be read from and written to by different kernel 
+		/// instances when correctly ordered by event dependencies), CL_MEM_READ_ONLY (list of images that can be read from by a 
+		/// kernel) or CL_MEM_WRITE_ONLY (list of images that can be written to by a kernel). To get a list of supported image 
+		/// formats that can be both read from and written to by a kernel, flags must be set to CL_MEM_KERNEL_READ_AND_WRITE. Please 
+		/// see section 5.3.2.2 for clarification.
+		/// </param>
+		/// <param name="image_type">
+		/// Describes the image type and must be either CL_MEM_OBJECT_IMAGE1D, CL_MEM_OBJECT_IMAGE1D_BUFFER, CL_MEM_OBJECT_IMAGE2D, 
+		/// CL_MEM_OBJECT_IMAGE3D, CL_MEM_OBJECT_IMAGE1D_ARRAY or CL_MEM_OBJECT_IMAGE2D_ARRAY.
+		/// </param>
+		/// <param name="num_entries">
+		/// Specifies the number of entries that can be returned in the memory location given by image_formats.
+		/// </param>
+		/// <param name="image_formats">
+		/// A pointer to a memory location where the list of supported image formats are returned. Each entry describes a 
+		/// Gl._image_format structure supported by the OpenCL implementation. If image_formats is NULL, it is ignored.
+		/// </param>
+		/// <param name="num_image_formats">
+		/// The actual number of supported image formats for a specific context and values specified by flags. If num_image_formats 
+		/// is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetSupportedImageFormats(IntPtr context, ulong flags, MemObjectType image_type, uint num_entries, [Out] Cl.ImageFormat[] image_formats, out uint num_image_formats)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (Cl.ImageFormat* p_image_formats = image_formats)
+				fixed (uint* p_num_image_formats = &num_image_formats)
+				{
+					Debug.Assert(Delegates.pclGetSupportedImageFormats != null, "pclGetSupportedImageFormats not implemented");
+					retValue = Delegates.pclGetSupportedImageFormats(context, flags, image_type, num_entries, p_image_formats, p_num_image_formats);
+					LogFunction("clGetSupportedImageFormats(0x{0}, {1}, {2}, {3}, {4}, {5}) = {6}", context.ToString("X8"), flags, image_type, num_entries, LogValue(image_formats), num_image_formats, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Get information that is common to all memory objects (buffer and image objects).
 		/// </summary>
 		/// <param name="memobj">
@@ -3614,6 +3818,44 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Get information that is common to all memory objects (buffer and image objects).
+		/// </summary>
+		/// <param name="memobj">
+		/// Specifies the memory object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetMemObjectInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetMemObjectInfo(IntPtr memobj, MemInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetMemObjectInfo != null, "pclGetMemObjectInfo not implemented");
+					retValue = Delegates.pclGetMemObjectInfo(memobj, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetMemObjectInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", memobj.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Get information specific to an image object created with clCreateImage.
 		/// </summary>
 		/// <param name="image">
@@ -3682,6 +3924,44 @@ namespace OpenCL
 				pin_image.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Get information specific to an image object created with clCreateImage.
+		/// </summary>
+		/// <param name="image">
+		/// Specifies the image object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetImageInfo is described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below (Table 5.9).
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetImageInfo(IntPtr image, ImageInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetImageInfo != null, "pclGetImageInfo not implemented");
+					retValue = Delegates.pclGetImageInfo(image, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetImageInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", image.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -3791,6 +4071,44 @@ namespace OpenCL
 				pin_sampler.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Returns information about the sampler object.
+		/// </summary>
+		/// <param name="sampler">
+		/// Specifies the sampler being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetSamplerInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetSamplerInfo(IntPtr sampler, SamplerInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetSamplerInfo != null, "pclGetSamplerInfo not implemented");
+					retValue = Delegates.pclGetSamplerInfo(sampler, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetSamplerInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", sampler.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -4127,6 +4445,48 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Returns build information for each device in the program object.
+		/// </summary>
+		/// <param name="program">
+		/// Specifies the program object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Specifies the device for which build information is being queried. device must be a valid device associated with 
+		/// program.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetProgramBuildInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table above.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetProgramBuildInfo(IntPtr program, IntPtr device, ProgramBuildInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetProgramBuildInfo != null, "pclGetProgramBuildInfo not implemented");
+					retValue = Delegates.pclGetProgramBuildInfo(program, device, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetProgramBuildInfo(0x{0}, 0x{1}, {2}, {3}, 0x{4}, {5}) = {6}", program.ToString("X8"), device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Creates a kernel object.
 		/// </summary>
 		/// <param name="program">
@@ -4338,6 +4698,44 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Returns information about the kernel object.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetKernelInfo(IntPtr kernel, KernelInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetKernelInfo != null, "pclGetKernelInfo not implemented");
+					retValue = Delegates.pclGetKernelInfo(kernel, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetKernelInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", kernel.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Returns information about the kernel object that may be specific to a device.
 		/// </summary>
 		/// <param name="kernel">
@@ -4418,6 +4816,49 @@ namespace OpenCL
 				pin_device.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Returns information about the kernel object that may be specific to a device.
+		/// </summary>
+		/// <param name="kernel">
+		/// Specifies the kernel object being queried.
+		/// </param>
+		/// <param name="device">
+		/// Identifies a specific device in the list of devices associated with kernel. The list of devices is the list of devices 
+		/// in the OpenCL context that is associated with kernel. If the list of devices associated with kernel is a single device, 
+		/// device can be a NULL value.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetKernelWorkGroupInfo is described in the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Used to specify the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetKernelWorkGroupInfo(IntPtr kernel, IntPtr device, KernelWorkGroupInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetKernelWorkGroupInfo != null, "pclGetKernelWorkGroupInfo not implemented");
+					retValue = Delegates.pclGetKernelWorkGroupInfo(kernel, device, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetKernelWorkGroupInfo(0x{0}, 0x{1}, {2}, {3}, 0x{4}, {5}) = {6}", kernel.ToString("X8"), device.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -4515,6 +4956,44 @@ namespace OpenCL
 				pin_event.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Returns information about the event object.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the information to query. The list of supported param_name types and the information returned in param_value 
+		/// by clGetEventInfo is described in the table below (Table 5.22):
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of the return type as 
+		/// described in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetEventInfo(IntPtr @event, EventInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetEventInfo != null, "pclGetEventInfo not implemented");
+					retValue = Delegates.pclGetEventInfo(@event, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetEventInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", @event.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>
@@ -4624,6 +5103,44 @@ namespace OpenCL
 				pin_event.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Returns profiling information for the command associated with event if profiling is enabled.
+		/// </summary>
+		/// <param name="event">
+		/// A <see cref="T:IntPtr"/>.
+		/// </param>
+		/// <param name="param_name">
+		/// Specifies the profiling data to query. The list of supported param_name types and the information returned in 
+		/// param_value by clGetEventProfilingInfo is described in the table of parameter queries below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size must be ≥ size of return type as described in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory where the appropriate result being queried is returned. if param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data copied to param_value. If param_value_size_ret is NULL, it is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetEventProfilingInfo(IntPtr @event, ProfilingInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetEventProfilingInfo != null, "pclGetEventProfilingInfo not implemented");
+					retValue = Delegates.pclGetEventProfilingInfo(@event, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetEventProfilingInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", @event.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>

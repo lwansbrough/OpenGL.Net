@@ -53,21 +53,29 @@ namespace OpenGL.Test
 				Assert.AreNotEqual(IntPtr.Zero, platformIds);
 		}
 
+		private IntPtr[] PlatformIds
+		{
+			get
+			{
+				uint platformsCount;
+
+				Cl.GetPlatformIDs(0, null, out platformsCount);
+
+				IntPtr[] platformIds = new IntPtr[platformsCount];
+
+				Cl.GetPlatformIDs((uint)platformIds.Length, platformIds, out platformsCount);
+
+				return (platformIds);
+			}
+		}
+
 		/// <summary>
 		/// Test Cl.GetPlatformInfo.
 		/// </summary>
 		[Test]
 		public void TestGetPlatformInfo()
 		{
-			uint platformsCount;
-
-			Cl.GetPlatformIDs(0, null, out platformsCount);
-
-			IntPtr[] platformIds = new IntPtr[platformsCount];
-
-			Cl.GetPlatformIDs((uint)platformIds.Length, platformIds, out platformsCount);
-
-			foreach (IntPtr platformId in platformIds)
+			foreach (IntPtr platformId in PlatformIds)
 				TestGetPlatformInfo(platformId);
 		}
 
@@ -92,6 +100,21 @@ namespace OpenGL.Test
 
 			//Cl.GetPlatformInfo(platformId, PlatformInfo.PlatformHostTimerResolution, out platformInfo);
 			//Console.WriteLine("Platform 0x{0:X8} timer resolution: {1}", platformId.ToInt32(), platformInfo);
+		}
+
+		/// <summary>
+		/// Test Cl.GetPlatformIDs.
+		/// </summary>
+		[Test]
+		public void TestGetDeviceIDs()
+		{
+			foreach (IntPtr platformId in PlatformIds)
+				TestGetDeviceIDs(platformId);
+		}
+
+		private void TestGetDeviceIDs(IntPtr platformId)
+		{
+			Cl.GetDeviceIDs(platformId, DeviceType.DeviceTypeAll, 0, null, null);
 		}
 	}
 }
