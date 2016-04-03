@@ -38,13 +38,22 @@ namespace OpenCL
 		public const int KERNEL_SUB_GROUP_COUNT_FOR_NDRANGE = 0x2034;
 
 		/// <summary>
-		/// Value of CL_KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT symbol.
+		/// Cl.GetKernelSubGroupInfo: returns the local size that will generate the requested number of sub- groups for the kernel. 
+		/// The output array must be an array of size_t values corresponding to the local size parameter. Any returned work-group 
+		/// will have one dimension. Other dimensions inferred from the value specified for param_value_size will be filled with the 
+		/// value 1. The returned value will produce an exact number of sub-groups and result in no partial groups for an executing 
+		/// kernel except in the case where the last work- group in a dimension has a size different from that of the other groups. 
+		/// If no work-group size can accommodate the requested number of sub-groups, 0 will be returned in each element of the 
+		/// return array.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_2_1")]
 		public const int KERNEL_LOCAL_SIZE_FOR_SUB_GROUP_COUNT = 0x11B8;
 
 		/// <summary>
-		/// Value of CL_KERNEL_EXEC_INFO_SVM_PTRS symbol.
+		/// Cl.SetKernelExecInfo: type: void *[] SVM pointers used by a kernel which are not passed as arguments to kernel. These 
+		/// addresses may be defined in SVM buffer(s) that are passed as arguments to kernel. These non-argument SVM pointers must 
+		/// be specified using clSetKernelExecInfo for coarse-grain and fine-grain buffer SVM allocations but not for fine-grain 
+		/// system SVM allocations.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_2_1")]
 		public const int KERNEL_EXEC_INFO_SVM_PTRS = 0x11B6;

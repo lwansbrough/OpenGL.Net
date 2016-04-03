@@ -26,37 +26,58 @@ namespace OpenCL
 	public partial class Cl
 	{
 		/// <summary>
-		/// Value of CL_KERNEL_ARG_ADDRESS_QUALIFIER symbol.
+		/// Cl.GetKernelArgInfo: returns the address qualifier specified for the argument given by arg_indx. This can be one of the 
+		/// following values: 
+		/// Cl.KERNEL_ARG_ADDRESS_GLOBALCl.KERNEL_ARG_ADDRESS_LOCALCl.KERNEL_ARG_ADDRESS_CONSTANTCl.KERNEL_ARG_ADDRESS_PRIVATE If no 
+		/// address qualifier is specified, the default address qualifier which is Cl.KERNEL_ARG_ADDRESS_PRIVATE is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public const int KERNEL_ARG_ADDRESS_QUALIFIER = 0x1196;
 
 		/// <summary>
-		/// Value of CL_KERNEL_ARG_ACCESS_QUALIFIER symbol.
+		/// Cl.GetKernelArgInfo: returns the access qualifier specified for the argument given by arg_indx. This can be one of the 
+		/// following values: 
+		/// Cl.KERNEL_ARG_ACCESS_READ_ONLYCl.KERNEL_ARG_ACCESS_WRITE_ONLYCl.KERNEL_ARG_ACCESS_READ_WRITECl.KERNEL_ARG_ACCESS_NONE If 
+		/// argument is not an image type and is not declared with the pipe qualifier, Cl.KERNEL_ARG_ACCESS_NONE is returned. If 
+		/// argument is an image type, the access qualifier specified or the default access qualifier is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public const int KERNEL_ARG_ACCESS_QUALIFIER = 0x1197;
 
 		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_NAME symbol.
+		/// Cl.GetKernelArgInfo: returns the type name specified for the argument given by arg_indx. The type name returned will be 
+		/// the argument type name as it was declared with any whitespace removed. If argument type name is an unsigned scalar type 
+		/// (i.e. unsigned char, unsigned short, unsigned int, unsigned long), uchar, ushort, uint and ulong will be returned. The 
+		/// argument type name returned does not include any type qualifiers.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public const int KERNEL_ARG_TYPE_NAME = 0x1198;
 
 		/// <summary>
-		/// Value of CL_KERNEL_ARG_TYPE_QUALIFIER symbol.
+		/// Cl.GetKernelArgInfo: returns the type qualifier specified for the argument given by arg_indx. The returned value can be: 
+		/// Cl.KERNEL_ARG_TYPE_CONST, Cl.KERNEL_ARG_TYPE_RESTRICT, Cl.KERNEL_ARG_TYPE_VOLATILE, a combination of the above enums, 
+		/// Cl.KERNEL_ARG_TYPE_PIPE or Cl.KERNEL_ARG_TYPE_NONE. NOTE: Cl.KERNEL_ARG_TYPE_VOLATILE is returned if the argument is a 
+		/// pointer and the pointer is declared with the volatile qualifier. For example, a kernel argument declared as global int 
+		/// volatile *x returns Cl.KERNEL_ARG_TYPE_VOLATILE but a kernel argument declared as global int * volatile x does not. 
+		/// Similarly, Cl.KERNEL_ARG_TYPE_CONST is returned if the argument is a pointer and the referenced type is declared with 
+		/// the restrict or const qualifier. For example, a kernel argument declared as global int const *x returns 
+		/// Cl.KERNEL_ARG_TYPE_CONST but a kernel argument declared as global int * const x does not. If the argument is declared 
+		/// with the constant address space qualifier, the Cl.KERNEL_ARG_TYPE_CONST type qualifier will be set. 
+		/// Cl.KERNEL_ARG_TYPE_RESTRICT will be returned if the pointer type is marked restrict. For example, global int * restrict 
+		/// x returns Cl.KERNEL_ARG_TYPE_RESTRICT.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public const int KERNEL_ARG_TYPE_QUALIFIER = 0x1199;
 
 		/// <summary>
-		/// Value of CL_KERNEL_ARG_NAME symbol.
+		/// Cl.GetKernelArgInfo: returns the name specified for the argument given by arg_indx.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		public const int KERNEL_ARG_NAME = 0x119A;
 
 		/// <summary>
-		/// Value of CL_MIGRATE_MEM_OBJECT_HOST symbol.
+		/// Cl.EnqueueMigrateMemObjects: this flag indicates that the specified set of memory objects are to be migrated to the 
+		/// host, regardless of the target command-queue.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_2")]
 		[RequiredByFeature("CL_VERSION_2_1")]

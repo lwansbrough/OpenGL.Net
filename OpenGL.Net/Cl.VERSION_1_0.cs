@@ -62,85 +62,134 @@ namespace OpenCL
 		public const int PLATFORM_HOST_TIMER_RESOLUTION = 0x0905;
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_DEFAULT symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: the default OpenCL device in the system. The default device cannot be a Cl.DEVICE_TYPE_CUSTOM 
+		/// device.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: the default OpenCL device in the system. The default device cannot be a Cl.DEVICE_TYPE_CUSTOM device.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int DEVICE_TYPE_DEFAULT = (1 << 0);
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_CPU symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: an OpenCL device that is the host processor. The host processor runs the OpenCL 
+		/// implementations and is a single or multi-core CPU.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: an OpenCL device that is the host processor. The host processor runs the OpenCL implementations and is 
+		/// a single or multi-core CPU.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int DEVICE_TYPE_CPU = (1 << 1);
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_GPU symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: an OpenCL device that is a GPU. By this we mean that the device can also be used to accelerate 
+		/// a 3D API such as OpenGL or DirectX.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: an OpenCL device that is a GPU. By this we mean that the device can also be used to accelerate a 3D API 
+		/// such as OpenGL or DirectX.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int DEVICE_TYPE_GPU = (1 << 2);
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_ACCELERATOR symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: dedicated OpenCL accelerators (for example the IBM CELL Blade). These devices communicate with 
+		/// the host processor using a peripheral interconnect such as PCIe.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: dedicated OpenCL accelerators (for example the IBM CELL Blade). These devices communicate with the host 
+		/// processor using a peripheral interconnect such as PCIe.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int DEVICE_TYPE_ACCELERATOR = (1 << 3);
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_CUSTOM symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: dedicated accelerators that do not support programs written in OpenCL C.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: dedicated accelerators that do not support programs written in OpenCL C.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int DEVICE_TYPE_CUSTOM = (1 << 4);
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE_ALL symbol.
+		/// <para>
+		/// Cl.CreateContextFromType: all OpenCL devices available in the system except Cl.DEVICE_TYPE_CUSTOM devices.
+		/// </para>
+		/// <para>
+		/// Cl.GetDeviceIDs: all OpenCL devices available in the system except Cl.DEVICE_TYPE_CUSTOM devices.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const uint DEVICE_TYPE_ALL = 0xFFFFFFFF;
 
 		/// <summary>
-		/// Value of CL_DEVICE_TYPE symbol.
+		/// Cl.GetDeviceInfo: the OpenCL device type. Currently supported values are: Cl.DEVICE_TYPE_CPU, Cl.DEVICE_TYPE_GPU, 
+		/// Cl.DEVICE_TYPE_ACCELERATOR, Cl.DEVICE_TYPE_DEFAULT, a combination of the above types, or Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_TYPE = 0x1000;
 
 		/// <summary>
-		/// Value of CL_DEVICE_VENDOR_ID symbol.
+		/// Cl.GetDeviceInfo: a unique device vendor identifier. An example of a unique device identifier could be the PCIe ID.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_VENDOR_ID = 0x1001;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_COMPUTE_UNITS symbol.
+		/// Cl.GetDeviceInfo: the number of parallel compute units on the OpenCL device. A work-group executes on a single compute 
+		/// unit. The minimum value is 1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_COMPUTE_UNITS = 0x1002;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS symbol.
+		/// Cl.GetDeviceInfo: maximum dimensions that specify the global and local work-item IDs used by the data parallel execution 
+		/// model. (Refer to Cl.EnqueueNDRangeKernel). The minimum value is 3 for devices that are not of type 
+		/// Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_WORK_ITEM_DIMENSIONS = 0x1003;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_WORK_GROUP_SIZE symbol.
+		/// Cl.GetDeviceInfo: maximum number of work-items in a work-group that a device is capable of executing on a single compute 
+		/// unit, for any given kernel-instance running on the device. (Refer also to Cl.EnqueueNDRangeKernel) and 
+		/// Cl.KERNEL_WORK_GROUP_SIZE). The minimum value is 1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_WORK_GROUP_SIZE = 0x1004;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_WORK_ITEM_SIZES symbol.
+		/// Cl.GetDeviceInfo: maximum number of work-items that can be specified in each dimension of the work-group to 
+		/// Cl.EnqueueNDRangeKernel. Returns nsize_t entries, where n is the value returned by the query for 
+		/// Cl.DEVICE_MAX_WORK_ITEM_DIMENSIONS. The minimum value is (1, 1, 1) for devices that are not of type 
+		/// Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_WORK_ITEM_SIZES = 0x1005;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR symbol.
+		/// Cl.GetDeviceInfo: preferred native vector width size for built-in scalar types that can be put into vectors. The vector 
+		/// width is defined as the number of scalar elements that can be stored in the vector. If double precision is not 
+		/// supported, Cl.DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE must return 0. If the Cl._khr_fp16 extension is not supported, 
+		/// Cl.DEVICE_PREFERRED_VECTOR_WIDTH_HALF must return 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PREFERRED_VECTOR_WIDTH_CHAR = 0x1006;
@@ -176,85 +225,96 @@ namespace OpenCL
 		public const int DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE = 0x100B;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_CLOCK_FREQUENCY symbol.
+		/// Cl.GetDeviceInfo: maximum configured clock frequency of the device in MHz.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_CLOCK_FREQUENCY = 0x100C;
 
 		/// <summary>
-		/// Value of CL_DEVICE_ADDRESS_BITS symbol.
+		/// Cl.GetDeviceInfo: the default compute device address space size of the global address space specified as an unsigned 
+		/// integer value in bits. Currently supported values are 32 or 64 bits.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_ADDRESS_BITS = 0x100D;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_READ_IMAGE_ARGS symbol.
+		/// Cl.GetDeviceInfo: max number of image objects arguments of a kernel declared with the read_only qualifier. The minimum 
+		/// value is 128 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_READ_IMAGE_ARGS = 0x100E;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_WRITE_IMAGE_ARGS symbol.
+		/// Cl.GetDeviceInfo: max number of image objects arguments of a kernel declared with the write_only qualifier. The minimum 
+		/// value is 64 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE. NOTE: Cl.DEVICE_MAX_WRITE_IMAGE_ARGS is only there for backward 
+		/// compatibility. Cl.DEVICE_MAX_READ_WRITE_IMAGE_ARGS should be used instead.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_WRITE_IMAGE_ARGS = 0x100F;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_MEM_ALLOC_SIZE symbol.
+		/// Cl.GetDeviceInfo: max size of memory object allocation in bytes. The minimum value is max(min(1024*1024*1024, 1/4th of 
+		/// Cl.DEVICE_GLOBAL_MEM_SIZE), 32*1024*1024) for devices that are not of type Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_MEM_ALLOC_SIZE = 0x1010;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE2D_MAX_WIDTH symbol.
+		/// Cl.GetDeviceInfo: max width of 2D image or 1D image not created from a buffer object in pixels. The minimum value is 
+		/// 16384 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE2D_MAX_WIDTH = 0x1011;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE2D_MAX_HEIGHT symbol.
+		/// Cl.GetDeviceInfo: max height of 2D image in pixels. The minimum value is 16384 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE2D_MAX_HEIGHT = 0x1012;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE3D_MAX_WIDTH symbol.
+		/// Cl.GetDeviceInfo: max width of 3D image in pixels. The minimum value is 2048 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE3D_MAX_WIDTH = 0x1013;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE3D_MAX_HEIGHT symbol.
+		/// Cl.GetDeviceInfo: max height of 3D image in pixels. The minimum value is 2048 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE3D_MAX_HEIGHT = 0x1014;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE3D_MAX_DEPTH symbol.
+		/// Cl.GetDeviceInfo: max depth of 3D image in pixels. The minimum value is 2048 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE3D_MAX_DEPTH = 0x1015;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE_SUPPORT symbol.
+		/// Cl.GetDeviceInfo: is Cl.TRUE if images are supported by the OpenCL device and Cl.FALSE otherwise.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE_SUPPORT = 0x1016;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_PARAMETER_SIZE symbol.
+		/// Cl.GetDeviceInfo: max size in bytes of all arguments that can be passed to a kernel. The minimum value is 1024 for 
+		/// devices that are not of type Cl.DEVICE_TYPE_CUSTOM. For this minimum value, only a maximum of 128 arguments can be 
+		/// passed to a kernel.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_PARAMETER_SIZE = 0x1017;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_SAMPLERS symbol.
+		/// Cl.GetDeviceInfo: maximum number of samplers that can be used in a kernel. The minimum value is 16 if 
+		/// Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE. (Also see Cl.mpler_t.)
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_SAMPLERS = 0x1018;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MEM_BASE_ADDR_ALIGN symbol.
+		/// Cl.GetDeviceInfo: alignment requirement (in bits) for sub-buffer offsets. The minimum value is the size (in bits) of the 
+		/// largest OpenCL built-in data type supported by the device (long16 in FULL profile, long16 or int16 in EMBEDDED profile) 
+		/// for devices that are not of type Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MEM_BASE_ADDR_ALIGN = 0x1019;
@@ -266,91 +326,109 @@ namespace OpenCL
 		public const int DEVICE_MIN_DATA_TYPE_ALIGN_SIZE = 0x101A;
 
 		/// <summary>
-		/// Value of CL_DEVICE_SINGLE_FP_CONFIG symbol.
+		/// Cl.GetDeviceInfo: describes single precision floating-point capability of the device. This is a bit-field that describes 
+		/// one or more of the following values: Cl.FP_DENORM - denorms are supportedCl.FP_INF_NAN - INF and quiet NaNs are 
+		/// supportedCl.FP_ROUND_TO_NEAREST - round to nearest even rounding mode supportedCl.FP_ROUND_TO_ZERO - round to zero 
+		/// rounding mode supportedCl.FP_ROUND_TO_INF - round to +ve and -ve infinity rounding modes supportedCl.FP_FMA - 
+		/// IEEE754-2008 fused multiply-add is supportedCl.FP_CORRECTLY_ROUNDED_DIVIDE_SQRT - divide and sqrt are correctly rounded 
+		/// as defined by the IEEE754 specification. Cl.FP_SOFT_FLOAT - Basic floating-point operations (such as addition, 
+		/// subtraction, multiplication) are implemented in software. For the full profile, the mandated minimum floating-point 
+		/// capability for devices that are not of type Cl.DEVICE_TYPE_CUSTOM is Cl.FP_ROUND_TO_NEAREST | Cl.FP_INF_NAN. For the 
+		/// embedded profile, see section 10.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_SINGLE_FP_CONFIG = 0x101B;
 
 		/// <summary>
-		/// Value of CL_DEVICE_GLOBAL_MEM_CACHE_TYPE symbol.
+		/// Cl.GetDeviceInfo: type of global memory cache supported. Valid values are: Cl.NONE, Cl.READ_ONLY_CACHE, and 
+		/// Cl.READ_WRITE_CACHE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_GLOBAL_MEM_CACHE_TYPE = 0x101C;
 
 		/// <summary>
-		/// Value of CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE symbol.
+		/// Cl.GetDeviceInfo: size of global memory cache line in bytes.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_GLOBAL_MEM_CACHELINE_SIZE = 0x101D;
 
 		/// <summary>
-		/// Value of CL_DEVICE_GLOBAL_MEM_CACHE_SIZE symbol.
+		/// Cl.GetDeviceInfo: size of global memory cache in bytes.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_GLOBAL_MEM_CACHE_SIZE = 0x101E;
 
 		/// <summary>
-		/// Value of CL_DEVICE_GLOBAL_MEM_SIZE symbol.
+		/// Cl.GetDeviceInfo: size of global device memory in bytes.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_GLOBAL_MEM_SIZE = 0x101F;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE symbol.
+		/// Cl.GetDeviceInfo: max size in bytes of a constant buffer allocation. The minimum value is 64 KB for devices that are not 
+		/// of type Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_CONSTANT_BUFFER_SIZE = 0x1020;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_CONSTANT_ARGS symbol.
+		/// Cl.GetDeviceInfo: max number of arguments declared with the Cl.constant qualifier in a kernel. The minimum value is 8 
+		/// for devices that are not of type Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_CONSTANT_ARGS = 0x1021;
 
 		/// <summary>
-		/// Value of CL_DEVICE_LOCAL_MEM_TYPE symbol.
+		/// Cl.GetDeviceInfo: type of local memory supported. This can be set to Cl.LOCAL implying dedicated local memory storage 
+		/// such as SRAM, or Cl.GLOBAL. For custom devices, Cl.NONE can also be returned indicating no local memory support.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_LOCAL_MEM_TYPE = 0x1022;
 
 		/// <summary>
-		/// Value of CL_DEVICE_LOCAL_MEM_SIZE symbol.
+		/// Cl.GetDeviceInfo: size of local memory region in bytes. The minimum value is 32 KB for devices that are not of type 
+		/// Cl.DEVICE_TYPE_CUSTOM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_LOCAL_MEM_SIZE = 0x1023;
 
 		/// <summary>
-		/// Value of CL_DEVICE_ERROR_CORRECTION_SUPPORT symbol.
+		/// Cl.GetDeviceInfo: is Cl.TRUE if the device implements error correction for all accesses to compute device memory (global 
+		/// and constant). Is Cl.FALSE if the device does not implement such error correction.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_ERROR_CORRECTION_SUPPORT = 0x1024;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PROFILING_TIMER_RESOLUTION symbol.
+		/// Cl.GetDeviceInfo: describes the resolution of device timer. This is measured in nanoseconds.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PROFILING_TIMER_RESOLUTION = 0x1025;
 
 		/// <summary>
-		/// Value of CL_DEVICE_ENDIAN_LITTLE symbol.
+		/// Cl.GetDeviceInfo: is Cl.TRUE if the OpenCL device is a little endian device and Cl.FALSE otherwise.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_ENDIAN_LITTLE = 0x1026;
 
 		/// <summary>
-		/// Value of CL_DEVICE_AVAILABLE symbol.
+		/// Cl.GetDeviceInfo: is Cl.TRUE if the device is available and Cl.FALSE otherwise. A device is considered to be available 
+		/// if the device can be expected to successfully execute commands enqueued to the device
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_AVAILABLE = 0x1027;
 
 		/// <summary>
-		/// Value of CL_DEVICE_COMPILER_AVAILABLE symbol.
+		/// Cl.GetDeviceInfo: is Cl.FALSE if the implementation does not have a compiler available to compile the program source. Is 
+		/// Cl.TRUE if the compiler is available. This can be Cl.FALSE for the embedded platform profile only.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_COMPILER_AVAILABLE = 0x1028;
 
 		/// <summary>
-		/// Value of CL_DEVICE_EXECUTION_CAPABILITIES symbol.
+		/// Cl.GetDeviceInfo: describes the execution capabilities of the device. This is a bit-field that describes one or more of 
+		/// the following values: Cl.EXEC_KERNEL - The OpenCL device can execute OpenCL kernels.Cl.EXEC_NATIVE_KERNEL - The OpenCL 
+		/// device can execute native kernels.The mandated minimum capability is Cl.EXEC_KERNEL.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_EXECUTION_CAPABILITIES = 0x1029;
@@ -362,55 +440,82 @@ namespace OpenCL
 		public const int DEVICE_QUEUE_PROPERTIES = 0x102A;
 
 		/// <summary>
-		/// Value of CL_DEVICE_QUEUE_ON_HOST_PROPERTIES symbol.
+		/// Cl.GetDeviceInfo: describes the on host command-queue properties supported by the device. This is a bit-field that 
+		/// describes one or more of the following values: Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLECl.QUEUE_PROFILING_ENABLE These 
+		/// properties are described in the table for Cl.CreateCommandQueueWithProperties. The mandated minimum capability is 
+		/// Cl.QUEUE_PROFILING_ENABLE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_QUEUE_ON_HOST_PROPERTIES = 0x102A;
 
 		/// <summary>
-		/// Value of CL_DEVICE_NAME symbol.
+		/// Cl.GetDeviceInfo: device name string.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_NAME = 0x102B;
 
 		/// <summary>
-		/// Value of CL_DEVICE_VENDOR symbol.
+		/// Cl.GetDeviceInfo: vendor name string.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_VENDOR = 0x102C;
 
 		/// <summary>
-		/// Value of CL_DRIVER_VERSION symbol.
+		/// Cl.GetDeviceInfo: openCL software driver version string in the form major_number.minor_number.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DRIVER_VERSION = 0x102D;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PROFILE symbol.
+		/// Cl.GetDeviceInfo: openCL profile string. Returns the profile name supported by the device (see note). The profile name 
+		/// returned can be one of the following strings: FULL_PROFILE - if the device supports the OpenCL specification 
+		/// (functionality defined as part of the core specification and does not require any extensions to be supported). 
+		/// EMBEDDED_PROFILE - if the device supports the OpenCL embedded profile. The platform profile returns the profile that is 
+		/// implemented by the OpenCL framework. If the platform profile returned is Cl.L_PROFILE, the OpenCL framework will support 
+		/// devices that are Cl.L_PROFILE and may also support devices that are Cl.EDDED_PROFILE. The compiler must be available for 
+		/// all devices i.e. Cl.DEVICE_COMPILER_AVAILABLE is Cl.TRUE. If the platform profile returned is Cl.EDDED_PROFILE, then 
+		/// devices that are only Cl.EDDED_PROFILE are supported.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PROFILE = 0x102E;
 
 		/// <summary>
-		/// Value of CL_DEVICE_VERSION symbol.
+		/// Cl.GetDeviceInfo: openCL version string. Returns the OpenCL version supported by the device. This version string has the 
+		/// following format: OpenCL&lt;space&gt;&lt;major_version.minor_version&gt;&lt;space&gt;&lt;vendor-specific information&gt; 
+		/// The major_version.minor_version value returned will be 2.1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_VERSION = 0x102F;
 
 		/// <summary>
-		/// Value of CL_DEVICE_EXTENSIONS symbol.
+		/// Cl.GetDeviceInfo: returns a space separated list of extension names (the extension names themselves do not contain any 
+		/// spaces) supported by the device. The list of extension names returned can be vendor supported extension names and one or 
+		/// more of the following Khronos approved extension names: 
+		/// Cl._khr_int64_base_atomicsCl._khr_int64_extended_atomicsCl._khr_fp16Cl._khr_gl_sharingCl._khr_gl_eventCl._khr_d3d10_sharingCl._khr_dx9_media_sharingCl._khr_d3d11_sharingCl._khr_gl_depth_imagesCl._khr_gl_msaa_sharingCl._khr_initialize_memorycl_khr_context_abortCl._khr_spirCl._khr_srgb_image_writes 
+		/// The following approved Khronos extension names must be returned by all device that support OpenCL C 
+		/// 2.0:cl_khr_byte_addressable_storeCl._khr_fp64 (for backward compatibility if double precision is 
+		/// supported)Cl._khr_3d_image_writescl_khr_image2d_from_buffercl_khr_depth_images Please refer to the OpenCL 2.0 Extension 
+		/// Specification for a detailed description of these extensions.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_EXTENSIONS = 0x1030;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PLATFORM symbol.
+		/// Cl.GetDeviceInfo: the platform associated with this device.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PLATFORM = 0x1031;
 
 		/// <summary>
-		/// Value of CL_DEVICE_DOUBLE_FP_CONFIG symbol.
+		/// Cl.GetDeviceInfo: describes double precision floating-point capability of the OpenCL device. This is a bit-field that 
+		/// describes one or more of the following values: Cl.FP_DENORM - denorms are supported.Cl.FP_INF_NAN - INF and NaNs are 
+		/// supported.Cl.FP_ROUND_TO_NEAREST - round to nearest even rounding mode supported.Cl.FP_ROUND_TO_ZERO - round to zero 
+		/// rounding mode supported.Cl.FP_ROUND_TO_INF - round to positive and negative infinity rounding modes supported.Cl.FP_FMA 
+		/// - IEEE754-2008 fused multiply-add is supported. Cl.FP_SOFT_FLOAT - Basic floating-point operations (such as addition, 
+		/// subtraction, multiplication) are implemented in software. Double precision is an optional feature so the mandated 
+		/// minimum double precision floating-point capability is 0. If double precision is supported by the device, then the 
+		/// minimum double precision floating-point capability must be: Cl.FP_FMA | Cl.FP_ROUND_TO_NEAREST | Cl.FP_INF_NAN | 
+		/// Cl.FP_DENORM.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_DOUBLE_FP_CONFIG = 0x1032;
@@ -428,7 +533,9 @@ namespace OpenCL
 		public const int DEVICE_HOST_UNIFIED_MEMORY = 0x1035;
 
 		/// <summary>
-		/// Value of CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR symbol.
+		/// Cl.GetDeviceInfo: returns the native ISA vector width. The vector width is defined as the number of scalar elements that 
+		/// can be stored in the vector. If double precision is not supported, Cl.DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE must return 0. 
+		/// If the Cl._khr_fp16 extension is not supported, Cl.DEVICE_NATIVE_VECTOR_WIDTH_HALF must return 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_NATIVE_VECTOR_WIDTH_CHAR = 0x1036;
@@ -470,193 +577,258 @@ namespace OpenCL
 		public const int DEVICE_NATIVE_VECTOR_WIDTH_HALF = 0x103C;
 
 		/// <summary>
-		/// Value of CL_DEVICE_OPENCL_C_VERSION symbol.
+		/// Cl.GetDeviceInfo: openCL C version string. Returns the highest OpenCL C version supported by the compiler for this 
+		/// device that is not of type Cl.DEVICE_TYPE_CUSTOM. This version string has the following format: 
+		/// OpenCL&lt;space&gt;C&lt;space&gt;&lt;major_version.minor_version&gt;&lt;space&gt;&lt;vendor-specific information&gt; The 
+		/// major_version.minor_version value returned must be 2.0 if Cl.DEVICE_VERSION is OpenCL 2.0. The 
+		/// major_version.minor_version value returned must be 1.2 if Cl.DEVICE_VERSION is OpenCL 1.2. The 
+		/// major_version.minor_version value returned must be 1.1 if Cl.DEVICE_VERSION is OpenCL 1.1. The 
+		/// major_version.minor_version value returned can be 1.0 or 1.1 if Cl.DEVICE_VERSION is OpenCL 1.0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_OPENCL_C_VERSION = 0x103D;
 
 		/// <summary>
-		/// Value of CL_DEVICE_LINKER_AVAILABLE symbol.
+		/// Cl.GetDeviceInfo: is Cl.FALSE if the implementation does not have a linker available. Is Cl.TRUE if the linker is 
+		/// available. This can be Cl.FALSE for the embedded platform profile only. This must be Cl.TRUE if 
+		/// Cl.DEVICE_COMPILER_AVAILABLE is Cl.TRUE
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_LINKER_AVAILABLE = 0x103E;
 
 		/// <summary>
-		/// Value of CL_DEVICE_BUILT_IN_KERNELS symbol.
+		/// Cl.GetDeviceInfo: a semi-colon separated list of built-in kernels supported by the device. An empty string is returned 
+		/// if no built-in kernels are supported by the device.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_BUILT_IN_KERNELS = 0x103F;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE_MAX_BUFFER_SIZE symbol.
+		/// Cl.GetDeviceInfo: max number of pixels for a 1D image created from a buffer object. The minimum value is 65536 if 
+		/// Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE_MAX_BUFFER_SIZE = 0x1040;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE_MAX_ARRAY_SIZE symbol.
+		/// Cl.GetDeviceInfo: max number of images in a 1D or 2D image array. The minimum value is 2048 if Cl.DEVICE_IMAGE_SUPPORT 
+		/// is Cl.TRUE
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE_MAX_ARRAY_SIZE = 0x1041;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARENT_DEVICE symbol.
+		/// Cl.GetDeviceInfo: returns the cl_device_id of the parent device to which this sub-device belongs. If device is a 
+		/// root-level device, a NULL value is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARENT_DEVICE = 0x1042;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_MAX_SUB_DEVICES symbol.
+		/// Cl.GetDeviceInfo: returns the maximum number of sub-devices that can be created when a device is partitioned. The value 
+		/// returned cannot exceed Cl.DEVICE_MAX_COMPUTE_UNITS.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARTITION_MAX_SUB_DEVICES = 0x1043;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_PROPERTIES symbol.
+		/// Cl.GetDeviceInfo: returns the list of partition types supported by device. This is an array of 
+		/// cl_device_partition_property values drawn from the following list: 
+		/// Cl.DEVICE_PARTITION_EQUALLYCl.DEVICE_PARTITION_BY_COUNTSCl.DEVICE_PARTITION_BY_AFFINITY_DOMAIN If the device cannot be 
+		/// partitioned (i.e. there is no partitioning scheme supported by the device that will return at least two subdevices), a 
+		/// value of 0 will be returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARTITION_PROPERTIES = 0x1044;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_AFFINITY_DOMAIN symbol.
+		/// Cl.GetDeviceInfo: returns the list of supported affinity domains for partitioning the device using 
+		/// Cl.DEVICE_PARTITION_BY_AFFINITY_DOMAIN. This is a bit-field that describes one or more of the following values: 
+		/// Cl.DEVICE_AFFINITY_DOMAIN_NUMACl.DEVICE_AFFINITY_DOMAIN_L4_CACHECl.DEVICE_AFFINITY_DOMAIN_L3_CACHECl.DEVICE_AFFINITY_DOMAIN_L2_CACHECl.DEVICE_AFFINITY_DOMAIN_L1_CACHECl.DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE 
+		/// If the device does not support any affinity domains, a value of 0 will be returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARTITION_AFFINITY_DOMAIN = 0x1045;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_TYPE symbol.
+		/// Cl.GetDeviceInfo: returns the properties argument specified in Cl.CreateSubDevices if device is a subdevice. In the case 
+		/// where the properties argument to Cl.CreateSubDevices is Cl.DEVICE_PARTITION_BY_AFFINITY_DOMAIN, 
+		/// Cl.DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE, the affinity domain used to perform the partition will be returned. This 
+		/// can be one of the following values: 
+		/// Cl.DEVICE_AFFINITY_DOMAIN_NUMACl.DEVICE_AFFINITY_DOMAIN_L4_CACHECl.DEVICE_AFFINITY_DOMAIN_L3_CACHECl.DEVICE_AFFINITY_DOMAIN_L2_CACHECl.DEVICE_AFFINITY_DOMAIN_L1_CACHE 
+		/// Otherwise the implementation may either return a param_value_size_ret of 0 i.e. there is no partition type associated 
+		/// with device or can return a property value of 0 (where 0 is used to terminate the partition property list) in the memory 
+		/// that param_value points to.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARTITION_TYPE = 0x1046;
 
 		/// <summary>
-		/// Value of CL_DEVICE_REFERENCE_COUNT symbol.
+		/// Cl.GetDeviceInfo: returns the device reference count. If the device is a root-level device, a reference count of one is 
+		/// returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_REFERENCE_COUNT = 0x1047;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PREFERRED_INTEROP_USER_SYNC symbol.
+		/// Cl.GetDeviceInfo: is Cl.TRUE if the device's preference is for the user to be responsible for synchronization, when 
+		/// sharing memory objects between OpenCL and other APIs such as DirectX, Cl.FALSE if the device / implementation has a 
+		/// performant path for performing synchronization of memory object shared between OpenCL and other APIs such as DirectX
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PREFERRED_INTEROP_USER_SYNC = 0x1048;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PRINTF_BUFFER_SIZE symbol.
+		/// Cl.GetDeviceInfo: maximum size in bytes of the internal buffer that holds the output of Cl.intf calls from a kernel. The 
+		/// minimum value for the FULL profile is 1 MB.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PRINTF_BUFFER_SIZE = 0x1049;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE_PITCH_ALIGNMENT symbol.
+		/// Cl.GetDeviceInfo: the row pitch alignment size in pixels for 2D images created from a buffer. The value returned must be 
+		/// a power of 2. If the device does not support images, this value must be 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE_PITCH_ALIGNMENT = 0x104A;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT symbol.
+		/// Cl.GetDeviceInfo: this query should be used when a 2D image is created from a buffer which was created using 
+		/// Cl.MEM_USE_HOST_PTR. The value returned must be a power of 2. This query specifies the minimum alignment in pixels of 
+		/// the host_ptr specified to Cl.CreateBuffer. If the device does not support images, this value must be 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT = 0x104B;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_READ_WRITE_IMAGE_ARGS symbol.
+		/// Cl.GetDeviceInfo: max number of image objects arguments of a kernel declared with the write_only or read_write 
+		/// qualifier. The minimum value is 64 if Cl.DEVICE_IMAGE_SUPPORT is Cl.TRUE. NOTE: Cl.DEVICE_MAX_WRITE_IMAGE_ARGS is only 
+		/// there for backward compatibility. Cl.DEVICE_MAX_READ_WRITE_IMAGE_ARGS should be used instead.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_READ_WRITE_IMAGE_ARGS = 0x104C;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_GLOBAL_VARIABLE_SIZE symbol.
+		/// Cl.GetDeviceInfo: the maximum number of bytes of storage that may be allocated for any single variable in program scope 
+		/// or inside a function in OpenCL C declared in the global address space. The minimum value is 64 KB.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_GLOBAL_VARIABLE_SIZE = 0x104D;
 
 		/// <summary>
-		/// Value of CL_DEVICE_QUEUE_ON_DEVICE_PROPERTIES symbol.
+		/// Cl.GetDeviceInfo: describes the on device command-queue properties supported by the device. This is a bit-field that 
+		/// describes one or more of the following values: Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLECl.QUEUE_PROFILING_ENABLE These 
+		/// properties are described in the table for Cl.CreateCommandQueueWithProperties. The mandated minimum capability is 
+		/// Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE | Cl.QUEUE_PROFILING_ENABLE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_QUEUE_ON_DEVICE_PROPERTIES = 0x104E;
 
 		/// <summary>
-		/// Value of CL_DEVICE_QUEUE_ON_DEVICE_PREFERRED_SIZE symbol.
+		/// Cl.GetDeviceInfo: the size of the device queue in bytes preferred by the implementation. Applications should use this 
+		/// size for the device queue to ensure good performance. The minimum value is 16 KB.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_QUEUE_ON_DEVICE_PREFERRED_SIZE = 0x104F;
 
 		/// <summary>
-		/// Value of CL_DEVICE_QUEUE_ON_DEVICE_MAX_SIZE symbol.
+		/// Cl.GetDeviceInfo: the max. size of the device queue in bytes. The minimum value is 256 KB for the full profile and 64 KB 
+		/// for the embedded profile
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_QUEUE_ON_DEVICE_MAX_SIZE = 0x1050;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_ON_DEVICE_QUEUES symbol.
+		/// Cl.GetDeviceInfo: the maximum number of device queues that can be created per context. The minimum value is 1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_ON_DEVICE_QUEUES = 0x1051;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_ON_DEVICE_EVENTS symbol.
+		/// Cl.GetDeviceInfo: the maximum number of events in use by a device queue. These refer to events returned by the enqueue_ 
+		/// built-in functions to a device queue or user events returned by the Cl.eate_user_event built-in function that have not 
+		/// been released. The minimum value is 1024.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_ON_DEVICE_EVENTS = 0x1052;
 
 		/// <summary>
-		/// Value of CL_DEVICE_SVM_CAPABILITIES symbol.
+		/// Cl.GetDeviceInfo: describes the various shared virtual memory (a.k.a. SVM) memory allocation types the device supports. 
+		/// Coarse-grain SVM allocations are required to be supported by all OpenCL 2.0 devices. This is a bit-field that describes 
+		/// a combination of the following values:Cl.DEVICE_SVM_COARSE_GRAIN_BUFFER – Support for coarse-grain buffer sharing using 
+		/// Cl.SVMAlloc. Memory consistency is guaranteed at synchronization points and the host must use calls to 
+		/// Cl.EnqueueMapBuffer and Cl.EnqueueUnmapMemObject.Cl.DEVICE_SVM_FINE_GRAIN_BUFFER – Support for fine-grain buffer sharing 
+		/// using Cl.SVMAlloc. Memory consistency is guaranteed atsynchronization points without need for Cl.EnqueueMapBuffer and 
+		/// Cl.EnqueueUnmapMemObject.Cl.DEVICE_SVM_FINE_GRAIN_SYSTEM – Support for sharing the host’s entire virtual memory 
+		/// including memory allocated using malloc. Memory consistency is guaranteed at synchronization 
+		/// points.Cl.DEVICE_SVM_ATOMICS – Support for the OpenCL 2.0 atomic operations that provide memory consistency across the 
+		/// host and all OpenCL devices supporting fine-grain SVM allocations. The mandated minimum capability is 
+		/// Cl.DEVICE_SVM_COARSE_GRAIN_BUFFER.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_SVM_CAPABILITIES = 0x1053;
 
 		/// <summary>
-		/// Value of CL_DEVICE_GLOBAL_VARIABLE_PREFERRED_TOTAL_SIZE symbol.
+		/// Cl.GetDeviceInfo: maximum preferred total size, in bytes, of all program variables in the global address space. This is 
+		/// a performance hint. An implementation may place such variables in storage with optimized device access. This query 
+		/// returns the capacity of such storage. The minimum value is 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_GLOBAL_VARIABLE_PREFERRED_TOTAL_SIZE = 0x1054;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_PIPE_ARGS symbol.
+		/// Cl.GetDeviceInfo: the maximum number of pipe objects that can be passed as arguments to a kernel. The minimum value is 
+		/// 16.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_PIPE_ARGS = 0x1055;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PIPE_MAX_ACTIVE_RESERVATIONS symbol.
+		/// Cl.GetDeviceInfo: the maximum number of reservations that can be active for a pipe per work-item in a kernel. A 
+		/// work-group reservation is counted as one reservation per work-item. The minimum value is 1.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PIPE_MAX_ACTIVE_RESERVATIONS = 0x1056;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PIPE_MAX_PACKET_SIZE symbol.
+		/// Cl.GetDeviceInfo: the maximum size of pipe packet in bytes. The minimum value is 1024 bytes.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PIPE_MAX_PACKET_SIZE = 0x1057;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PREFERRED_PLATFORM_ATOMIC_ALIGNMENT symbol.
+		/// Cl.GetDeviceInfo: returns the value representing the preferred alignment in bytes for OpenCL 2.0 fine-grained SVM atomic 
+		/// types. This query can return 0 which indicates that the preferred alignment is aligned to the natural size of the type.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PREFERRED_PLATFORM_ATOMIC_ALIGNMENT = 0x1058;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PREFERRED_GLOBAL_ATOMIC_ALIGNMENT symbol.
+		/// Cl.GetDeviceInfo: returns the value representing the preferred alignment in bytes for OpenCL 2.0 atomic types to global 
+		/// memory. This query can return 0 which indicates that the preferred alignment is aligned to the natural size of the type.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PREFERRED_GLOBAL_ATOMIC_ALIGNMENT = 0x1059;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PREFERRED_LOCAL_ATOMIC_ALIGNMENT symbol.
+		/// Cl.GetDeviceInfo: returns the value representing the preferred alignment in bytes for OpenCL 2.0 atomic types to local 
+		/// memory. This query can return 0 which indicates that the preferred alignment is aligned to the natural size of the type.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PREFERRED_LOCAL_ATOMIC_ALIGNMENT = 0x105A;
 
 		/// <summary>
-		/// Value of CL_DEVICE_IL_VERSION symbol.
+		/// Cl.GetDeviceInfo: the intermediate languages that can be supported by Cl.CreateProgramWithIL for this device. Returns a 
+		/// space-separated list of IL version strings of the form &lt;IL_Prefix&gt;_&lt;Major_Version&gt;.&lt;Minor_Version&gt;. 
+		/// For OpenCL 2.1, "SPIR-V" is a required IL prefix.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_IL_VERSION = 0x105B;
 
 		/// <summary>
-		/// Value of CL_DEVICE_MAX_NUM_SUB_GROUPS symbol.
+		/// Cl.GetDeviceInfo: maximum number of sub-groups in a work-group that a device is capable of executing on a single compute 
+		/// unit, for any given kernel-instance running on the device. The minimum value is 1. (Refer also to 
+		/// Cl.GetKernelSubGroupInfo.)
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_MAX_NUM_SUB_GROUPS = 0x105C;
@@ -668,13 +840,31 @@ namespace OpenCL
 		public const int DEVICE_SUB_GROUP_INDEPENDENT_FORWARD_PROGRESS = 0x105D;
 
 		/// <summary>
-		/// Value of CL_CONTEXT_PLATFORM symbol.
+		/// <para>
+		/// Cl.CreateContext: specifies the platform to use.
+		/// </para>
+		/// <para>
+		/// Cl.CreateContextFromType: specifies the platform to use.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_PLATFORM = 0x1084;
 
 		/// <summary>
-		/// Value of CL_CONTEXT_INTEROP_USER_SYNC symbol.
+		/// <para>
+		/// Cl.CreateContext: specifies whether the user is responsible for synchronization between OpenCL and other APIs. Please 
+		/// refer to the specific sections in the OpenCL 2.0 extension specification that describe sharing with other APIs for 
+		/// restrictions on using this flag. If Cl.CONTEXT_INTEROP_USER_SYNC is not specified, a default of Cl.FALSE is assumed. 
+		/// OpenCL / OpenGL sharing does not support the Cl.CONTEXT_INTEROP_USER_SYNC property defined in table 4.5. Specifying this 
+		/// property when creating a context with OpenCL / OpenGL sharing will return an appropriate error.
+		/// </para>
+		/// <para>
+		/// Cl.CreateContextFromType: specifies whether the user is responsible for synchronization between OpenCL and other APIs. 
+		/// Please refer to the specific sections in the OpenCL 2.0 extension specification that describe sharing with other APIs 
+		/// for restrictions on using this flag. If Cl.CONTEXT_INTEROP_USER_SYNC is not specified, a default of Cl.FALSE is assumed. 
+		/// OpenCL / OpenGL sharing does not support the Cl.CONTEXT_INTEROP_USER_SYNC property defined in table 4.5. Specifying this 
+		/// property when creating a context with OpenCL / OpenGL sharing will return an appropriate error.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_INTEROP_USER_SYNC = 0x1085;
@@ -692,7 +882,11 @@ namespace OpenCL
 		public const int DEVICE_PARTITION_BY_COUNTS = 0x1087;
 
 		/// <summary>
-		/// Value of CL_DEVICE_PARTITION_BY_COUNTS_LIST_END symbol.
+		/// Cl.CreateSubDevice: this property is followed by a Cl.DEVICE_PARTITION_BY_COUNTS_LIST_END terminated list of compute 
+		/// unit counts. For each nonzero count m in the list, a sub-device is created with m compute units in it. 
+		/// Cl.DEVICE_PARTITION_BY_COUNTS_LIST_END is defined to be 0. The number of non-zero count entries in the list may not 
+		/// exceed Cl.DEVICE_PARTITION_MAX_SUB_DEVICES. The total number of compute units specified may not exceed 
+		/// Cl.DEVICE_PARTITION_MAX_COMPUTE_UNITS.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEVICE_PARTITION_BY_COUNTS_LIST_END = 0x0;
@@ -764,61 +958,97 @@ namespace OpenCL
 		public const int DEVICE_SVM_ATOMICS = (1 << 3);
 
 		/// <summary>
-		/// Value of CL_CONTEXT_REFERENCE_COUNT symbol.
+		/// Cl.GetContextInfo: return the context reference count. The reference count returned should be considered immediately 
+		/// stale. It is unsuitable for general use in applications. This feature is provided for identifying memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_REFERENCE_COUNT = 0x1080;
 
 		/// <summary>
-		/// Value of CL_CONTEXT_DEVICES symbol.
+		/// Cl.GetContextInfo: return the list of devices in context.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_DEVICES = 0x1081;
 
 		/// <summary>
-		/// Value of CL_CONTEXT_PROPERTIES symbol.
+		/// Cl.GetContextInfo: return the properties argument specified in Cl.CreateContext or Cl.CreateContextFromType. If the 
+		/// properties argument specified in Cl.CreateContext or Cl.CreateContextFromType used to create context is not NULL, the 
+		/// implementation must return the values specified in the properties argument. If the properties argument specified in 
+		/// Cl.CreateContext or Cl.CreateContextFromType used to create context is NULL, the implementation may return either a 
+		/// param_value_size_ret of 0, i.e. there is no context property value to be returned or can return a context property value 
+		/// of 0 (where 0 is used to terminate the context properties list) in the memory that param_value points to.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_PROPERTIES = 0x1082;
 
 		/// <summary>
-		/// Value of CL_CONTEXT_NUM_DEVICES symbol.
+		/// Cl.GetContextInfo: return the number of devices in context.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int CONTEXT_NUM_DEVICES = 0x1083;
 
 		/// <summary>
-		/// Value of CL_QUEUE_CONTEXT symbol.
+		/// Cl.GetCommandQueueInfo: return type: cl_contextReturn the context specified when the command-queue is created.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_CONTEXT = 0x1090;
 
 		/// <summary>
-		/// Value of CL_QUEUE_DEVICE symbol.
+		/// Cl.GetCommandQueueInfo: return type: cl_device_idReturn the device specified when the command-queue is created.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_DEVICE = 0x1091;
 
 		/// <summary>
-		/// Value of CL_QUEUE_REFERENCE_COUNT symbol.
+		/// Cl.GetCommandQueueInfo: return type: cl_uintReturn the command-queue reference count. The reference count returned with 
+		/// Cl.QUEUE_REFERENCE_COUNT should be considered immediately stale. It is unsuitable for general use in applications. This 
+		/// feature is provided for identifying memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_REFERENCE_COUNT = 0x1092;
 
 		/// <summary>
-		/// Value of CL_QUEUE_PROPERTIES symbol.
+		/// <para>
+		/// Cl.CreateCommandQueueWithProperties: this is a bitfield and can be set to a combination of the following 
+		/// values:Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE - Determines whether the commands queued in the command-queue are executed 
+		/// in-order or out-of-order. If set, the commands in the command-queue are executed out-of-order. Otherwise, commands are 
+		/// executed in-order.Cl.QUEUE_PROFILING_ENABLE - Enable or disable profiling of commands in the command-queue. If set, the 
+		/// profiling of commands is enabled. Otherwise profiling of commands is disabled.Cl.QUEUE_ON_DEVICE - Indicates that this 
+		/// is a device queue. If Cl.QUEUE_ON_DEVICE is set, Cl.QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE must also be set. Only 
+		/// out-of-order device queues are supported.Cl.QUEUE_ON_DEVICE_DEFAULT - indicates that this is the default device queue. 
+		/// This can only be used with Cl.QUEUE_ON_DEVICE. The application must create the default device queue if any kernels 
+		/// containing calls to get_default_queue are enqueued. There can only be one default device queue for each device within a 
+		/// context. clCreateCommandQueueWithProperties with Cl.QUEUE_PROPERTIES set to Cl.QUEUE_ON_DEVICE | 
+		/// Cl.QUEUE_ON_DEVICE_DEFAULT will return the default device queue that has already been created and increment its retain 
+		/// count by 1. If Cl.QUEUE_PROPERTIES is not specified an in-order host command queue is created for the specified device.
+		/// </para>
+		/// <para>
+		/// Cl.GetCommandQueueInfo: return type: cl_command_queue_properties Return the currently specified properties for the 
+		/// command-queue. These properties are specified by the value associated with the Cl.COMMAND_QUEUE_PROPERTIES passed in 
+		/// properties argument in Cl.CreateCommandQueueWithProperties.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_PROPERTIES = 0x1093;
 
 		/// <summary>
-		/// Value of CL_QUEUE_SIZE symbol.
+		/// <para>
+		/// Cl.CreateCommandQueueWithProperties: specifies the size of the device queue in bytes.This can only be specified if 
+		/// Cl.QUEUE_ON_DEVICE is set in Cl.QUEUE_PROPERTIES. This must be a value ≤ Cl.DEVICE_QUEUE_ON_DEVICE_MAX_SIZE.For best 
+		/// performance, this should be ≤ Cl.DEVICE_QUEUE_ON_DEVICE_PREFERRED_SIZE.If Cl.QUEUE_SIZE is not specified, the device 
+		/// queue is created with Cl.DEVICE_QUEUE_ON_DEVICE_PREFERRED_SIZE as the size of the queue.
+		/// </para>
+		/// <para>
+		/// Cl.GetCommandQueueInfo: return type: cl_uint Return the currently specified size for the device command-queue. This 
+		/// query is only supported for device command queues.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_SIZE = 0x1094;
 
 		/// <summary>
-		/// Value of CL_QUEUE_DEVICE_DEFAULT symbol.
+		/// Cl.GetCommandQueueInfo: return type: cl_command_queue Return the current default command queue for the underlying 
+		/// device.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int QUEUE_DEVICE_DEFAULT = 0x1095;
@@ -830,37 +1060,37 @@ namespace OpenCL
 		public const int MEM_OBJECT_BUFFER = 0x10F0;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE2D symbol.
+		/// Cl.CreateImage: cl.mage_row_pitch * image_height
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE2D = 0x10F1;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE3D symbol.
+		/// Cl.CreateImage: cl.mage_slice_pitch * image_depth
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE3D = 0x10F2;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE2D_ARRAY symbol.
+		/// Cl.CreateImage: cl.mage_slice_pitch * image_array_size
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE2D_ARRAY = 0x10F3;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE1D symbol.
+		/// Cl.CreateImage: cl.mage_row_pitch
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE1D = 0x10F4;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE1D_ARRAY symbol.
+		/// Cl.CreateImage: cl.mage_slice_pitch * image_array_size
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE1D_ARRAY = 0x10F5;
 
 		/// <summary>
-		/// Value of CL_MEM_OBJECT_IMAGE1D_BUFFER symbol.
+		/// Cl.CreateImage: cl.mage_row_pitch
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OBJECT_IMAGE1D_BUFFER = 0x10F6;
@@ -872,43 +1102,55 @@ namespace OpenCL
 		public const int MEM_OBJECT_PIPE = 0x10F7;
 
 		/// <summary>
-		/// Value of CL_MEM_TYPE symbol.
+		/// Cl.GetMemObjectInfo: returns one of the following values: Cl.MEM_OBJECT_BUFFER if memobj is created with Cl.CreateBuffer 
+		/// or Cl.CreateSubBuffer. cl_image_desc.image_type argument value if memobj is created with Cl.CreateImage. 
+		/// Cl.MEM_OBJECT_PIPE if memobj is created with Cl.CreatePipe.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_TYPE = 0x1100;
 
 		/// <summary>
-		/// Value of CL_MEM_FLAGS symbol.
+		/// Cl.GetMemObjectInfo: returns the flags argument value specified when memobj is created with Cl.CreateBuffer, 
+		/// Cl.CreateSubBuffer, Cl.CreateImage. or Cl.CreatePipe. If memobj is a sub-buffer the memory access qualifiers inherited 
+		/// from parent buffer is also returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_FLAGS = 0x1101;
 
 		/// <summary>
-		/// Value of CL_MEM_SIZE symbol.
+		/// Cl.GetMemObjectInfo: return actual size of the data store associated with memobj in bytes.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_SIZE = 0x1102;
 
 		/// <summary>
-		/// Value of CL_MEM_HOST_PTR symbol.
+		/// Cl.GetMemObjectInfo: if memobj is created with Cl.CreateBuffer or Cl.CreateImage and Cl.MEM_USE_HOST_PTR is specified in 
+		/// mem_flags, return the host_ptr argument value specified when memobj is created. Otherwise a NULL value is returned. If 
+		/// memobj is created with Cl.CreateSubBuffer, return the host_ptr + origin value specified when memobj is created. host_ptr 
+		/// is the argument value specified to Cl.CreateBuffer and Cl.MEM_USE_HOST_PTR is specified in mem_flags for memory object 
+		/// from which memobj is created. Otherwise a NULL value is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_HOST_PTR = 0x1103;
 
 		/// <summary>
-		/// Value of CL_MEM_MAP_COUNT symbol.
+		/// Cl.GetMemObjectInfo: map count. The map count returned should be considered immediately stale. It is unsuitable for 
+		/// general use in applications. This feature is provided for debugging.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_MAP_COUNT = 0x1104;
 
 		/// <summary>
-		/// Value of CL_MEM_REFERENCE_COUNT symbol.
+		/// Cl.GetMemObjectInfo: return memobj reference count. The reference count returned should be considered immediately stale. 
+		/// It is unsuitable for general use in applications. This feature is provided for identifying memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_REFERENCE_COUNT = 0x1105;
 
 		/// <summary>
-		/// Value of CL_MEM_CONTEXT symbol.
+		/// Cl.GetMemObjectInfo: return context specified when memory object is created. If memobj is created using 
+		/// Cl.CreateSubBuffer, the context associated with the memory object specified as the buffer argument to Cl.CreateSubBuffer 
+		/// is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_CONTEXT = 0x1106;
@@ -920,61 +1162,68 @@ namespace OpenCL
 		public const int MEM_ASSOCIATED_MEMOBJECT = 0x1107;
 
 		/// <summary>
-		/// Value of CL_MEM_OFFSET symbol.
+		/// Cl.GetMemObjectInfo: return offset if memobj is a sub-buffer object created using Cl.CreateSubBuffer. This returns 0 if 
+		/// memobj is not a subbuffer object.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_OFFSET = 0x1108;
 
 		/// <summary>
-		/// Value of CL_MEM_USES_SVM_POINTER symbol.
+		/// Cl.GetMemObjectInfo: return Cl.TRUE if memobj is a buffer object that was created with Cl.MEM_USE_HOST_PTR or is a 
+		/// subbuffer object of a buffer object that was created with Cl.MEM_USE_HOST_PTR and the host_ptr specified when the buffer 
+		/// object was created is a SVM pointer; otherwise returns Cl.FALSE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int MEM_USES_SVM_POINTER = 0x1109;
 
 		/// <summary>
-		/// Value of CL_IMAGE_FORMAT symbol.
+		/// Cl.GetImageInfo: return image format descriptor specified when image is created with Cl.CreateImage.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_FORMAT = 0x1110;
 
 		/// <summary>
-		/// Value of CL_IMAGE_ELEMENT_SIZE symbol.
+		/// Cl.GetImageInfo: return size of each element of the image memory object given by image in bytes. An element is made up 
+		/// of n channels. The value of n is given in Cl._image_format descriptor.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_ELEMENT_SIZE = 0x1111;
 
 		/// <summary>
-		/// Value of CL_IMAGE_ROW_PITCH symbol.
+		/// Cl.GetImageInfo: return calculated row pitch in bytes of a row of elements of the image object given by image.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_ROW_PITCH = 0x1112;
 
 		/// <summary>
-		/// Value of CL_IMAGE_SLICE_PITCH symbol.
+		/// Cl.GetImageInfo: return calculated slice pitch in bytes of a 2D slice for the 3D image object or size of each image in a 
+		/// 1D or 2D image array given by image. For a 1D image, 1D image buffer and 2D image object return 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_SLICE_PITCH = 0x1113;
 
 		/// <summary>
-		/// Value of CL_IMAGE_WIDTH symbol.
+		/// Cl.GetImageInfo: return width of image in pixels.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_WIDTH = 0x1114;
 
 		/// <summary>
-		/// Value of CL_IMAGE_HEIGHT symbol.
+		/// Cl.GetImageInfo: return height of image in pixels. For a 1D image, 1D image buffer and 1D image array object, height = 
+		/// 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_HEIGHT = 0x1115;
 
 		/// <summary>
-		/// Value of CL_IMAGE_DEPTH symbol.
+		/// Cl.GetImageInfo: return depth of the image in pixels. For a 1D image, 1D image buffer, 2D image or 1D and 2D image array 
+		/// object, depth = 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_DEPTH = 0x1116;
 
 		/// <summary>
-		/// Value of CL_IMAGE_ARRAY_SIZE symbol.
+		/// Cl.GetImageInfo: return number of images in the image array. If image is not an image array, 0 is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_ARRAY_SIZE = 0x1117;
@@ -986,55 +1235,76 @@ namespace OpenCL
 		public const int IMAGE_BUFFER = 0x1118;
 
 		/// <summary>
-		/// Value of CL_IMAGE_NUM_MIP_LEVELS symbol.
+		/// Cl.GetImageInfo: return num_mip_levels associated with image.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_NUM_MIP_LEVELS = 0x1119;
 
 		/// <summary>
-		/// Value of CL_IMAGE_NUM_SAMPLES symbol.
+		/// Cl.GetImageInfo: return num_samples associated with image.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int IMAGE_NUM_SAMPLES = 0x111A;
 
 		/// <summary>
-		/// Value of CL_PIPE_PACKET_SIZE symbol.
+		/// Cl.GetPipeInfo: return pipe packet size specified when pipe is created with Cl.CreatePipe.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PIPE_PACKET_SIZE = 0x1120;
 
 		/// <summary>
-		/// Value of CL_PIPE_MAX_PACKETS symbol.
+		/// Cl.GetPipeInfo: return max. number of packets specified when pipe is created with Cl.CreatePipe.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PIPE_MAX_PACKETS = 0x1121;
 
 		/// <summary>
-		/// Value of CL_SAMPLER_REFERENCE_COUNT symbol.
+		/// Cl.GetSamplerInfo: return type: cl_uint Return the sampler reference count. The reference count returned should be 
+		/// considered immediately stale. It is unsuitable for general use in applications. This feature is provided for identifying 
+		/// memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int SAMPLER_REFERENCE_COUNT = 0x1150;
 
 		/// <summary>
-		/// Value of CL_SAMPLER_CONTEXT symbol.
+		/// Cl.GetSamplerInfo: return type: cl_context Return the context specified when the sampler is created.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int SAMPLER_CONTEXT = 0x1151;
 
 		/// <summary>
-		/// Value of CL_SAMPLER_NORMALIZED_COORDS symbol.
+		/// <para>
+		/// Cl.CreateSamplerWithProperties: a boolean value that specifies whether the image coordinates specified are normalized or 
+		/// not. The default value (i.e. the value used if this property is not specified in sampler_properties) is Cl.TRUE.
+		/// </para>
+		/// <para>
+		/// Cl.GetSamplerInfo: return type: cl_bool Return the normalized coords value associated with sampler.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int SAMPLER_NORMALIZED_COORDS = 0x1152;
 
 		/// <summary>
-		/// Value of CL_SAMPLER_ADDRESSING_MODE symbol.
+		/// <para>
+		/// Cl.CreateSamplerWithProperties: specifies how out-of-range image coordinates are handled when reading from an image. 
+		/// Valid values are: Cl.ADDRESS_MIRRORED_REPEATCl.ADDRESS_REPEATCl.ADDRESS_CLAMP_TO_EDGECl.ADDRESS_CLAMPCl.ADDRESS_NONE The 
+		/// default is Cl.ADDRESS_CLAMP.
+		/// </para>
+		/// <para>
+		/// Cl.GetSamplerInfo: return type: cl_addressing_mode Return the addressing mode value associated with sampler.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int SAMPLER_ADDRESSING_MODE = 0x1153;
 
 		/// <summary>
-		/// Value of CL_SAMPLER_FILTER_MODE symbol.
+		/// <para>
+		/// Cl.CreateSamplerWithProperties: specifies the type of filter that must be applied when reading an image. Valid values 
+		/// are: Cl.FILTER_NEARESTCl.FILTER_LINEAR The default is Cl.FILTER_NEAREST.
+		/// </para>
+		/// <para>
+		/// Cl.GetSamplerInfo: return type: cl_filter_mode Return the filter mode value associated with sampler.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int SAMPLER_FILTER_MODE = 0x1154;
@@ -1058,67 +1328,108 @@ namespace OpenCL
 		public const int SAMPLER_LOD_MAX = 0x1157;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_REFERENCE_COUNT symbol.
+		/// Cl.GetProgramInfo: return type: cl_uint Return the program reference count.The reference count returned should be 
+		/// considered immediately stale. It is unsuitable for general use in applications. This feature is provided for identifying 
+		/// memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_REFERENCE_COUNT = 0x1160;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_CONTEXT symbol.
+		/// Cl.GetProgramInfo: return type: cl_context Return the context specified when the program object is created
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_CONTEXT = 0x1161;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_NUM_DEVICES symbol.
+		/// Cl.GetProgramInfo: return type: cl_uint Return the number of devices associated with program.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_NUM_DEVICES = 0x1162;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_DEVICES symbol.
+		/// Cl.GetProgramInfo: return type: cl_device_id[] Return the list of devices associated with the program object. This can 
+		/// be the devices associated with context on which the program object has been created or can be a subset of devices that 
+		/// are specified when a progam object is created using Cl.CreateProgramWithBinary.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_DEVICES = 0x1163;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_SOURCE symbol.
+		/// Cl.GetProgramInfo: return type: char[] Return the program source code specified by Cl.CreateProgramWithSource. The 
+		/// source string returned is a concatenation of all source strings specified to Cl.CreateProgramWithSource with a null 
+		/// terminator. The concatenation strips any nulls in the original source strings. If program is created using 
+		/// Cl.CreateProgramWithBinary, Cl.CreateProgramWithIL, or Cl.CreateProgramWithBuiltInKernels, a null string or the 
+		/// appropriate program source code is returned depending on whether or not the program source code is stored in the binary. 
+		/// The actual number of characters that represents the program source code including the null terminator is returned in 
+		/// param_value_size_ret.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_SOURCE = 0x1164;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_BINARY_SIZES symbol.
+		/// Cl.GetProgramInfo: return type: size_t[] Returns an array that contains the size in bytes of the program binary (could 
+		/// be an executable binary, compiled binary or library binary) for each device associated with program. The size of the 
+		/// array is the number of devices associated with program. If a binary is not available for a device(s), a size of zero is 
+		/// returned. If program is created using Cl.CreateProgramWithBuiltInKernels, the implementation may return zero in any 
+		/// entries of the returned array.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_BINARY_SIZES = 0x1165;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_BINARIES symbol.
+		/// Cl.GetProgramInfo: return type: unsigned char *[] Return the program binaries (could be an executable binary, compiled 
+		/// binary or library binary) for all devices associated with program. For each device in program, the binary returned can 
+		/// be the binary specified for the device when program is created with Cl.CreateProgramWithBinary or it can be the 
+		/// executable binary generated by Cl.BuildProgram or Cl.LinkProgram. If program is created with Cl.CreateProgramWithSource 
+		/// or Cl.CreateProgramWithIL, the binary returned is the binary generated by Cl.BuildProgram, Cl.CompileProgram, or 
+		/// Cl.LinkProgram. The bits returned can be an implementation-specific intermediate representation (a.k.a. IR) or device 
+		/// specific executable bits or both. The decision on which information is returned in the binary is up to the OpenCL 
+		/// implementation. param_value points to an array of n pointers allocated by the caller, where n is the number of devices 
+		/// associated with program. The buffer sizes needed to allocate the memory that these n pointers refer to can be queried 
+		/// using the Cl.PROGRAM_BINARY_SIZES query as described in this table. Each entry in this array is used by the 
+		/// implementation as the location in memory where to copy the program binary for a specific device, if there is a binary 
+		/// available. To find out which device the program binary in the array refers to, use the Cl.PROGRAM_DEVICES query to get 
+		/// the list of devices. There is a one-to-one correspondence between the array of n pointers returned by 
+		/// Cl.PROGRAM_BINARIES and array of devices returned by Cl.PROGRAM_DEVICES. If an entry value in the array is NULL, the 
+		/// implementation skips copying the program binary for the specific device identified by the array index.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_BINARIES = 0x1166;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_NUM_KERNELS symbol.
+		/// Cl.GetProgramInfo: return type: size_t Returns the number of kernels declared in program that can be created with 
+		/// Cl.CreateKernel. This information is only available after a successful program executable has been built for at least 
+		/// one device in the list of devices associated with program.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_NUM_KERNELS = 0x1167;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_KERNEL_NAMES symbol.
+		/// Cl.GetProgramInfo: return type: char[] Returns a semi-colon separated list of kernel names in program that can be 
+		/// created with Cl.CreateKernel. This information is only available after a successful program executable has been built 
+		/// for at least one device in the list of devices associated with program.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_KERNEL_NAMES = 0x1168;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_IL symbol.
+		/// Cl.GetProgramInfo: return type: void * Returns the program IL for programs created with Cl.CreateProgramWithIL. If 
+		/// program is created with Cl.CreateProgramWithSource, Cl.CreateProgramWithBinary or Cl.CreateProgramWithBuiltInKernels the 
+		/// memory pointed to by param_value will be unchanged and param_value_size_ret will be set to 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_IL = 0x1169;
 
 		/// <summary>
-		/// Value of CL_PROGRAM_BUILD_STATUS symbol.
+		/// Cl.GetProgramBuildInfo: return type: cl_build_status Returns the build, compile or link status, whichever was performed 
+		/// last on program for device. This can be one of the following: Cl.BUILD_NONE. The build status returned if no 
+		/// Cl.BuildProgram, Cl.CompileProgram or Cl.LinkProgram has been performed on the specified program object for device. 
+		/// Cl.BUILD_ERROR. The build status returned if Cl.BuildProgram, Cl.CompileProgram or Cl.LinkProgram whichever was 
+		/// performed last on the specified program object for device generated an error. Cl.BUILD_SUCCESS. The build status 
+		/// returned if Cl.BuildProgram, Cl.CompileProgram or Cl.LinkProgram whichever was performed last on the specified program 
+		/// object for device was successful. Cl.BUILD_IN_PROGRESS. The build status returned if Cl.BuildProgram, Cl.CompileProgram 
+		/// or Cl.LinkProgram whichever was performed last on the specified program object for device has not finished.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROGRAM_BUILD_STATUS = 0x1181;
@@ -1172,55 +1483,70 @@ namespace OpenCL
 		public const int PROGRAM_BINARY_TYPE_EXECUTABLE = 0x4;
 
 		/// <summary>
-		/// Value of CL_KERNEL_FUNCTION_NAME symbol.
+		/// Cl.GetKernelInfo: return the kernel function name.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_FUNCTION_NAME = 0x1190;
 
 		/// <summary>
-		/// Value of CL_KERNEL_NUM_ARGS symbol.
+		/// Cl.GetKernelInfo: return the number of arguments to kernel.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_NUM_ARGS = 0x1191;
 
 		/// <summary>
-		/// Value of CL_KERNEL_REFERENCE_COUNT symbol.
+		/// Cl.GetKernelInfo: return the kernel reference count. The reference count returned should be considered immediately 
+		/// stale. It is unsuitable for general use in applications. This feature is provided for identifying memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_REFERENCE_COUNT = 0x1192;
 
 		/// <summary>
-		/// Value of CL_KERNEL_CONTEXT symbol.
+		/// Cl.GetKernelInfo: return the context associated with kernel.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_CONTEXT = 0x1193;
 
 		/// <summary>
-		/// Value of CL_KERNEL_PROGRAM symbol.
+		/// Cl.GetKernelInfo: return the program object associated with kernel.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_PROGRAM = 0x1194;
 
 		/// <summary>
-		/// Value of CL_KERNEL_ATTRIBUTES symbol.
+		/// Cl.GetKernelInfo: returns any attributes specified using the __Cl.tribute__ qualifier with the kernel function 
+		/// declaration in the program source. These attributes include those on the __Cl.tribute__ page and other attributes 
+		/// supported by an implementation. Attributes are returned as they were declared inside __Cl.tribute__((...)), with any 
+		/// surrounding whitespace and embedded newlines removed. When multiple attributes are present, they are returned as a 
+		/// single, space delimited string. For kernels not created from OpenCL C source and the Cl.CreateProgramWithSource API call 
+		/// the string returned from this query will be empty.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_ATTRIBUTES = 0x1195;
 
 		/// <summary>
-		/// Value of CL_KERNEL_MAX_NUM_SUB_GROUPS symbol.
+		/// Cl.GetKernelSubGroupInfo: this provides a mechanism for the application to query the maximum number of sub-groups that 
+		/// may make up each work-group to execute a kernel on a specific device given by device. The OpenCL implementation uses the 
+		/// resource requirements of the kernel (register usage etc.) to determine what this work-group size should be. The returned 
+		/// value may be used to compute a work-group size to enqueue the kernel with to give a round number of sub-groups for an 
+		/// enqueue.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_MAX_NUM_SUB_GROUPS = 0x11B9;
 
 		/// <summary>
-		/// Value of CL_KERNEL_COMPILE_NUM_SUB_GROUPS symbol.
+		/// Cl.GetKernelSubGroupInfo: returns the number of sub-groups specified in the kernel source or IL. If the sub-group count 
+		/// is not specified using the above attribute then 0 is returned.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_COMPILE_NUM_SUB_GROUPS = 0x11BA;
 
 		/// <summary>
-		/// Value of CL_KERNEL_WORK_GROUP_SIZE symbol.
+		/// Cl.GetKernelWorkGroupInfo: this provides a mechanism for the application to query the maximum work-group size that can 
+		/// be used to execute the kernel on a specific device given by device. The OpenCL implementation uses the resource 
+		/// requirements of the kernel (register usage etc.) to determine what this work-group size should be. As a result and 
+		/// unlike Cl.DEVICE_MAX_WORK_GROUP_SIZE this value may vary from one kernel to another as well as one device to another. 
+		/// Cl.KERNEL_WORK_GROUP_SIZE will be less than or equal to Cl.DEVICE_MAX_WORK_GROUP_SIZE for a given kernel object.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_WORK_GROUP_SIZE = 0x11B0;
@@ -1232,7 +1558,11 @@ namespace OpenCL
 		public const int KERNEL_COMPILE_WORK_GROUP_SIZE = 0x11B1;
 
 		/// <summary>
-		/// Value of CL_KERNEL_LOCAL_MEM_SIZE symbol.
+		/// Cl.GetKernelWorkGroupInfo: returns the amount of local memory in bytes being used by a kernel. This includes local 
+		/// memory that may be needed by an implementation to execute the kernel, variables declared inside the kernel with the 
+		/// Cl.local address qualifier and local memory to be allocated for arguments to the kernel declared as pointers with the 
+		/// Cl.local address qualifier and whose size is specified with Cl.SetKernelArg. If the local memory size, for any pointer 
+		/// argument to the kernel declared with the Cl.local address qualifier, is not specified, its size is assumed to be 0.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_LOCAL_MEM_SIZE = 0x11B2;
@@ -1244,31 +1574,47 @@ namespace OpenCL
 		public const int KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE = 0x11B3;
 
 		/// <summary>
-		/// Value of CL_KERNEL_PRIVATE_MEM_SIZE symbol.
+		/// Cl.GetKernelWorkGroupInfo: returns the minimum amount of private memory, in bytes, used by each work-item in the kernel. 
+		/// This value may include any private memory needed by an implementation to execute the kernel, including that used by the 
+		/// language built-ins and variable declared inside the kernel with the Cl.private qualifier.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_PRIVATE_MEM_SIZE = 0x11B4;
 
 		/// <summary>
-		/// Value of CL_KERNEL_GLOBAL_WORK_SIZE symbol.
+		/// Cl.GetKernelWorkGroupInfo: this provides a mechanism for the application to query the maximum global size that can be 
+		/// used to execute a kernel (i.e. global_work_size argument to Cl.EnqueueNDRangeKernel) on a custom device given by device 
+		/// or a built-in kernel on an OpenCL device given by device. If device is not a custom device or kernel is not a built-in 
+		/// kernel, clGetKernelWorkGroupInfo returns the error Cl.INVALID_VALUE.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int KERNEL_GLOBAL_WORK_SIZE = 0x11B5;
 
 		/// <summary>
-		/// Value of CL_EVENT_COMMAND_QUEUE symbol.
+		/// Cl.GetEventInfo: return the command-queue associated with event. For user event objects, a NULL value is returned. If 
+		/// the Cl._khr_gl_sharing extension is enabled, the command queue of a linked event NULL, because the event is not 
+		/// associated with any OpenCL command queue. If the Cl._khr_egl_event extension is enabled, the Cl.EVENT_COMMAND_QUEUE of a 
+		/// linked event is NULL, because the event is not associated with any OpenCL command queue.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int EVENT_COMMAND_QUEUE = 0x11D0;
 
 		/// <summary>
-		/// Value of CL_EVENT_COMMAND_TYPE symbol.
+		/// Cl.GetEventInfo: return the command associated with event. Can be one of the following 
+		/// values:Cl.COMMAND_NDRANGE_KERNELCL_COMMAND_NATIVE_KERNELCL_COMMAND_READ_BUFFERCL_COMMAND_WRITE_BUFFERCL_COMMAND_COPY_BUFFERCL_COMMAND_READ_IMAGECL_COMMAND_WRITE_IMAGECL_COMMAND_COPY_IMAGECL_COMMAND_COPY_BUFFER_TO_IMAGECL_COMMAND_COPY_IMAGE_TO_BUFFERCL_COMMAND_MAP_BUFFERCL_COMMAND_MAP_IMAGECL_COMMAND_UNMAP_MEM_OBJECTCL_COMMAND_MARKERCL_COMMAND_ACQUIRE_GL_OBJECTSCL_COMMAND_RELEASE_GL_OBJECTSCL_COMMAND_READ_BUFFER_RECTCL_COMMAND_WRITE_BUFFER_RECTCL_COMMAND_COPY_BUFFER_RECTCL_COMMAND_USERCL_COMMAND_BARRIERCL_COMMAND_MIGRATE_MEM_OBJECTSCL_COMMAND_FILL_BUFFERCL_COMMAND_FILL_IMAGECL_COMMAND_SVM_FREECL_COMMAND_SVM_MEMCPYCL_COMMAND_SVM_MEMFILLCL_COMMAND_SVM_MAPCL_COMMAND_SVM_UNMAPCL_COMMAND_GL_FENCE_SYNC_OBJECT_KHR 
+		/// (if Cl._khr_gl_event is enabled, indicating that the event is associated with a GL sync object, rather than an OpenCL 
+		/// command)Cl.COMMAND_ACQUIRE_D3D10_OBJECTS_KHR (if Cl._khr_d3d10_sharing is enabled)Cl.COMMAND_RELEASE_D3D10_OBJECTS_KHR 
+		/// (if Cl._khr_d3d10_sharing is enabled)Cl.COMMAND_ACQUIRE_DX9_MEDIA_SURFACES_KHR (if Cl._khr_dx9_media_sharing is 
+		/// enabled)Cl.COMMAND_RELEASE_DX9_MEDIA_SURFACES_KHR (if Cl._khr_dx9_media_sharing is 
+		/// enabled)Cl.COMMAND_ACQUIRE_D3D11_OBJECTS_KHR (if Cl._khr_d3d11_sharing is enabled)Cl.COMMAND_RELEASE_D3D11_OBJECTS_KHR 
+		/// (if Cl._khr_d3d11_sharing is enabled)Cl.COMMAND_EGL_FENCE_SYNC_OBJECT_KHR (if Cl._khr_egl_event is enabled)
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int EVENT_COMMAND_TYPE = 0x11D1;
 
 		/// <summary>
-		/// Value of CL_EVENT_REFERENCE_COUNT symbol.
+		/// Cl.GetEventInfo: return the event reference count. The reference count returned should be considered immediately stale. 
+		/// It is unsuitable for general use in applications. This feature is provided for identifying memory leaks.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int EVENT_REFERENCE_COUNT = 0x11D2;
@@ -1280,37 +1626,42 @@ namespace OpenCL
 		public const int EVENT_COMMAND_EXECUTION_STATUS = 0x11D3;
 
 		/// <summary>
-		/// Value of CL_EVENT_CONTEXT symbol.
+		/// Cl.GetEventInfo: return the context associated with event.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int EVENT_CONTEXT = 0x11D4;
 
 		/// <summary>
-		/// Value of CL_PROFILING_COMMAND_QUEUED symbol.
+		/// Cl.GetEventProfilingInfo: a 64-bit value that describes the current device time counter in nanoseconds when the command 
+		/// identified by event is enqueued in a command-queue by the host.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROFILING_COMMAND_QUEUED = 0x1280;
 
 		/// <summary>
-		/// Value of CL_PROFILING_COMMAND_SUBMIT symbol.
+		/// Cl.GetEventProfilingInfo: a 64-bit value that describes the current device time counter in nanoseconds when the command 
+		/// identified by event that has been enqueued is submitted by the host to the device associated with the command-queue.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROFILING_COMMAND_SUBMIT = 0x1281;
 
 		/// <summary>
-		/// Value of CL_PROFILING_COMMAND_START symbol.
+		/// Cl.GetEventProfilingInfo: a 64-bit value that describes the current device time counter in nanoseconds when the command 
+		/// identified by event starts execution on the device.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROFILING_COMMAND_START = 0x1282;
 
 		/// <summary>
-		/// Value of CL_PROFILING_COMMAND_END symbol.
+		/// Cl.GetEventProfilingInfo: a 64-bit value that describes the current device time counter in nanoseconds when the command 
+		/// identified by event has finished execution on the device.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROFILING_COMMAND_END = 0x1283;
 
 		/// <summary>
-		/// Value of CL_PROFILING_COMMAND_COMPLETE symbol.
+		/// Cl.GetEventProfilingInfo: a 64-bit value that describes the current device time counter in nanoseconds when the command 
+		/// identified by event and any child commands enqueued by this command on the device have finished execution.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int PROFILING_COMMAND_COMPLETE = 0x1284;
@@ -1814,14 +2165,12 @@ namespace OpenCL
 		public const int EXEC_NATIVE_KERNEL = (1 << 1);
 
 		/// <summary>
-		/// Value of CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
 		public const int QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE = (1 << 0);
 
 		/// <summary>
-		/// Value of CL_QUEUE_PROFILING_ENABLE symbol.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		[Log(BitmaskName = "cl")]
@@ -1866,19 +2215,19 @@ namespace OpenCL
 		public const int RA = 0x10B3;
 
 		/// <summary>
-		/// Value of CL_RGB symbol.
+		/// Cl.CreateImage: cl.sRGB
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int RGB = 0x10B4;
 
 		/// <summary>
-		/// Value of CL_RGBA symbol.
+		/// Cl.CreateImage: cl.sRGBA
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int RGBA = 0x10B5;
 
 		/// <summary>
-		/// Value of CL_BGRA symbol.
+		/// Cl.CreateImage: cl.sBGRA
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int BGRA = 0x10B6;
@@ -1914,13 +2263,13 @@ namespace OpenCL
 		public const int RGx = 0x10BB;
 
 		/// <summary>
-		/// Value of CL_RGBx symbol.
+		/// Cl.CreateImage: cl.sRGBx
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int RGBx = 0x10BC;
 
 		/// <summary>
-		/// Value of CL_DEPTH symbol.
+		/// Cl.CreateImage: cl.R
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int DEPTH = 0x10BD;
@@ -1932,25 +2281,25 @@ namespace OpenCL
 		public const int DEPTH_STENCIL = 0x10BE;
 
 		/// <summary>
-		/// Value of CL_sRGB symbol.
+		/// Cl.CreateImage: cl.RGB
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int sRGB = 0x10BF;
 
 		/// <summary>
-		/// Value of CL_sRGBx symbol.
+		/// Cl.CreateImage: cl.RGBx
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int sRGBx = 0x10C0;
 
 		/// <summary>
-		/// Value of CL_sRGBA symbol.
+		/// Cl.CreateImage: cl.RGBA
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int sRGBA = 0x10C1;
 
 		/// <summary>
-		/// Value of CL_sBGRA symbol.
+		/// Cl.CreateImage: cl.BGRA
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_0")]
 		public const int sBGRA = 0x10C2;

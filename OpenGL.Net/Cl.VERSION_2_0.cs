@@ -26,21 +26,35 @@ namespace OpenCL
 	public partial class Cl
 	{
 		/// <summary>
-		/// Value of CL_MAP_READ symbol.
+		/// <para>
+		/// Cl.EnqueueSVMMap: this flag specifies that the region being mapped in the memory object is being mapped for reading. The 
+		/// pointer returned by clEnqueueMap{Buffer|Image} is guaranteed to contain the latest bits in the region being mapped when 
+		/// the clEnqueueMap{Buffer|Image} command has completed.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_2_0")]
 		[Log(BitmaskName = "cl")]
 		public const int MAP_READ = (1 << 0);
 
 		/// <summary>
-		/// Value of CL_MAP_WRITE symbol.
+		/// <para>
+		/// Cl.EnqueueSVMMap: this flag specifies that the region being mapped in the memory object is being mapped for writing. The 
+		/// pointer returned by clEnqueueMap{Buffer|Image} is guaranteed to contain the latest bits in the region being mapped when 
+		/// the clEnqueueMap{Buffer|Image} command has completed.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_2_0")]
 		[Log(BitmaskName = "cl")]
 		public const int MAP_WRITE = (1 << 1);
 
 		/// <summary>
-		/// Value of CL_MAP_WRITE_INVALIDATE_REGION symbol.
+		/// <para>
+		/// Cl.EnqueueSVMMap: this flag specifies that the region being mapped in the memory object is being mapped for writing. The 
+		/// contents of the region being mapped are to be discarded. This is typically the case when the region being mapped is 
+		/// overwritten by the host. This flag allows the implementation to no longer guarantee that the pointer returned by 
+		/// clEnqueueMap{Buffer|Image} contains the latest bits in the region being mapped which can be a significant performance 
+		/// enhancement. Cl.MAP_READ or Cl.MAP_WRITE and Cl._MAP_WRITE_INVALIDATE_REGION are mutually exclusive.
+		/// </para>
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_2_0")]
 		[Log(BitmaskName = "cl")]

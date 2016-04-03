@@ -26,7 +26,14 @@ namespace OpenCL
 	public partial class Cl
 	{
 		/// <summary>
-		/// Value of CL_BUFFER_CREATE_TYPE_REGION symbol.
+		/// Cl.CreateSubBuffer: create a buffer object that represents a specific region in buffer. buffer_create_info is a pointer 
+		/// to the following structure: typedef struct _cl_buffer_region { size_t origin; size_t size;} cl_buffer_region; (origin, 
+		/// size) defines the offset and size in bytes in buffer. If buffer is created with Cl.MEM_USE_HOST_PTR, the host_ptr 
+		/// associated with the buffer object returned is host_ptr + origin. The buffer object returned references the data store 
+		/// allocated for buffer and points to a specific region given by (origin, size) in this data store. Cl.INVALID_VALUE is 
+		/// returned in errcode_ret if the region specified by (origin, size) is out of bounds in buffer. Cl.INVALID_BUFFER_SIZE if 
+		/// size is 0. Cl.MISALIGNED_SUB_BUFFER_OFFSET is returned in errcode_ret if there are no devices in context associated with 
+		/// buffer for which the origin value is aligned to the Cl.DEVICE_MEM_BASE_ADDR_ALIGN value.
 		/// </summary>
 		[RequiredByFeature("CL_VERSION_1_1")]
 		public const int BUFFER_CREATE_TYPE_REGION = 0x1220;
