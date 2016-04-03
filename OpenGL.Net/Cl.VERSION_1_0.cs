@@ -2771,6 +2771,40 @@ namespace OpenCL
 		}
 
 		/// <summary>
+		/// Obtain the list of platforms available.
+		/// </summary>
+		/// <param name="num_entries">
+		/// The number of cl_platform_id entries that can be added to platforms. If platforms is not NULL, the num_entries must be 
+		/// greater than zero.
+		/// </param>
+		/// <param name="platforms">
+		/// Returns a list of OpenCL platforms found. The cl_platform_id values returned in platforms can be used to identify a 
+		/// specific OpenCL platform. If platforms argument is NULL, this argument is ignored. The number of OpenCL platforms 
+		/// returned is the mininum of the value specified by num_entries or the number of OpenCL platforms available.
+		/// </param>
+		/// <param name="num_platforms">
+		/// Returns the number of OpenCL platforms available. If num_platforms is NULL, this argument is ignored.
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetPlatformIDs(uint num_entries, [Out] IntPtr[] platforms, out uint num_platforms)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (IntPtr* p_platforms = platforms)
+				fixed (uint* p_num_platforms = &num_platforms)
+				{
+					Debug.Assert(Delegates.pclGetPlatformIDs != null, "pclGetPlatformIDs not implemented");
+					retValue = Delegates.pclGetPlatformIDs(num_entries, p_platforms, p_num_platforms);
+					LogFunction("clGetPlatformIDs({0}, {1}, {2}) = {3}", num_entries, LogValue(platforms), num_platforms, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
+		}
+
+		/// <summary>
 		/// Get specific information about the OpenCL platform.
 		/// </summary>
 		/// <param name="platform">
@@ -2843,6 +2877,46 @@ namespace OpenCL
 				pin_platform.Free();
 				pin_param_value.Free();
 			}
+		}
+
+		/// <summary>
+		/// Get specific information about the OpenCL platform.
+		/// </summary>
+		/// <param name="platform">
+		/// The platform ID returned by Gl.GetPlatformIDs or can be NULL. If platform is NULL, the behavior is 
+		/// implementation-defined.
+		/// </param>
+		/// <param name="param_name">
+		/// An enumeration constant that identifies the platform information being queried. It can be one of the values specified in 
+		/// the table below.
+		/// </param>
+		/// <param name="param_value_size">
+		/// Specifies the size in bytes of memory pointed to by param_value. This size in bytes must be ≥ size of return type 
+		/// specified in the table below.
+		/// </param>
+		/// <param name="param_value">
+		/// A pointer to memory location where appropriate values for a given param_name will be returned. Possible param_value 
+		/// values returned are listed in the table below. If param_value is NULL, it is ignored.
+		/// </param>
+		/// <param name="param_value_size_ret">
+		/// Returns the actual size in bytes of data being queried by param_value. If param_value_size_ret is NULL, it is ignored
+		/// </param>
+		[RequiredByFeature("CL_VERSION_1_0")]
+		public static int GetPlatformInfo(IntPtr platform, PlatformInfo param_name, uint param_value_size, IntPtr param_value, out uint param_value_size_ret)
+		{
+			int retValue;
+
+			unsafe {
+				fixed (uint* p_param_value_size_ret = &param_value_size_ret)
+				{
+					Debug.Assert(Delegates.pclGetPlatformInfo != null, "pclGetPlatformInfo not implemented");
+					retValue = Delegates.pclGetPlatformInfo(platform, param_name, param_value_size, param_value, p_param_value_size_ret);
+					LogFunction("clGetPlatformInfo(0x{0}, {1}, {2}, 0x{3}, {4}) = {5}", platform.ToString("X8"), param_name, param_value_size, param_value.ToString("X8"), param_value_size_ret, retValue);
+				}
+			}
+			DebugCheckErrors(retValue);
+
+			return (retValue);
 		}
 
 		/// <summary>

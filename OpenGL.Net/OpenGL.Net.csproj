@@ -219,6 +219,7 @@
     <Compile Include="Cl.Imports.cs" />
     <Compile Include="Cl.Versions.cs" />
     <Compile Include="Cl.VERSION_1_0.cs" />
+    <Compile Include="Cl.VERSION_1_0.Overloads.cs" />
     <Compile Include="Cl.VERSION_1_1.cs" />
     <Compile Include="Cl.VERSION_1_2.cs" />
     <Compile Include="Cl.VERSION_2_0.cs" />
