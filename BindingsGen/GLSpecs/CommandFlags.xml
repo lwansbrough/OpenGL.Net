@@ -313,4 +313,10 @@
 		<flags>OutParamLast</flags>
 	</command>
 	
+	<!-- CL -->
+
+	<command name="^cl(GetPlatformIDs|GetPlatformInfo)$">
+		<flags>OutParamLast</flags>
+	</command>
+	
 </command_overrides>
