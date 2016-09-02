@@ -231,8 +231,6 @@ namespace BindingsGen.GLSpecs
 		/// </param>
 		internal void GenerateImport(SourceStreamWriter sw, RegistryContext ctx)
 		{
-			// The SuppressUnmanagedCodeSecurity attribute is used to increase P/Invoke performance
-			sw.WriteLine("[SuppressUnmanagedCodeSecurity()]");
 			// Import definition
 			CommandFlags commandFlags = CommandFlagsDatabase.GetCommandFlags(this);
 			
@@ -303,9 +301,6 @@ namespace BindingsGen.GLSpecs
 		/// </param>
 		internal void GenerateDelegate(SourceStreamWriter sw, RegistryContext ctx)
 		{
-			// No sure if it is really necessary
-			sw.WriteLine("[SuppressUnmanagedCodeSecurity()]");
-
 			// Delegate type definition
 			sw.WriteIdentation(); sw.Write("internal ");
 			if (IsSafeImplementation == false) sw.Write("unsafe ");

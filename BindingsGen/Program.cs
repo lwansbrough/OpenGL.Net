@@ -100,9 +100,9 @@ namespace BindingsGen
 			Dictionary<string, bool> serializedCommands = new Dictionary<string, bool>();
 			Dictionary<string, bool> serializedEnums = new Dictionary<string, bool>();
 
-			glRegistryProcessor.GenerateStronglyTypedEnums(ctx, Path.Combine(BasePath, String.Format("OpenGL.NET/{0}.Enums.cs", ctx.Class)), null);
-			glRegistryProcessor.GenerateCommandsImports(ctx, Path.Combine(BasePath, String.Format("OpenGL.NET/{0}.Imports.cs", ctx.Class)), null);
-			glRegistryProcessor.GenerateCommandsDelegates(ctx, Path.Combine(BasePath, String.Format("OpenGL.NET/{0}.Delegates.cs", ctx.Class)), delegate(Command command) {
+			glRegistryProcessor.GenerateStronglyTypedEnums(ctx, Path.Combine(BasePath, String.Format("OpenGL.UWP/{0}.Enums.cs", ctx.Class)), null);
+			glRegistryProcessor.GenerateCommandsImports(ctx, Path.Combine(BasePath, String.Format("OpenGL.UWP/{0}.Imports.cs", ctx.Class)), null);
+			glRegistryProcessor.GenerateCommandsDelegates(ctx, Path.Combine(BasePath, String.Format("OpenGL.UWP/{0}.Delegates.cs", ctx.Class)), delegate(Command command) {
 				if (command.Alias != null)
 					Console.WriteLine("  Skip command {0}: alias of {1}", command.Prototype.Name, command.Alias.Name);
 				return (command.Alias == null);
@@ -217,7 +217,7 @@ namespace BindingsGen
 				orphanEnums.Add(enumerant);
 			}
 
-			string orphanFile = Path.Combine(BasePath, String.Format("OpenGL.NET/{0}.Orphans.cs", ctx.Class));
+			string orphanFile = Path.Combine(BasePath, String.Format("OpenGL.UWP/{0}.Orphans.cs", ctx.Class));
 
 			if ((orphanCommands.Count != 0) || (orphanEnums.Count != 0)) {
 				glRegistryProcessor.GenerateCommands(ctx, orphanFile, delegate(RegistryContext cctx, SourceStreamWriter sw) {
@@ -243,7 +243,7 @@ namespace BindingsGen
 
 		private static void GenerateExtensionsSupportClass(RegistryProcessor glRegistryProcessor, RegistryContext ctx)
 		{
-			string path = String.Format("OpenGL.NET/{0}.Extensions.cs", ctx.Class);
+			string path = String.Format("OpenGL.UWP/{0}.Extensions.cs", ctx.Class);
 
 			Console.WriteLine("Generate registry khronosExtensions to {0}.", path);
 
@@ -345,7 +345,7 @@ namespace BindingsGen
 
 		private static void GenerateVersionsSupportClass(RegistryProcessor glRegistryProcessor, RegistryContext ctx)
 		{
-			string path = String.Format("OpenGL.NET/{0}.Versions.cs", ctx.Class);
+			string path = String.Format("OpenGL.UWP/{0}.Versions.cs", ctx.Class);
 
 			Console.WriteLine("Generate version support class to {0}.", path);
 
@@ -431,7 +431,7 @@ namespace BindingsGen
 		/// </returns>
 		private static string GetFeatureFilePath(IFeature feature, RegistryContext ctx)
 		{
-			string path = String.Format("OpenGL.NET/{0}.{1}.cs", ctx.Class, feature.Name.Substring(ctx.Class.Length + 1));
+			string path = String.Format("OpenGL.UWP/{0}.{1}.cs", ctx.Class, feature.Name.Substring(ctx.Class.Length + 1));
 			string featureName = feature.Name.Substring(ctx.Class.Length + 1);
 			int separatorIndex = featureName.IndexOf('_');
 
@@ -439,10 +439,10 @@ namespace BindingsGen
 				string ext = featureName.Substring(0, separatorIndex);
 
 				if (ctx.ExtensionsDictionary.HasWord(ext)) {
-					string extensionDir = Path.Combine(BasePath, String.Format("OpenGL.NET/{0}", ext));
+					string extensionDir = Path.Combine(BasePath, String.Format("OpenGL.UWP/{0}", ext));
 					if (!Directory.Exists(extensionDir))
 						Directory.CreateDirectory(extensionDir);
-					path = String.Format("OpenGL.NET/{2}/{0}.{1}.cs", ctx.Class, featureName, ext);
+					path = String.Format("OpenGL.UWP/{2}/{0}.{1}.cs", ctx.Class, featureName, ext);
 				}
 			}
 
